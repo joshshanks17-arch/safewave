@@ -1,9 +1,20 @@
-# SafeWave
+# SafeWave v0.2
 
-Starter project for the SafeWave website.
+A polished static front-end for SafeWave, a royalty-free music platform for creators.
 
-## Structure
-- index.html
-- css/style.css
-- js/script.js
-- assets/
+## Pages
+- `index.html` — homepage
+- `browse.html` — searchable music catalog
+- `licensing.html` — licensing overview and FAQ
+- `login.html` — login UI
+- `signup.html` — signup UI
+
+## Files
+- `style.css` — responsive visual system
+- `script.js` — mobile navigation, filters, favorites and demo player
+
+## Deployment
+This repository is designed for automatic deployment through Cloudflare from the `main` branch.
+
+## Important
+The audio player is currently a visual demo and does not stream real tracks yet.

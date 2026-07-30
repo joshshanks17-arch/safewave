@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Browse Music — SafeWave</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="ambient ambient-one"></div><div class="page-shell">
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="SafeWave home">
+    <span class="brand-mark">〰</span><span>SafeWave</span>
+  </a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="site-nav">
+    <a href="browse.html">Browse</a>
+    <a href="licensing.html">Licensing</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="login.html">Log in</a>
+    <a class="nav-cta" href="signup.html">Start free</a>
+  </nav>
+</header>
+
+<main><section class="page-hero compact"><span class="eyebrow">Discover your sound</span><h1>Browse the SafeWave catalog.</h1><p>Search by title, artist, genre or mood. Every track is ready for creators.</p></section>
+<section class="section browse-layout">
+  <div class="filter-bar">
+    <label class="search-box">⌕<input id="searchInput" type="search" placeholder="Search tracks, artists, genres..."></label>
+    <select id="genreFilter"><option value="all">All genres</option><option>Synthwave</option><option>Lo-Fi</option><option>Electronic</option><option>Cinematic</option><option>Ambient</option><option>Rock</option><option>Acoustic</option><option>Gaming</option></select>
+    <select id="moodFilter"><option value="all">All moods</option><option>Energetic</option><option>Chill</option><option>Upbeat</option><option>Epic</option><option>Calm</option><option>Workout</option><option>Happy</option><option>Focused</option></select>
+  </div>
+  <div class="results-row"><strong><span id="resultCount">8</span> tracks</strong><span>Fresh music added weekly</span></div>
+  <div class="track-grid" id="trackGrid">
+<article class="track-card" data-title="midnight horizon" data-genre="synthwave" data-mood="energetic">
+  <div class="artwork" style="background:linear-gradient(135deg,#4f46e5,#06b6d4)">
+    <span>🌌</span>
+    <button class="play-button" data-track="0" aria-label="Play Midnight Horizon">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Midnight Horizon</h3><p>Nova Coast</p></div>
+    <button class="heart" aria-label="Favorite Midnight Horizon">♡</button>
+  </div>
+  <div class="track-tags"><span>Synthwave</span><span>Energetic</span><span>3:24</span></div>
+</article>
+
+
+<article class="track-card" data-title="golden hour" data-genre="lo-fi" data-mood="chill">
+  <div class="artwork" style="background:linear-gradient(135deg,#f59e0b,#ec4899)">
+    <span>🌅</span>
+    <button class="play-button" data-track="1" aria-label="Play Golden Hour">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Golden Hour</h3><p>Harbor Lights</p></div>
+    <button class="heart" aria-label="Favorite Golden Hour">♡</button>
+  </div>
+  <div class="track-tags"><span>Lo-Fi</span><span>Chill</span><span>2:58</span></div>
+</article>
+
+
+<article class="track-card" data-title="ocean drive" data-genre="electronic" data-mood="upbeat">
+  <div class="artwork" style="background:linear-gradient(135deg,#0ea5e9,#14b8a6)">
+    <span>🌊</span>
+    <button class="play-button" data-track="2" aria-label="Play Ocean Drive">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Ocean Drive</h3><p>Blue Current</p></div>
+    <button class="heart" aria-label="Favorite Ocean Drive">♡</button>
+  </div>
+  <div class="track-tags"><span>Electronic</span><span>Upbeat</span><span>3:40</span></div>
+</article>
+
+
+<article class="track-card" data-title="ember sky" data-genre="cinematic" data-mood="epic">
+  <div class="artwork" style="background:linear-gradient(135deg,#f97316,#7c3aed)">
+    <span>🔥</span>
+    <button class="play-button" data-track="3" aria-label="Play Ember Sky">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Ember Sky</h3><p>Atlas North</p></div>
+    <button class="heart" aria-label="Favorite Ember Sky">♡</button>
+  </div>
+  <div class="track-tags"><span>Cinematic</span><span>Epic</span><span>4:12</span></div>
+</article>
+
+
+<article class="track-card" data-title="quiet signals" data-genre="ambient" data-mood="calm">
+  <div class="artwork" style="background:linear-gradient(135deg,#334155,#6366f1)">
+    <span>🌙</span>
+    <button class="play-button" data-track="4" aria-label="Play Quiet Signals">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Quiet Signals</h3><p>Luna Static</p></div>
+    <button class="heart" aria-label="Favorite Quiet Signals">♡</button>
+  </div>
+  <div class="track-tags"><span>Ambient</span><span>Calm</span><span>3:08</span></div>
+</article>
+
+
+<article class="track-card" data-title="victory lane" data-genre="rock" data-mood="workout">
+  <div class="artwork" style="background:linear-gradient(135deg,#ef4444,#f59e0b)">
+    <span>⚡</span>
+    <button class="play-button" data-track="5" aria-label="Play Victory Lane">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Victory Lane</h3><p>Peak Motion</p></div>
+    <button class="heart" aria-label="Favorite Victory Lane">♡</button>
+  </div>
+  <div class="track-tags"><span>Rock</span><span>Workout</span><span>3:16</span></div>
+</article>
+
+
+<article class="track-card" data-title="paper planes" data-genre="acoustic" data-mood="happy">
+  <div class="artwork" style="background:linear-gradient(135deg,#22c55e,#eab308)">
+    <span>🕊️</span>
+    <button class="play-button" data-track="6" aria-label="Play Paper Planes">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Paper Planes</h3><p>Sunday Bloom</p></div>
+    <button class="heart" aria-label="Favorite Paper Planes">♡</button>
+  </div>
+  <div class="track-tags"><span>Acoustic</span><span>Happy</span><span>2:47</span></div>
+</article>
+
+
+<article class="track-card" data-title="night circuit" data-genre="gaming" data-mood="focused">
+  <div class="artwork" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">
+    <span>🎮</span>
+    <button class="play-button" data-track="7" aria-label="Play Night Circuit">▶</button>
+  </div>
+  <div class="track-meta">
+    <div><h3>Night Circuit</h3><p>Neon Harbor</p></div>
+    <button class="heart" aria-label="Favorite Night Circuit">♡</button>
+  </div>
+  <div class="track-tags"><span>Gaming</span><span>Focused</span><span>3:52</span></div>
+</article>
+</div>
+  <div class="empty-state" id="emptyState"><h3>No tracks found</h3><p>Try a different search or filter.</p></div>
+</section></main>
+<footer class="site-footer">
+  <div>
+    <a class="brand footer-brand" href="index.html"><span class="brand-mark">〰</span><span>SafeWave</span></a>
+    <p>Royalty-free music that moves your content.</p>
+  </div>
+  <div class="footer-links">
+    <a href="browse.html">Browse</a>
+    <a href="licensing.html">Licensing</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="mailto:hello@safewavemusic.com">Contact</a>
+  </div>
+  <p class="copyright">© 2026 SafeWave Music</p>
+</footer>
+</div>
+<div class="player" id="player"><div class="player-art">🌊</div><div class="player-copy"><strong id="playerTitle">Choose a track</strong><span id="playerArtist">SafeWave</span></div><button id="playerToggle">▶</button><div class="progress"><span id="progressBar"></span></div><span id="playerTime">0:00</span></div>
+<script src="script.js"></script></body></html>
