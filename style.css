@@ -28,3 +28,34 @@
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media(min-width:851px){.player{grid-template-columns:1fr auto minmax(220px,1fr) 130px 44px}.music-row{grid-template-columns:44px 52px 1fr 100px 80px 60px 40px 40px 40px}}
 @media(max-width:850px){.open-queue{display:block}.favorite-row{display:block}.queue-row{display:block}.download-button{display:block}.music-row{grid-template-columns:40px 48px 1fr 38px 38px 38px}.music-row>span{display:none}}
+
+
+/* Wave 4 */
+.app-view{display:none}.app-view.active{display:block}
+.nav-links a.route-active{color:white}
+.player-controls button.active{color:var(--green)}
+.now-playing-art.playing .animated-cover{animation:floatCover 4s ease-in-out infinite}
+.now-playing-art.playing .cover-orbit{animation:orbit 5s linear infinite}
+.cover-orbit{position:absolute;width:70px;height:70px;border:1px solid rgba(255,255,255,.45);border-radius:50%;right:20px;top:20px}
+.cover-orbit:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:white;left:50%;top:-5px}
+@keyframes floatCover{50%{transform:translateY(-8px) rotate(-1deg)}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.recently-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.recent-item{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px}
+.recent-cover{width:64px;height:64px;border-radius:14px}
+.recent-item strong,.recent-item small{display:block}.recent-item small{color:var(--muted);margin-top:4px}
+.recent-item button{width:42px;height:42px;border-radius:50%;border:0;background:white;color:#071018;cursor:pointer}
+.player-collapse{display:none}
+.player.minimized{height:54px;left:auto;width:min(330px,calc(100vw - 24px));border:1px solid var(--line);border-radius:18px 18px 0 0}
+.player.minimized .player-controls,.player.minimized .player-progress,.player.minimized .player-volume,.player.minimized .open-queue{display:none}
+.player.minimized .player-collapse{transform:rotate(180deg)}
+body.player-minimized{padding-bottom:58px}
+@media(max-width:850px){
+  .player-collapse{display:block;position:absolute;right:8px;top:-30px;width:42px;height:30px;border-radius:12px 12px 0 0;background:rgba(8,15,22,.96)!important;border:1px solid var(--line)!important}
+  .player-controls #shuffleBtn,.player-controls #repeatBtn{display:none}
+  .recently-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .hero-card{transform:none}
+  .recent-item{grid-template-columns:52px 1fr auto}.recent-cover{width:52px;height:52px}
+}
