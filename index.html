@@ -11,11 +11,11 @@
 <div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
 <header class="topbar">
   <a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a>
-  <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#library">Library</a><a href="licensing.html">Licensing</a></nav>
+  <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a></nav>
   <div class="top-actions"><button class="search-trigger" id="searchTrigger" aria-label="Search">⌕</button><a href="login.html">Log in</a><a class="pill-primary" href="signup.html">Start free</a><button class="menu-btn" id="menuBtn">☰</button></div>
 </header>
 
-<nav class="mobile-menu" id="mobileMenu"><a class="route-link" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#library">Library</a><a href="licensing.html">Licensing</a><a href="login.html">Log in</a><a href="signup.html">Start free</a></nav>
+<nav class="mobile-menu" id="mobileMenu"><a class="route-link" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a><a href="login.html">Log in</a><a href="signup.html">Start free</a></nav>
 
 <main>
 <section class="view active" data-view="home">
@@ -49,7 +49,7 @@
     <button data-quick="focus"><span>◌</span><div><strong>Focus mode</strong><small>Start a calm listening session</small></div></button>
     <button data-quick="energy"><span>⚡</span><div><strong>Need energy?</strong><small>Play upbeat electronic tracks</small></div></button>
     <button data-quick="cinematic"><span>◈</span><div><strong>Build a trailer</strong><small>Open cinematic recommendations</small></div></button>
-    <a class="route-link" href="#library"><span>♡</span><div><strong>Your library</strong><small>Favorites, playlists, and history</small></div></a>
+    <a class="route-link" href="#library"><span>♡</span><div><strong>Your library</strong><small>Favorites, playlists, and history</small></div></a><a class="route-link" href="#studio"><span>⌁</span><div><strong>Creator Studio</strong><small>Manage releases and metadata</small></div></a>
   </section>
 
   <section class="content-section home-discovery">
@@ -216,6 +216,104 @@
     <section class="library-block"><div class="library-heading"><div><span class="kicker">LISTENING HISTORY</span><h2>Recently played</h2></div><button class="clear-history" id="clearHistory">Clear history</button></div><div class="history-list" id="historyList"></div></section><section class="library-block"><div class="library-heading"><div><span class="kicker">DOWNLOAD HISTORY</span><h2>Files you saved</h2></div><button class="clear-history" id="clearDownloads">Clear downloads</button></div><div class="history-list" id="downloadHistoryList"></div></section>
   </section>
 </section>
+
+<section class="view" data-view="studio">
+  <section class="studio-hero">
+    <div>
+      <span class="kicker">SAFEWAVE CREATOR STUDIO</span>
+      <h1>Run the catalog like a real platform.</h1>
+      <p>Create release drafts, organize albums, preview analytics, and prepare tracks for publishing—all without touching the homepage layout.</p>
+    </div>
+    <div class="studio-status">
+      <span class="status-dot"></span>
+      <div><strong>Prototype mode</strong><small>Drafts save on this device</small></div>
+    </div>
+  </section>
+
+  <section class="studio-shell">
+    <aside class="studio-sidebar">
+      <button class="studio-tab active" data-studio-tab="overview">Overview</button>
+      <button class="studio-tab" data-studio-tab="music">Music</button>
+      <button class="studio-tab" data-studio-tab="release">New release</button>
+      <button class="studio-tab" data-studio-tab="analytics">Analytics</button>
+      <button class="studio-tab" data-studio-tab="settings">Settings</button>
+    </aside>
+
+    <div class="studio-content">
+      <section class="studio-panel active" data-studio-panel="overview">
+        <div class="studio-panel-head"><div><span class="kicker">OVERVIEW</span><h2>Catalog health</h2></div><button class="pill-primary" data-open-release>＋ New release</button></div>
+        <div class="studio-metrics">
+          <article><span>LIVE TRACKS</span><strong>6</strong><small>All playable</small></article>
+          <article><span>DRAFTS</span><strong id="draftCount">0</strong><small>Saved locally</small></article>
+          <article><span>TOTAL PLAYS</span><strong id="studioPlayCount">0</strong><small>This device</small></article>
+          <article><span>DOWNLOADS</span><strong id="studioDownloadCount">0</strong><small>This device</small></article>
+        </div>
+        <div class="studio-overview-grid">
+          <article class="studio-card">
+            <div class="studio-card-head"><h3>Recent releases</h3><a class="route-link" href="#discover">View catalog</a></div>
+            <div class="release-list" id="studioReleaseList"></div>
+          </article>
+          <article class="studio-card">
+            <div class="studio-card-head"><h3>Launch checklist</h3></div>
+            <label class="check-row"><input type="checkbox" checked> Audio file uploaded</label>
+            <label class="check-row"><input type="checkbox" checked> Cover artwork added</label>
+            <label class="check-row"><input type="checkbox"> Final commercial master</label>
+            <label class="check-row"><input type="checkbox"> Legal license reviewed</label>
+            <label class="check-row"><input type="checkbox"> Cloud storage connected</label>
+          </article>
+        </div>
+      </section>
+
+      <section class="studio-panel" data-studio-panel="music">
+        <div class="studio-panel-head"><div><span class="kicker">MUSIC</span><h2>Manage tracks</h2></div><button class="pill-primary" data-open-release>＋ Add music</button></div>
+        <div class="studio-table" id="studioTrackTable"></div>
+      </section>
+
+      <section class="studio-panel" data-studio-panel="release">
+        <div class="studio-panel-head"><div><span class="kicker">NEW RELEASE</span><h2>Create a track draft</h2></div><span class="prototype-label">LOCAL PROTOTYPE</span></div>
+        <form class="release-form" id="releaseForm">
+          <div class="release-grid">
+            <label>Track title<input id="releaseTitle" required placeholder="Ocean Echo"></label>
+            <label>Artist<input id="releaseArtist" required placeholder="SafeWave Originals"></label>
+            <label>Album<input id="releaseAlbum" placeholder="Coastal Motion"></label>
+            <label>Genre<select id="releaseGenre"><option>Lo-Fi</option><option>Electronic</option><option>Ambient</option><option>Acoustic</option><option>Cinematic</option><option>Rock</option></select></label>
+            <label>BPM<input id="releaseBpm" type="number" min="1" max="300" placeholder="96"></label>
+            <label>Key<input id="releaseKey" placeholder="G major"></label>
+          </div>
+          <label>Mood and tags<input id="releaseTags" placeholder="uplifting, travel, warm, lifestyle"></label>
+          <label>Description<textarea id="releaseDescription" rows="5" placeholder="Describe the sound and ideal creator use cases."></textarea></label>
+          <div class="upload-grid">
+            <label><span>Audio file</span><small>WAV or MP3</small><input type="file" accept="audio/*"></label>
+            <label><span>Cover artwork</span><small>Square JPG, PNG, or SVG</small><input type="file" accept="image/*"></label>
+          </div>
+          <div class="release-actions"><button class="pill-primary" type="submit">Save draft</button><button class="pill-glass" type="reset">Clear</button></div>
+        </form>
+        <div class="draft-list" id="draftList"></div>
+      </section>
+
+      <section class="studio-panel" data-studio-panel="analytics">
+        <div class="studio-panel-head"><div><span class="kicker">ANALYTICS</span><h2>Audience activity</h2></div><span class="prototype-label">LOCAL DATA</span></div>
+        <div class="analytics-chart" id="analyticsChart"></div>
+        <div class="analytics-grid">
+          <article><span>TOP TRACK</span><strong id="topTrackName">—</strong><small id="topTrackPlays">0 plays</small></article>
+          <article><span>MOST LIKED</span><strong id="mostLikedName">—</strong><small id="mostLikedCount">0 likes</small></article>
+          <article><span>MOST DOWNLOADED</span><strong id="mostDownloadedName">—</strong><small id="mostDownloadedCount">0 downloads</small></article>
+        </div>
+      </section>
+
+      <section class="studio-panel" data-studio-panel="settings">
+        <div class="studio-panel-head"><div><span class="kicker">SETTINGS</span><h2>Platform preferences</h2></div></div>
+        <div class="settings-stack">
+          <label><div><strong>Default artist name</strong><small>Used when creating a new release draft.</small></div><input id="defaultArtist" placeholder="SafeWave Originals"></label>
+          <label><div><strong>Default license</strong><small>Prototype display only.</small></div><select><option>Creator License</option><option>Commercial License</option><option>Editorial Only</option></select></label>
+          <label><div><strong>Catalog visibility</strong><small>Controls the future publishing workflow.</small></div><select><option>Draft first</option><option>Publish immediately</option></select></label>
+          <button class="pill-primary" id="saveStudioSettings">Save settings</button>
+        </div>
+      </section>
+    </div>
+  </section>
+</section>
+
 </main>
 
 <footer class="site-footer"><a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a><p>Built by creators, for creators.</p><div><a href="licensing.html">Licensing</a><a href="#">Contact</a><a href="#">Instagram</a></div><span>© 2026 SafeWave</span></footer>
@@ -235,7 +333,7 @@
 <section class="fullscreen-player" id="fullscreenPlayer"><button class="fullscreen-close" id="fullscreenClose">⌄</button><div class="fullscreen-bg" id="fullscreenBg"></div><div class="fullscreen-content"><div class="fullscreen-art" id="fullscreenArt"></div><span class="kicker">NOW PLAYING</span><h2 id="fullscreenTitle">Coastal Drift</h2><p id="fullscreenArtist">SafeWave</p><div class="full-timeline"><input id="fullProgress" type="range" min="0" max="100" value="0"><div><span id="fullCurrent">0:00</span><span id="fullDuration">0:00</span></div></div><div class="full-controls"><button id="fullPrev">‹</button><button id="fullPlay">▶</button><button id="fullNext">›</button></div></div></section>
 
 <div class="command-search" id="commandSearch"><div class="command-box"><span>⌕</span><input id="commandInput" placeholder="Search tracks, moods, or genres"><button id="commandClose">ESC</button><div id="commandResults"></div></div></div>
-<section class="playlist-modal" id="playlistModal"><div class="playlist-dialog"><button id="playlistClose">×</button><span class="kicker">NEW PLAYLIST</span><h2>Create a collection</h2><label>Playlist name<input id="playlistName" placeholder="My video soundtrack"></label><label>Add tracks<div class="playlist-track-picker" id="playlistTrackPicker"></div></label><button class="pill-primary" id="savePlaylist">Create playlist</button></div></section><nav class="mobile-bottom-nav"><a class="route-link" href="#home"><span>⌂</span><small>Home</small></a><a class="route-link" href="#discover"><span>⌕</span><small>Discover</small></a><a class="route-link" href="#library"><span>♡</span><small>Library</small></a></nav>
+<section class="playlist-modal" id="playlistModal"><div class="playlist-dialog"><button id="playlistClose">×</button><span class="kicker">NEW PLAYLIST</span><h2>Create a collection</h2><label>Playlist name<input id="playlistName" placeholder="My video soundtrack"></label><label>Add tracks<div class="playlist-track-picker" id="playlistTrackPicker"></div></label><button class="pill-primary" id="savePlaylist">Create playlist</button></div></section><nav class="mobile-bottom-nav"><a class="route-link" href="#home"><span>⌂</span><small>Home</small></a><a class="route-link" href="#discover"><span>⌕</span><small>Discover</small></a><a class="route-link" href="#library"><span>♡</span><small>Library</small></a><a class="route-link" href="#studio"><span>⌁</span><small>Studio</small></a></nav>
 <div class="toast" id="toast"></div>
 <script src="script.js"></script>
 </body></html>

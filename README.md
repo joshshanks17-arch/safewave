@@ -1,22 +1,40 @@
-# SafeWave 2.0 — Creator Edition
+# SafeWave 3.0 — Milestone 1
 
-A consolidated major release focused on mobile polish, a simpler homepage, personalized listening, and creator workflow improvements.
+This version keeps the familiar static Working Copy workflow while beginning the SafeWave 3.0 product rebuild.
 
-## New
-- Fixed featured-cover cropping on mobile
+## New Creator Studio
+
+- New Studio navigation and app view
+- Catalog overview dashboard
+- Local play and download metrics
+- Music-management table with previews
+- New-release draft form
+- Device-saved release drafts
+- Analytics prototype
+- Platform-settings prototype
+- Mobile-responsive Studio navigation
+
+## Existing features retained
+
+- Six playable stereo demos
+- Persistent player
+- Waveform seeking
+- Crossfade settings
+- Albums and collections
+- Favorites, queue, playlists, and history
+- Discover search and filters
+- Full-screen player and track details
+- Download history
 - Mobile bottom navigation
-- Quick listening modes for Focus, Energy, and Cinematic
-- Personalized “Play for you” session mix
-- Download history inside Library
-- Cleaner homepage flow and reduced repetition
-- Improved mobile spacing and tap targets
 
-## Retained
-- Six studio demo tracks
-- Waveform seeking and Media Session controls
-- Queue, favorites, playlists, history, recommendations
-- Albums, collections, track details, crossfade settings
+## Important
 
-Replace matching files and upload the complete assets folder.
+The Studio currently saves drafts and settings only on the device. It does not upload files or publish changes to the live catalog yet. Real publishing requires cloud storage, authentication, and a database.
 
-Recommended commit: SafeWave 2.0 Creator Edition
+## Deployment
+
+Use this package in the `v3-rebuild` branch. Replace the matching files and the complete `assets` folder, commit, and push.
+
+Recommended commit message:
+
+`SafeWave 3.0 Milestone 1`

@@ -321,3 +321,97 @@ if("mediaSession" in navigator){
 }
 updatePlatformStats();
 \n// SafeWave 2.0 — Creator Edition\nlet downloadHistory=JSON.parse(localStorage.getItem("swDownloadHistory")||"[]");\nfunction recordDownload(i){if(i<0)return;downloadHistory=[{track:i,time:Date.now()},...downloadHistory.filter(x=>x.track!==i)].slice(0,20);localStorage.setItem("swDownloadHistory",JSON.stringify(downloadHistory));renderDownloadHistory()}\nfunction renderDownloadHistory(){const box=document.querySelector("#downloadHistoryList");if(!box)return;if(!downloadHistory.length){box.innerHTML='<div class="download-history-empty">Downloaded tracks will appear here.</div>';return}box.innerHTML=downloadHistory.map((entry,p)=>{const t=tracks[entry.track],date=new Date(entry.time).toLocaleDateString();return `<article class="history-row"><span>${String(p+1).padStart(2,"0")}</span><div class="history-art" style="background-image:url('${t.cover}')"></div><div><strong>${t.title}</strong><small>${t.artist} • Saved ${date}</small></div><button data-track="${entry.track}">▶</button></article>`}).join("");bindDynamicTrackButtons(box)}\ndocument.querySelector("#clearDownloads")?.addEventListener("click",()=>{downloadHistory=[];localStorage.setItem("swDownloadHistory","[]");renderDownloadHistory();toast("Download history cleared")});\ndocument.querySelectorAll("[data-download]").forEach(btn=>btn.addEventListener("click",()=>recordDownload(tracks.findIndex(t=>t.src===btn.dataset.download))));document.querySelector("#modalDownload")?.addEventListener("click",()=>recordDownload(modalIndex));\nconst quickMap={focus:{query:"calm focus lo-fi",track:0},energy:{query:"electronic energy",track:1},cinematic:{query:"cinematic epic",track:4}};document.querySelectorAll("[data-quick]").forEach(btn=>btn.addEventListener("click",()=>{const m=quickMap[btn.dataset.quick];location.hash="#discover";setTimeout(()=>{const s=document.querySelector("#trackSearch");if(s){s.value=m.query;s.dispatchEvent(new Event("input"))}loadTrack(m.track,true)},80)}));\nfunction sessionRecommendationOrder(){const liked=new Set(favorites),recent=new Set(history.slice(0,6));return tracks.map((t,i)=>{let score=i===current?-5:0;if(liked.has(i))score+=5;if(recent.has(i))score+=2;score+=similarityScore(tracks[current],t);return{i,score}}).sort((a,b)=>b.score-a.score).map(x=>x.i)}\ndocument.querySelector("#playForYou")?.addEventListener("click",()=>{const order=sessionRecommendationOrder();if(!order.length)return;queue=[...order.slice(1),...queue];saveQueue();loadTrack(order[0],true);toast("Your session mix started")});\nfunction updateBottomNav(){const view=(location.hash||"#home").slice(1).split("?")[0];document.querySelectorAll(".mobile-bottom-nav .route-link").forEach(a=>a.classList.toggle("active",a.getAttribute("href")===`#${view}`))}\nwindow.addEventListener("hashchange",updateBottomNav);updateBottomNav();renderDownloadHistory();\n
+
+// SafeWave 3.0 — Milestone 1 Creator Studio
+let studioDrafts=JSON.parse(localStorage.getItem("swStudioDrafts")||"[]");
+let studioSettings=JSON.parse(localStorage.getItem("swStudioSettings")||"{}");
+
+function studioTotals(){
+ const plays=Object.values(typeof playCounts==="object"?playCounts:{}).reduce((a,b)=>a+Number(b),0);
+ const downloads=Object.values(typeof downloadCounts==="object"?downloadCounts:{}).reduce((a,b)=>a+Number(b),0);
+ return {plays,downloads};
+}
+function renderStudioOverview(){
+ const totals=studioTotals();
+ $("#draftCount")&&($("#draftCount").textContent=studioDrafts.length);
+ $("#studioPlayCount")&&($("#studioPlayCount").textContent=totals.plays.toLocaleString());
+ $("#studioDownloadCount")&&($("#studioDownloadCount").textContent=totals.downloads.toLocaleString());
+ const releases=$("#studioReleaseList");
+ if(releases)releases.innerHTML=tracks.slice().reverse().slice(0,4).map((t,i)=>`<article class="release-row"><i style="background-image:url('${t.cover}')"></i><div><strong>${t.title}</strong><small>${t.artist} • ${t.genre}</small></div><span>LIVE</span></article>`).join("");
+}
+function renderStudioMusic(){
+ const table=$("#studioTrackTable");if(!table)return;
+ table.innerHTML=tracks.map((t,i)=>`<article class="studio-table-row"><i style="background-image:url('${t.cover}')"></i><div><strong>${t.title}</strong><small>${t.artist}</small></div><span>${t.genre}</span><span>${t.bpm} BPM</span><span>${t.mood}</span><button data-track="${i}">▶ Preview</button></article>`).join("");
+ bindDynamicTrackButtons(table);
+}
+function renderDrafts(){
+ const box=$("#draftList");if(!box)return;
+ box.innerHTML=studioDrafts.length?`<div class="studio-card-head"><h3>Saved drafts</h3><span>${studioDrafts.length}</span></div>`+studioDrafts.map((d,i)=>`<article class="draft-card"><div><strong>${d.title}</strong><small>${d.artist} • ${d.genre} • ${d.bpm||"—"} BPM</small></div><button data-delete-draft="${i}">Delete</button></article>`).join(""):"";
+ box.querySelectorAll("[data-delete-draft]").forEach(b=>b.onclick=()=>{studioDrafts.splice(Number(b.dataset.deleteDraft),1);localStorage.setItem("swStudioDrafts",JSON.stringify(studioDrafts));renderDrafts();renderStudioOverview();toast("Draft deleted")});
+}
+function topIndex(store){
+ let best=-1,value=-1;
+ tracks.forEach((_,i)=>{const v=Number(store?.[i]||0);if(v>value){best=i;value=v}});
+ return {index:best,value:Math.max(0,value)};
+}
+function renderAnalytics(){
+ const totals=studioTotals();
+ const chart=$("#analyticsChart");
+ if(chart){
+  const values=tracks.map((_,i)=>Number((typeof playCounts==="object"?playCounts:{})[i]||0));
+  const max=Math.max(1,...values);
+  chart.innerHTML=values.map((v,i)=>`<div class="chart-bar" style="height:${Math.max(8,v/max*88)}%"><span>${v}</span><small>${tracks[i].title.split(" ")[0]}</small></div>`).join("");
+ }
+ const top=topIndex(typeof playCounts==="object"?playCounts:{});
+ const liked=topIndex(typeof likeCounts==="object"?likeCounts:{});
+ const down=topIndex(typeof downloadCounts==="object"?downloadCounts:{});
+ $("#topTrackName")&&($("#topTrackName").textContent=top.index>=0?tracks[top.index].title:"—");
+ $("#topTrackPlays")&&($("#topTrackPlays").textContent=`${top.value} plays`);
+ $("#mostLikedName")&&($("#mostLikedName").textContent=liked.index>=0?tracks[liked.index].title:"—");
+ $("#mostLikedCount")&&($("#mostLikedCount").textContent=`${liked.value} likes`);
+ $("#mostDownloadedName")&&($("#mostDownloadedName").textContent=down.index>=0?tracks[down.index].title:"—");
+ $("#mostDownloadedCount")&&($("#mostDownloadedCount").textContent=`${down.value} downloads`);
+}
+function renderStudio(){
+ renderStudioOverview();renderStudioMusic();renderDrafts();renderAnalytics();
+ if($("#defaultArtist"))$("#defaultArtist").value=studioSettings.defaultArtist||"SafeWave Originals";
+}
+$$(".studio-tab").forEach(tab=>tab.addEventListener("click",()=>{
+ $$(".studio-tab").forEach(t=>t.classList.toggle("active",t===tab));
+ $$(".studio-panel").forEach(p=>p.classList.toggle("active",p.dataset.studioPanel===tab.dataset.studioTab));
+ if(tab.dataset.studioTab==="analytics")renderAnalytics();
+}));
+$$("[data-open-release]").forEach(btn=>btn.addEventListener("click",()=>{
+ const tab=$('.studio-tab[data-studio-tab="release"]');tab?.click();
+ $("#releaseTitle")?.focus();
+}));
+$("#releaseForm")?.addEventListener("submit",e=>{
+ e.preventDefault();
+ const draft={
+  title:$("#releaseTitle").value.trim(),
+  artist:$("#releaseArtist").value.trim(),
+  album:$("#releaseAlbum").value.trim(),
+  genre:$("#releaseGenre").value,
+  bpm:$("#releaseBpm").value,
+  key:$("#releaseKey").value.trim(),
+  tags:$("#releaseTags").value.trim(),
+  description:$("#releaseDescription").value.trim(),
+  created:Date.now()
+ };
+ studioDrafts.unshift(draft);localStorage.setItem("swStudioDrafts",JSON.stringify(studioDrafts));
+ e.currentTarget.reset();renderDrafts();renderStudioOverview();toast("Release draft saved");
+});
+$("#saveStudioSettings")?.addEventListener("click",()=>{
+ studioSettings.defaultArtist=$("#defaultArtist").value.trim()||"SafeWave Originals";
+ localStorage.setItem("swStudioSettings",JSON.stringify(studioSettings));toast("Studio settings saved");
+});
+const previousRouteStudio=route;
+route=function(){
+ previousRouteStudio();
+ const view=(location.hash||"#home").slice(1).split("?")[0];
+ if(view==="studio")renderStudio();
+};
+window.removeEventListener("hashchange",previousRouteStudio);
+window.addEventListener("hashchange",route);
+route();
+renderStudio();
