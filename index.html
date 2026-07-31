@@ -30,7 +30,7 @@
         <div class="social-proof"><div class="avatars"><i>J</i><i>M</i><i>A</i><i>+</i></div><p><strong>Built for creators</strong><br>Simple discovery and licensing</p></div><div class="platform-stats"><div><strong>3</strong><span>Original demos</span></div><div><strong>WAV</strong><span>High quality</span></div><div><strong>24/7</strong><span>Instant access</span></div></div>
       </div>
       <article class="spotlight-card">
-        <div class="spotlight-art" style="background-image:url('assets/covers/coastal-drift.svg')">
+        <div class="spotlight-art"><img src="assets/covers/coastal-drift.svg" alt="Coastal Drift cover artwork">
           <div class="art-overlay"></div>
           <div class="visualizer" id="heroVisualizer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <span class="original-badge">SAFEWAVE ORIGINAL</span>
@@ -45,7 +45,14 @@
     <div class="marquee"><div>ROYALTY-FREE <b>✦</b> CINEMATIC <b>✦</b> LO-FI <b>✦</b> GAMING <b>✦</b> AMBIENT <b>✦</b> PODCASTS <b>✦</b>&nbsp;</div><div>ROYALTY-FREE <b>✦</b> CINEMATIC <b>✦</b> LO-FI <b>✦</b> GAMING <b>✦</b> AMBIENT <b>✦</b> PODCASTS <b>✦</b>&nbsp;</div></div>
   </section>
 
-  <section class="content-section">
+  <section class="quick-actions">
+    <button data-quick="focus"><span>◌</span><div><strong>Focus mode</strong><small>Start a calm listening session</small></div></button>
+    <button data-quick="energy"><span>⚡</span><div><strong>Need energy?</strong><small>Play upbeat electronic tracks</small></div></button>
+    <button data-quick="cinematic"><span>◈</span><div><strong>Build a trailer</strong><small>Open cinematic recommendations</small></div></button>
+    <a class="route-link" href="#library"><span>♡</span><div><strong>Your library</strong><small>Favorites, playlists, and history</small></div></a>
+  </section>
+
+  <section class="content-section home-discovery">
     <div class="section-head"><div><span class="kicker">HANDPICKED FOR YOU</span><h2>Soundtracks for every creative state.</h2></div><a class="route-link text-link" href="#discover">See everything ↗</a></div>
     <div class="editorial-grid">
       <article class="editorial-card wide card-cinema route-link" data-route="discover" data-filter-route="ambient"><div class="editorial-copy"><span>FILM & STORY</span><h3>Make the moment feel bigger.</h3><p>Cinematic textures for trailers, documentaries, and emotional storytelling.</p><button>Explore cinematic →</button></div><div class="editorial-ring"></div></article>
@@ -55,7 +62,7 @@
   </section>
 
   <section class="content-section">
-    <div class="section-head"><div><span class="kicker">TRENDING NOW</span><h2>Tracks creators are reaching for.</h2></div></div>
+    <div class="section-head"><div><span class="kicker">TRENDING NOW</span><h2>The six tracks defining SafeWave right now.</h2></div></div>
     <div class="premium-tracks">
       <article class="premium-track" data-track-card="0"><span class="rank">01</span><div class="track-cover" style="background-image:url('assets/covers/coastal-drift.svg')"><button data-track="0">▶</button></div><div class="track-main"><strong>Coastal Drift</strong><small>SafeWave • Lo-Fi</small></div><div class="wave-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="track-mood">CALM</span><button class="heart" data-favorite="0">♡</button><button class="more" data-open-track="0">•••</button></article>
       <article class="premium-track" data-track-card="1"><span class="rank">02</span><div class="track-cover" style="background-image:url('assets/covers/neon-sunrise.svg')"><button data-track="1">▶</button></div><div class="track-main"><strong>Neon Sunrise</strong><small>Nova Lane • Electronic</small></div><div class="wave-line alt"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="track-mood">ENERGY</span><button class="heart" data-favorite="1">♡</button><button class="more" data-open-track="1">•••</button></article>
@@ -71,7 +78,7 @@
 
   <section class="content-section collections-section">
     <div class="section-head">
-      <div><span class="kicker">CREATOR COLLECTIONS</span><h2>Complete sound worlds for complete projects.</h2></div>
+      <div><span class="kicker">CREATOR COLLECTIONS</span><h2>Ready-made collections for real creator workflows.</h2></div>
       <a class="route-link text-link" href="#discover">Browse every track ↗</a>
     </div>
     <div class="collection-grid">
@@ -134,7 +141,7 @@
 
 
   <section class="content-section albums-section">
-    <div class="section-head"><div><span class="kicker">SAFEWAVE RELEASES</span><h2>Albums built around a complete creative mood.</h2></div></div>
+    <div class="section-head"><div><span class="kicker">SAFEWAVE RELEASES</span><h2>Explore releases without leaving your flow.</h2></div></div>
     <div class="album-grid">
       <article class="album-card">
         <div class="album-art collage-coastal">
@@ -163,6 +170,14 @@
       <div class="artist-avatar">SW</div>
       <div class="artist-copy"><span class="kicker">FEATURED ARTIST</span><h2>SafeWave Originals</h2><p>Original instrumental music created for modern creators, filmmakers, streamers, podcasters, and storytellers.</p><div class="artist-stats"><span><b>4</b> releases</span><span><b>6</b> tracks</span><span><b id="artistPlays">0</b> plays</span></div></div>
       <button class="pill-primary" data-artist-play>▶ Play top tracks</button>
+    </div>
+  </section>
+
+
+  <section class="content-section for-you-section">
+    <div class="for-you-panel">
+      <div><span class="kicker">PERSONALIZED FOR THIS SESSION</span><h2>Keep the momentum going.</h2><p>SafeWave blends recently played tracks, favorites, mood, genre, and BPM to shape your next recommendation.</p></div>
+      <div class="for-you-actions"><button class="pill-primary" id="playForYou">▶ Play for you</button><a class="pill-glass route-link" href="#discover">Refine in Discover</a></div>
     </div>
   </section>
 
@@ -198,7 +213,7 @@
     <div class="streaming-settings"><div><span class="kicker">PLAYBACK</span><h3>Streaming settings</h3></div><label>Crossfade <select id="crossfadeSelect"><option value="0">Off</option><option value="2">2 seconds</option><option value="4">4 seconds</option><option value="6">6 seconds</option></select></label><label><input type="checkbox" id="autoplayToggle" checked> Autoplay recommendations</label></div><div class="library-stats"><article><strong id="favoriteStat">0</strong><span>Favorites</span></article><article><strong id="playlistStat">0</strong><span>Playlists</span></article><article><strong id="historyStat">0</strong><span>Recently played</span></article><article><strong>6</strong><span>Studio tracks</span></article><article><strong id="totalPlayStat">0</strong><span>Total plays</span></article></div>
     <section class="library-block"><div class="library-heading"><div><span class="kicker">SAVED MUSIC</span><h2>Your favorites</h2></div><a class="route-link" href="#discover">Find music →</a></div><div class="library-grid" id="favoriteGrid"></div></section>
     <section class="library-block"><div class="library-heading"><div><span class="kicker">YOUR COLLECTIONS</span><h2>Playlists</h2></div><button class="create-playlist" id="createPlaylist">＋ New playlist</button></div><div class="playlist-library" id="playlistLibrary"></div></section>
-    <section class="library-block"><div class="library-heading"><div><span class="kicker">LISTENING HISTORY</span><h2>Recently played</h2></div><button class="clear-history" id="clearHistory">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+    <section class="library-block"><div class="library-heading"><div><span class="kicker">LISTENING HISTORY</span><h2>Recently played</h2></div><button class="clear-history" id="clearHistory">Clear history</button></div><div class="history-list" id="historyList"></div></section><section class="library-block"><div class="library-heading"><div><span class="kicker">DOWNLOAD HISTORY</span><h2>Files you saved</h2></div><button class="clear-history" id="clearDownloads">Clear downloads</button></div><div class="history-list" id="downloadHistoryList"></div></section>
   </section>
 </section>
 </main>
@@ -220,6 +235,7 @@
 <section class="fullscreen-player" id="fullscreenPlayer"><button class="fullscreen-close" id="fullscreenClose">⌄</button><div class="fullscreen-bg" id="fullscreenBg"></div><div class="fullscreen-content"><div class="fullscreen-art" id="fullscreenArt"></div><span class="kicker">NOW PLAYING</span><h2 id="fullscreenTitle">Coastal Drift</h2><p id="fullscreenArtist">SafeWave</p><div class="full-timeline"><input id="fullProgress" type="range" min="0" max="100" value="0"><div><span id="fullCurrent">0:00</span><span id="fullDuration">0:00</span></div></div><div class="full-controls"><button id="fullPrev">‹</button><button id="fullPlay">▶</button><button id="fullNext">›</button></div></div></section>
 
 <div class="command-search" id="commandSearch"><div class="command-box"><span>⌕</span><input id="commandInput" placeholder="Search tracks, moods, or genres"><button id="commandClose">ESC</button><div id="commandResults"></div></div></div>
-<section class="playlist-modal" id="playlistModal"><div class="playlist-dialog"><button id="playlistClose">×</button><span class="kicker">NEW PLAYLIST</span><h2>Create a collection</h2><label>Playlist name<input id="playlistName" placeholder="My video soundtrack"></label><label>Add tracks<div class="playlist-track-picker" id="playlistTrackPicker"></div></label><button class="pill-primary" id="savePlaylist">Create playlist</button></div></section><div class="toast" id="toast"></div>
+<section class="playlist-modal" id="playlistModal"><div class="playlist-dialog"><button id="playlistClose">×</button><span class="kicker">NEW PLAYLIST</span><h2>Create a collection</h2><label>Playlist name<input id="playlistName" placeholder="My video soundtrack"></label><label>Add tracks<div class="playlist-track-picker" id="playlistTrackPicker"></div></label><button class="pill-primary" id="savePlaylist">Create playlist</button></div></section><nav class="mobile-bottom-nav"><a class="route-link" href="#home"><span>⌂</span><small>Home</small></a><a class="route-link" href="#discover"><span>⌕</span><small>Discover</small></a><a class="route-link" href="#library"><span>♡</span><small>Library</small></a></nav>
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 </body></html>
