@@ -1,30 +1,31 @@
-# SafeWave Wave 8 — Studio
+# SafeWave Wave 9 — Creator Library
 
-Wave 8 begins the shift from interface prototype to music product.
+Wave 9 adds a personal creator experience and expands the catalog to six original studio demos.
 
-## New music
-Three new original stereo WAV production demos:
-- Coastal Drift — Studio
-- Neon Sunrise — Studio
-- Quiet Horizon — Studio
+## New tracks
+- Golden Hour Drive — Acoustic / Travel
+- Apex Rising — Epic Cinematic
+- Digital Rain — Atmospheric Electronic
 
-These replace the short proof-of-concept tones and include:
-- Longer 40–55 second arrangements
-- Stereo output
-- Layered harmony, bass, melody, percussion, and effects
-- Fade-ins and fade-outs
-- Original compositions created for SafeWave
+## Creator Library
+- New Library navigation and dashboard
+- Favorites displayed as a personal collection
+- Recently played history
+- Create, play, and delete custom playlists
+- Local profile display name
+- Personal stats for favorites, playlists, history, and catalog
+- All library data persists locally on the device
 
-## Platform updates
-- New SafeWave Studio feature section
-- Updated track durations and metadata
-- Studio-quality messaging and production specifications
-- Existing player, collections, queue, favorites, search, downloads, and dynamic themes retained
+## Catalog improvements
+- Six total studio demo tracks
+- Acoustic and Cinematic filters
+- New artwork and metadata
+- Updated search and modal support
 
 ## Important
-These are substantially upgraded original demos, but they are not substitutes for final commercial masters made in a professional DAW with premium instruments and mastering. They are intended to establish the catalog direction and production workflow.
+User accounts are still local prototypes. Cloud-synced authentication and data storage require a backend service in a later wave.
 
 ## Deploy
-Replace the matching project files and upload the entire `assets` folder.
+Replace matching files and upload the complete `assets` folder.
 
-Recommended commit message: `Wave 8 Studio`
+Recommended commit message: `Wave 9 Creator Library`

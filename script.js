@@ -2,9 +2,12 @@
 const tracks=[
  {title:"Coastal Drift",artist:"SafeWave",src:"assets/audio/coastal-drift-studio.wav",cover:"assets/covers/coastal-drift.svg",genre:"Lo-Fi",bpm:86,mood:"Calm",tags:["Lo-Fi","Calm","Focus","Travel"],description:"Warm textures, soft movement, and an easy coastal pulse designed for study sessions, travel edits, lifestyle videos, and reflective storytelling."},
  {title:"Neon Sunrise",artist:"Nova Lane",src:"assets/audio/neon-sunrise-studio.wav",cover:"assets/covers/neon-sunrise.svg",genre:"Electronic",bpm:108,mood:"Energy",tags:["Electronic","Upbeat","Gaming","Stream"],description:"Bright synth energy and forward motion for gaming content, livestreams, technology videos, city edits, and upbeat creator intros."},
- {title:"Quiet Horizon",artist:"SafeWave AI Lab",src:"assets/audio/quiet-horizon-studio.wav",cover:"assets/covers/quiet-horizon.svg",genre:"Ambient",bpm:74,mood:"Dreamy",tags:["Ambient","Dreamy","Cinematic","Sleep"],description:"A spacious, cinematic ambient piece for documentaries, nighttime visuals, meditation, emotional transitions, and moments that need room to breathe."}
+ {title:"Quiet Horizon",artist:"SafeWave AI Lab",src:"assets/audio/quiet-horizon-studio.wav",cover:"assets/covers/quiet-horizon.svg",genre:"Ambient",bpm:74,mood:"Dreamy",tags:["Ambient","Dreamy","Cinematic","Sleep"],description:"A spacious, cinematic ambient piece for documentaries, nighttime visuals, meditation, emotional transitions, and moments that need room to breathe."},
+ {title:"Golden Hour Drive",artist:"SafeWave Originals",src:"assets/audio/golden-hour-drive.wav",cover:"assets/covers/golden-hour-drive.svg",genre:"Acoustic",bpm:96,mood:"Uplifting",tags:["Acoustic","Travel","Warm","Road Trip"],description:"A bright road-trip instrumental with warm harmony, steady motion, and an optimistic melody for travel films, lifestyle content, and brand stories."},
+ {title:"Apex Rising",artist:"SafeWave Originals",src:"assets/audio/apex-rising.wav",cover:"assets/covers/apex-rising.svg",genre:"Cinematic",bpm:124,mood:"Epic",tags:["Cinematic","Epic","Trailer","Intense"],description:"A driving cinematic cue with rising harmony, bold percussion, and heroic melodic movement for trailers, reveals, sports, and dramatic edits."},
+ {title:"Digital Rain",artist:"Nova Lane",src:"assets/audio/digital-rain.wav",cover:"assets/covers/digital-rain.svg",genre:"Electronic",bpm:102,mood:"Atmospheric",tags:["Electronic","Technology","Night","Cyberpunk"],description:"Atmospheric electronic motion with a clean digital pulse for technology videos, nighttime city footage, game streams, and futuristic storytelling."}
 ];
-let current=Number(localStorage.getItem("swCurrent")||0),queue=JSON.parse(localStorage.getItem("swQueue")||"[]"),favorites=JSON.parse(localStorage.getItem("swFavorites")||"[]"),shuffle=localStorage.getItem("swShuffle")==="true",repeat=localStorage.getItem("swRepeat")||"off",modalIndex=0;
+let history=JSON.parse(localStorage.getItem("swHistory")||"[]"),playlists=JSON.parse(localStorage.getItem("swPlaylists")||"[]"),current=Number(localStorage.getItem("swCurrent")||0),queue=JSON.parse(localStorage.getItem("swQueue")||"[]"),favorites=JSON.parse(localStorage.getItem("swFavorites")||"[]"),shuffle=localStorage.getItem("swShuffle")==="true",repeat=localStorage.getItem("swRepeat")||"off",modalIndex=0;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const audio=$("#audio"),playBtn=$("#playBtn"),progress=$("#progress"),volume=$("#volume"),heroVisualizer=$("#heroVisualizer");
 const fmt=s=>Number.isFinite(s)?`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`:"0:00";
@@ -14,7 +17,7 @@ function renderCurrent(){
  $("#fullscreenTitle").textContent=t.title;$("#fullscreenArtist").textContent=t.artist;$("#fullscreenArt").style.backgroundImage=`url('${t.cover}')`;$("#fullscreenBg").style.backgroundImage=`url('${t.cover}')`;
  $("#favoriteCurrent").textContent=favorites.includes(current)?"♥":"♡";$("#favoriteCurrent").classList.toggle("active",favorites.includes(current));
 }
-function loadTrack(i,autoplay=true){current=(i+tracks.length)%tracks.length;localStorage.setItem("swCurrent",current);audio.src=tracks[current].src;renderCurrent();if(autoplay)audio.play().catch(()=>{});}
+function loadTrack(i,autoplay=true){current=(i+tracks.length)%tracks.length;localStorage.setItem("swCurrent",current);audio.src=tracks[current].src;history=[current,...history.filter(x=>x!==current)].slice(0,20);localStorage.setItem("swHistory",JSON.stringify(history));renderCurrent();renderLibrary();if(autoplay)audio.play().catch(()=>{});}
 function togglePlay(){audio.paused?audio.play().catch(()=>{}):audio.pause()}
 function nextIndex(){if(repeat==="one")return current;if(queue.length){const n=queue.shift();saveQueue();return n}if(shuffle){let n=current;while(n===current)n=Math.floor(Math.random()*tracks.length);return n}return(current+1)%tracks.length}
 function next(){loadTrack(nextIndex())}function prev(){loadTrack(current-1)}
@@ -31,7 +34,7 @@ $$("[data-track]").forEach(b=>b.onclick=()=>loadTrack(Number(b.dataset.track)));
 function renderModes(){$("#shuffleBtn").classList.toggle("active",shuffle);$("#repeatBtn").classList.toggle("active",repeat!=="off");$("#repeatBtn").textContent=repeat==="one"?"↻¹":"↻"}
 $("#shuffleBtn").onclick=()=>{shuffle=!shuffle;localStorage.setItem("swShuffle",shuffle);renderModes();toast(shuffle?"Shuffle on":"Shuffle off")};
 $("#repeatBtn").onclick=()=>{repeat=repeat==="off"?"all":repeat==="all"?"one":"off";localStorage.setItem("swRepeat",repeat);renderModes();toast(repeat==="off"?"Repeat off":repeat==="one"?"Repeat one":"Repeat all")};renderModes();
-function saveFavorites(){localStorage.setItem("swFavorites",JSON.stringify(favorites));renderFavorites()}
+function saveFavorites(){localStorage.setItem("swFavorites",JSON.stringify(favorites));renderFavorites();renderLibrary()}
 function toggleFavorite(i){favorites=favorites.includes(i)?favorites.filter(x=>x!==i):[...favorites,i];saveFavorites();renderCurrent();toast(favorites.includes(i)?"Added to favorites":"Removed from favorites")}
 function renderFavorites(){$$("[data-favorite]").forEach(b=>{const on=favorites.includes(Number(b.dataset.favorite));b.textContent=on?"♥":"♡";b.classList.toggle("active",on)})}
 $$("[data-favorite]").forEach(b=>b.onclick=()=>toggleFavorite(Number(b.dataset.favorite)));$("#favoriteCurrent").onclick=()=>toggleFavorite(current);renderFavorites();
@@ -39,7 +42,7 @@ function saveQueue(){localStorage.setItem("swQueue",JSON.stringify(queue));rende
 function addQueue(i){queue.push(i);saveQueue();toast(`${tracks[i].title} added to queue`)}
 function renderQueue(){const l=$("#queueList");$("#queueCount").textContent=queue.length;if(!queue.length){l.innerHTML='<p class="empty">Your queue is empty.</p>';return}l.innerHTML=queue.map((i,p)=>`<article class="queue-item"><div class="queue-item-art" style="background-image:url('${tracks[i].cover}')"></div><div><strong>${tracks[i].title}</strong><small>${tracks[i].artist}</small></div><button data-remove="${p}">×</button></article>`).join("");$$("[data-remove]").forEach(b=>b.onclick=()=>{queue.splice(Number(b.dataset.remove),1);saveQueue()})}
 $$("[data-queue]").forEach(b=>b.onclick=()=>addQueue(Number(b.dataset.queue)));$("#openQueue").onclick=()=>$("#queueDrawer").classList.add("open");$("#closeQueue").onclick=()=>$("#queueDrawer").classList.remove("open");$("#clearQueue").onclick=()=>{queue=[];saveQueue();toast("Queue cleared")};renderQueue();
-function route(){const raw=(location.hash||"#home").slice(1),[view,q=""]=raw.split("?");const v=view==="discover"?"discover":"home";$$(".view").forEach(e=>e.classList.toggle("active",e.dataset.view===v));$$(".desktop-nav .route-link").forEach(e=>e.classList.toggle("active",e.getAttribute("href")===`#${v}`));$("#mobileMenu").classList.remove("open");if(v==="discover"){const g=new URLSearchParams(q).get("genre");if(g)applyFilter(g)}window.scrollTo({top:0,behavior:"smooth"})}
+function route(){const raw=(location.hash||"#home").slice(1),[view,q=""]=raw.split("?");const v=["discover","library"].includes(view)?view:"home";$$(".view").forEach(e=>e.classList.toggle("active",e.dataset.view===v));$$(".desktop-nav .route-link").forEach(e=>e.classList.toggle("active",e.getAttribute("href")===`#${v}`));$("#mobileMenu").classList.remove("open");if(v==="library")renderLibrary();if(v==="discover"){const g=new URLSearchParams(q).get("genre");if(g)applyFilter(g)}window.scrollTo({top:0,behavior:"smooth"})}
 window.addEventListener("hashchange",route);route();
 $("#menuBtn").onclick=()=>$("#mobileMenu").classList.toggle("open");
 $$("[data-route]").forEach(e=>e.onclick=()=>{location.hash=`#${e.dataset.route}?genre=${e.dataset.filterRoute||"all"}`});
@@ -99,3 +102,46 @@ loadTrack=function(i,autoplay=true){
  renderActiveTrack();
 };
 renderActiveTrack();
+
+
+// Wave 9 — Creator Library
+function bindDynamicTrackButtons(root=document){
+ root.querySelectorAll("[data-track]").forEach(b=>b.onclick=()=>loadTrack(Number(b.dataset.track)));
+ root.querySelectorAll("[data-favorite]").forEach(b=>b.onclick=()=>toggleFavorite(Number(b.dataset.favorite)));
+ root.querySelectorAll("[data-queue]").forEach(b=>b.onclick=()=>addQueue(Number(b.dataset.queue)));
+ root.querySelectorAll("[data-open-track]").forEach(b=>b.onclick=()=>openModal(Number(b.dataset.openTrack)));
+}
+function cardForTrack(i){
+ const t=tracks[i];
+ return `<article class="library-track"><div class="library-track-art" style="background-image:url('${t.cover}')"><button data-track="${i}">▶</button></div><strong>${t.title}</strong><small>${t.artist}</small><div><button data-favorite="${i}">♥</button><button data-queue="${i}">＋</button></div></article>`;
+}
+function renderLibrary(){
+ const favGrid=$("#favoriteGrid"), historyList=$("#historyList"), playlistBox=$("#playlistLibrary");
+ if(!favGrid||!historyList||!playlistBox)return;
+ $("#favoriteStat").textContent=favorites.length;
+ $("#playlistStat").textContent=playlists.length;
+ $("#historyStat").textContent=history.length;
+ favGrid.innerHTML=favorites.length?favorites.map(cardForTrack).join(""):'<div class="library-empty"><span>♡</span><h3>No favorites yet</h3><p>Save tracks you want to use later.</p><a href="#discover">Browse music</a></div>';
+ historyList.innerHTML=history.length?history.slice(0,8).map((i,p)=>`<article class="history-row"><span>${String(p+1).padStart(2,"0")}</span><div class="history-art" style="background-image:url('${tracks[i].cover}')"></div><div><strong>${tracks[i].title}</strong><small>${tracks[i].artist} • ${tracks[i].genre}</small></div><button data-track="${i}">▶</button></article>`).join(""):'<div class="library-empty compact"><p>Your recently played tracks will appear here.</p></div>';
+ playlistBox.innerHTML=playlists.length?playlists.map((p,idx)=>`<article class="saved-playlist"><div class="playlist-collage">${p.tracks.slice(0,4).map(i=>`<i style="background-image:url('${tracks[i].cover}')"></i>`).join("")}</div><div><strong>${p.name}</strong><small>${p.tracks.length} tracks</small></div><button data-play-playlist="${idx}">▶ Play</button><button data-delete-playlist="${idx}">×</button></article>`).join(""):'<div class="library-empty"><span>＋</span><h3>Create your first playlist</h3><p>Group tracks for a video, stream, podcast, or campaign.</p></div>';
+ bindDynamicTrackButtons(favGrid);bindDynamicTrackButtons(historyList);
+ playlistBox.querySelectorAll("[data-play-playlist]").forEach(b=>b.onclick=()=>{const p=playlists[Number(b.dataset.playPlaylist)];if(!p?.tracks.length)return;queue=[...p.tracks.slice(1),...queue];saveQueue();loadTrack(p.tracks[0]);});
+ playlistBox.querySelectorAll("[data-delete-playlist]").forEach(b=>b.onclick=()=>{playlists.splice(Number(b.dataset.deletePlaylist),1);localStorage.setItem("swPlaylists",JSON.stringify(playlists));renderLibrary();toast("Playlist deleted");});
+}
+function renderPlaylistPicker(){
+ $("#playlistTrackPicker").innerHTML=tracks.map((t,i)=>`<label class="picker-track"><input type="checkbox" value="${i}"><i style="background-image:url('${t.cover}')"></i><span><strong>${t.title}</strong><small>${t.artist}</small></span></label>`).join("");
+}
+$("#createPlaylist")?.addEventListener("click",()=>{$("#playlistModal").classList.add("open");renderPlaylistPicker();});
+$("#playlistClose")?.addEventListener("click",()=>$("#playlistModal").classList.remove("open"));
+$("#savePlaylist")?.addEventListener("click",()=>{
+ const name=$("#playlistName").value.trim();
+ const selected=[...$("#playlistTrackPicker").querySelectorAll("input:checked")].map(x=>Number(x.value));
+ if(!name){toast("Name your playlist");return}
+ if(!selected.length){toast("Choose at least one track");return}
+ playlists.push({name,tracks:selected,created:Date.now()});localStorage.setItem("swPlaylists",JSON.stringify(playlists));
+ $("#playlistName").value="";$("#playlistModal").classList.remove("open");renderLibrary();toast("Playlist created");
+});
+$("#clearHistory")?.addEventListener("click",()=>{history=[];localStorage.setItem("swHistory","[]");renderLibrary();toast("History cleared")});
+$("#editProfile")?.addEventListener("click",()=>{const name=prompt("Display name",localStorage.getItem("swProfileName")||"Creator");if(name){localStorage.setItem("swProfileName",name);$("#profileName").textContent=name;toast("Profile updated")}});
+if($("#profileName"))$("#profileName").textContent=localStorage.getItem("swProfileName")||"Creator";
+renderLibrary();bindDynamicTrackButtons();
