@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071c31"/><stop offset=".48" stop-color="#0c7894"/><stop offset="1" stop-color="#75f0c7"/></linearGradient><linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7f0bc"/><stop offset="1" stop-color="#69efd0"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="18"/></filter></defs>
+<rect width="1000" height="1000" fill="url(#sky)"/><circle cx="725" cy="250" r="120" fill="url(#sun)" opacity=".9"/><circle cx="725" cy="250" r="165" fill="#8af6dc" opacity=".16" filter="url(#g)"/>
+<path d="M0 610C150 525 270 530 410 620s260 90 590-85v465H0Z" fill="#061825"/><path d="M0 690c180-85 310-50 440 25s310 50 560-90v375H0Z" fill="#0f5970"/>
+<path d="M0 775c170-60 315-20 455 40s315 35 545-70v255H0Z" fill="#35b5b8" opacity=".75"/><path d="M0 850c190-35 350 10 470 55s315 20 530-55v150H0Z" fill="#8ef1cb" opacity=".55"/>
+<g fill="none" stroke="#d8fff5" opacity=".42"><path d="M70 755c120-40 190-30 310 18"/><path d="M560 745c120 25 215 10 350-45"/><path d="M140 885c130-22 230 0 350 38"/></g>
+<text x="70" y="90" fill="#dffff8" font-family="Arial" font-size="28" letter-spacing="10">SAFEWAVE ORIGINAL</text><text x="70" y="945" fill="white" font-family="Arial" font-weight="700" font-size="66">COASTAL DRIFT</text></svg>

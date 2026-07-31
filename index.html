@@ -1,102 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="SafeWave — royalty-free music for creators.">
-<title>SafeWave — Music for Creators</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06111b">
+<meta name="description" content="SafeWave — premium royalty-free music for creators.">
+<title>SafeWave — Sound for Stories</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand route-link" href="#home"><span class="brand-mark">≈</span>SafeWave</a>
-  <button class="menu-button" aria-label="Open navigation">☰</button>
-  <nav class="nav-links">
-    <a class="route-link" href="#browse">Browse</a>
-    <a href="licensing.html">Licensing</a>
-    <a class="route-link" href="#genres">Genres</a>
-    <a href="login.html">Log in</a>
-    <a class="button button-small" href="signup.html">Start free</a>
-  </nav>
+<div class="noise"></div>
+<header class="topbar">
+  <a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a>
+  <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a href="licensing.html">Licensing</a></nav>
+  <div class="top-actions"><button class="search-trigger" id="searchTrigger" aria-label="Search">⌕</button><a href="login.html">Log in</a><a class="pill-primary" href="signup.html">Start free</a><button class="menu-btn" id="menuBtn">☰</button></div>
 </header>
 
-<main>
-  <section class="app-view active" id="homeView" data-view="home">
-<section class="aurora-hero">
-<div class="aurora-bg"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
-<div class="aurora-copy"><div class="new-pill"><b></b> New tracks added every week</div><p class="eyebrow">MUSIC FOR THE MOMENT YOU'RE CREATING</p><h1>Discover sound that moves with your story.</h1><p class="hero-text">Premium royalty-free music for videos, streams, podcasts, films, games, and everything in between.</p><form class="hero-search" id="heroSearch"><span>⌕</span><input id="heroSearchInput" placeholder="Try epic trailer, calm study, or gaming energy"><button>Search</button></form><div class="hero-actions"><a class="button route-link" href="#browse">Browse music</a><button class="button button-ghost" data-track="0">▶ Play featured</button></div><div class="hero-stats"><div><strong>100%</strong><span>Creator-first</span></div><div><strong>WAV</strong><span>High-quality audio</span></div><div><strong>Clear</strong><span>Simple licensing</span></div></div></div>
-<div class="aurora-featured"><div class="featured-badge">SAFEWAVE ORIGINAL</div><div class="featured-art cover-ocean"><div class="art-grid"></div><div class="equalizer"><i></i><i></i><i></i><i></i><i></i></div></div><div class="featured-meta"><div><p class="eyebrow">FEATURED TRACK</p><h2>Coastal Drift</h2><p>Warm lo-fi textures for focus, travel, and late-night edits.</p></div><div class="featured-actions"><button class="round-play" data-track="0">▶</button><button class="icon-button" data-favorite="0">♡</button><button class="icon-button" data-download="assets/audio/coastal-drift.wav">↓</button></div></div></div>
-</section>
-<section class="section"><div class="section-heading"><div><p class="eyebrow">MADE FOR YOUR PROJECT</p><h2>Featured playlists</h2></div><a class="route-link" href="#browse">Explore all →</a></div><div class="playlist-strip"><a class="playlist-card p1 route-link" href="#browse?genre=ambient"><span>🎬</span><div><strong>Epic Cinematic</strong><small>Emotion, tension, impact</small></div></a><a class="playlist-card p2 route-link" href="#browse?genre=electronic"><span>🎮</span><div><strong>Stream Essentials</strong><small>Clean energy for live content</small></div></a><a class="playlist-card p3 route-link" href="#browse?genre=lo-fi"><span>🌙</span><div><strong>Chill Nights</strong><small>Late-night focus and calm</small></div></a><a class="playlist-card p4 route-link" href="#browse?genre=electronic"><span>🚀</span><div><strong>Creator Momentum</strong><small>Bright, motivating energy</small></div></a></div></section>
-<section class="section"><div class="section-heading"><div><p class="eyebrow">WHAT'S MOVING</p><h2>Trending this week</h2></div></div><div class="trending-list"><article class="trending-row"><span>01</span><div class="trend-cover cover-ocean"></div><div><strong>Coastal Drift</strong><small>SafeWave • Lo-Fi</small></div><em>Focus</em><button data-track="0">▶</button></article><article class="trending-row"><span>02</span><div class="trend-cover cover-neon"></div><div><strong>Neon Sunrise</strong><small>Nova Lane • Electronic</small></div><em>Energy</em><button data-track="1">▶</button></article><article class="trending-row"><span>03</span><div class="trend-cover cover-horizon"></div><div><strong>Quiet Horizon</strong><small>SafeWave AI Lab • Ambient</small></div><em>Calm</em><button data-track="2">▶</button></article></div></section>
-<section class="section" id="genres"><div class="section-heading"><div><p class="eyebrow">EXPLORE BY FEEL</p><h2>Find your mood</h2></div></div><div class="mood-grid"><a class="mood-card m1 route-link" href="#browse?genre=lo-fi"><span>😌</span><strong>Calm</strong><small>Soft, warm, focused</small></a><a class="mood-card m2 route-link" href="#browse?genre=electronic"><span>🔥</span><strong>Intense</strong><small>Fast, bold, powerful</small></a><a class="mood-card m3 route-link" href="#browse?genre=ambient"><span>🌧</span><strong>Relaxing</strong><small>Slow, spacious, peaceful</small></a><a class="mood-card m4 route-link" href="#browse?genre=electronic"><span>🚀</span><strong>Motivational</strong><small>Bright, uplifting, driven</small></a><a class="mood-card m5 route-link" href="#browse?genre=ambient"><span>🌙</span><strong>Sleep</strong><small>Gentle, dreamy, quiet</small></a><a class="mood-card m6 route-link" href="#browse?genre=lo-fi"><span>📚</span><strong>Study</strong><small>Steady, minimal, focused</small></a></div></section>
-<section class="section recently-section" id="recentlySection" hidden><div class="section-heading"><div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Recently played</h2></div></div><div class="recently-grid" id="recentlyGrid"></div></section>
-<section class="why-section"><div><p class="eyebrow">WHY SAFEWAVE</p><h2>Built to make creating easier.</h2><p>Find the right track quickly, understand the license clearly, and keep moving without copyright confusion.</p></div><div class="why-grid"><article><span>✓</span><strong>Creator-safe</strong><p>Made for modern content workflows.</p></article><article><span>↓</span><strong>Instant downloads</strong><p>High-quality files when inspiration hits.</p></article><article><span>∞</span><strong>Made to scale</strong><p>From one video to entire campaigns.</p></article><article><span>✦</span><strong>AI tools coming</strong><p>Describe your project and find music faster.</p></article></div></section>
-<section class="creator-banner aurora-banner"><div><p class="eyebrow">BUILT BY CREATORS, FOR CREATORS</p><h2>Your next project deserves better music.</h2><p>Join SafeWave early and help shape the platform as it grows.</p></div><a class="button" href="signup.html">Join SafeWave</a></section>
-</section>
+<nav class="mobile-menu" id="mobileMenu"><a class="route-link" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a href="licensing.html">Licensing</a><a href="login.html">Log in</a><a href="signup.html">Start free</a></nav>
 
-  <section class="app-view" id="browseView" data-view="browse">
-    <div class="page-shell">
-      <section class="browse-hero">
-        <p class="eyebrow">DISCOVER YOUR SOUND</p>
-        <h1>Music for every kind of project.</h1>
-        <div class="browse-search"><span>⌕</span><input id="trackSearch" placeholder="Search tracks, artists, moods, or genres"></div>
-      </section>
-      <section class="filter-row">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="lo-fi">Lo-Fi</button>
-        <button class="filter" data-filter="electronic">Electronic</button>
-        <button class="filter" data-filter="ambient">Ambient</button>
-      </section>
-      <section class="music-list" id="musicList">
-        <div class="music-row" data-name="coastal drift safewave lo-fi calm focus">
-          <button class="row-play" data-track="0">▶</button><div class="row-cover cover-ocean"></div>
-          <div class="row-title"><strong>Coastal Drift</strong><small>SafeWave</small></div><span class="tag">Lo-Fi</span><span>86 BPM</span><span>0:12</span>
-          <button class="favorite-row" data-favorite="0">♡</button><button class="queue-row" data-queue="0">+</button><button class="download-button" data-download="assets/audio/coastal-drift.wav">↓</button>
+<main>
+<section class="view active" data-view="home">
+  <section class="hero-immersive">
+    <div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow-pill"><span></span> Original music. Clear rights. Zero friction.</div>
+        <h1>The soundtrack<br><em>your story deserves.</em></h1>
+        <p>Discover premium music for videos, livestreams, podcasts, films, games, and everything you are building next.</p>
+        <div class="hero-cta"><a class="pill-primary large route-link" href="#discover">Explore the catalog</a><button class="pill-glass large" data-track="0"><b>▶</b> Play featured</button></div>
+        <div class="social-proof"><div class="avatars"><i>J</i><i>M</i><i>A</i><i>+</i></div><p><strong>Built for creators</strong><br>Simple discovery and licensing</p></div>
+      </div>
+      <article class="spotlight-card">
+        <div class="spotlight-art" style="background-image:url('assets/covers/coastal-drift.svg')">
+          <div class="art-overlay"></div>
+          <div class="visualizer" id="heroVisualizer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span class="original-badge">SAFEWAVE ORIGINAL</span>
         </div>
-        <div class="music-row" data-name="neon sunrise nova lane electronic upbeat energetic">
-          <button class="row-play" data-track="1">▶</button><div class="row-cover cover-neon"></div>
-          <div class="row-title"><strong>Neon Sunrise</strong><small>Nova Lane</small></div><span class="tag">Electronic</span><span>108 BPM</span><span>0:12</span>
-          <button class="favorite-row" data-favorite="1">♡</button><button class="queue-row" data-queue="1">+</button><button class="download-button" data-download="assets/audio/neon-sunrise.wav">↓</button>
-        </div>
-        <div class="music-row" data-name="quiet horizon safewave ai lab ambient calm cinematic">
-          <button class="row-play" data-track="2">▶</button><div class="row-cover cover-horizon"></div>
-          <div class="row-title"><strong>Quiet Horizon</strong><small>SafeWave AI Lab</small></div><span class="tag">Ambient</span><span>74 BPM</span><span>0:12</span>
-          <button class="favorite-row" data-favorite="2">♡</button><button class="queue-row" data-queue="2">+</button><button class="download-button" data-download="assets/audio/quiet-horizon.wav">↓</button>
-        </div>
-      </section>
+        <div class="spotlight-meta"><div><span>FEATURED RELEASE</span><h2>Coastal Drift</h2><p>Lo-Fi • 86 BPM • Calm</p></div><div class="spotlight-actions"><button data-favorite="0">♡</button><button class="spot-play" data-track="0">▶</button></div></div>
+      </article>
+    </div>
+    <div class="scroll-cue"><span></span>Scroll to discover</div>
+  </section>
+
+  <section class="content-section marquee-section">
+    <div class="marquee"><div>ROYALTY-FREE <b>✦</b> CINEMATIC <b>✦</b> LO-FI <b>✦</b> GAMING <b>✦</b> AMBIENT <b>✦</b> PODCASTS <b>✦</b>&nbsp;</div><div>ROYALTY-FREE <b>✦</b> CINEMATIC <b>✦</b> LO-FI <b>✦</b> GAMING <b>✦</b> AMBIENT <b>✦</b> PODCASTS <b>✦</b>&nbsp;</div></div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-head"><div><span class="kicker">HANDPICKED FOR YOU</span><h2>Soundtracks for every creative state.</h2></div><a class="route-link text-link" href="#discover">See everything ↗</a></div>
+    <div class="editorial-grid">
+      <article class="editorial-card wide card-cinema route-link" data-route="discover" data-filter-route="ambient"><div class="editorial-copy"><span>FILM & STORY</span><h3>Make the moment feel bigger.</h3><p>Cinematic textures for trailers, documentaries, and emotional storytelling.</p><button>Explore cinematic →</button></div><div class="editorial-ring"></div></article>
+      <article class="editorial-card card-stream route-link" data-route="discover" data-filter-route="electronic"><div class="editorial-copy"><span>STREAMING</span><h3>Stay live. Stay energized.</h3><p>Clean electronic energy that never gets in the way.</p><button>Stream essentials →</button></div></article>
+      <article class="editorial-card card-focus route-link" data-route="discover" data-filter-route="lo-fi"><div class="editorial-copy"><span>FOCUS</span><h3>Find your flow.</h3><p>Warm lo-fi beats for edits, study, and deep work.</p><button>Enter focus mode →</button></div></article>
     </div>
   </section>
+
+  <section class="content-section">
+    <div class="section-head"><div><span class="kicker">TRENDING NOW</span><h2>Tracks creators are reaching for.</h2></div></div>
+    <div class="premium-tracks">
+      <article class="premium-track" data-track-card="0"><span class="rank">01</span><div class="track-cover" style="background-image:url('assets/covers/coastal-drift.svg')"><button data-track="0">▶</button></div><div class="track-main"><strong>Coastal Drift</strong><small>SafeWave • Lo-Fi</small></div><div class="wave-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="track-mood">CALM</span><button class="heart" data-favorite="0">♡</button><button class="more" data-open-track="0">•••</button></article>
+      <article class="premium-track" data-track-card="1"><span class="rank">02</span><div class="track-cover" style="background-image:url('assets/covers/neon-sunrise.svg')"><button data-track="1">▶</button></div><div class="track-main"><strong>Neon Sunrise</strong><small>Nova Lane • Electronic</small></div><div class="wave-line alt"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="track-mood">ENERGY</span><button class="heart" data-favorite="1">♡</button><button class="more" data-open-track="1">•••</button></article>
+      <article class="premium-track" data-track-card="2"><span class="rank">03</span><div class="track-cover" style="background-image:url('assets/covers/quiet-horizon.svg')"><button data-track="2">▶</button></div><div class="track-main"><strong>Quiet Horizon</strong><small>SafeWave AI Lab • Ambient</small></div><div class="wave-line soft"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="track-mood">DREAMY</span><button class="heart" data-favorite="2">♡</button><button class="more" data-open-track="2">•••</button></article>
+    </div>
+  </section>
+
+  <section class="content-section moods-section">
+    <div class="section-head"><div><span class="kicker">START WITH A FEELING</span><h2>What does your project need?</h2></div></div>
+    <div class="mood-cloud"><button data-search="epic">Epic <span>↗</span></button><button data-search="calm">Calm <span>↗</span></button><button data-search="electronic">Energetic <span>↗</span></button><button data-search="ambient">Dreamy <span>↗</span></button><button data-search="lo-fi">Focused <span>↗</span></button><button data-search="cinematic">Emotional <span>↗</span></button></div>
+  </section>
+
+  <section class="content-section promise-section"><div class="promise-copy"><span class="kicker">THE SAFEWAVE PROMISE</span><h2>Create boldly.<br>License clearly.<br>Publish confidently.</h2></div><div class="promise-list"><article><span>01</span><div><h3>Fast discovery</h3><p>Search by mood, use, genre, energy, or BPM.</p></div></article><article><span>02</span><div><h3>Creator-first licensing</h3><p>Understand where and how every track can be used.</p></div></article><article><span>03</span><div><h3>Music with identity</h3><p>Original releases, independent artists, and carefully reviewed AI-assisted work.</p></div></article></div></section>
+
+  <section class="final-cta"><div class="cta-glow"></div><span class="kicker">YOUR NEXT SOUND IS HERE</span><h2>Stop searching.<br>Start creating.</h2><p>Join early and help shape the future of SafeWave.</p><a class="pill-primary large" href="signup.html">Join SafeWave free</a></section>
+</section>
+
+<section class="view" data-view="discover">
+  <section class="discover-hero"><span class="kicker">THE CATALOG</span><h1>Find your next sound.</h1><p>Search by track, artist, mood, genre, or project type.</p><div class="giant-search"><span>⌕</span><input id="trackSearch" placeholder="What are you creating?"><kbd>⌘ K</kbd></div></section>
+  <section class="discover-shell">
+    <aside class="filter-panel"><h3>Filter</h3><button class="filter active" data-filter="all">All music</button><button class="filter" data-filter="lo-fi">Lo-Fi</button><button class="filter" data-filter="electronic">Electronic</button><button class="filter" data-filter="ambient">Ambient</button><hr><label>Energy<input id="energyRange" type="range" min="1" max="5" value="3"></label><div class="license-note"><span>✓</span><p><strong>Creator-safe catalog</strong><br>Every track includes clear usage information.</p></div></aside>
+    <div class="catalog"><div class="catalog-head"><div><h2>All tracks</h2><span id="resultCount">3 tracks</span></div><select><option>Recommended</option><option>Newest</option><option>BPM</option></select></div>
+      <div class="catalog-list">
+        <article class="catalog-row" data-name="coastal drift safewave lo-fi calm focus travel" data-genre="lo-fi"><button class="catalog-play" data-track="0">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/coastal-drift.svg')"></div><div class="catalog-name"><strong>Coastal Drift</strong><small>SafeWave</small></div><span>Lo-Fi</span><span>86 BPM</span><span>0:12</span><button data-favorite="0">♡</button><button data-queue="0">＋</button><button data-open-track="0">•••</button></article>
+        <article class="catalog-row" data-name="neon sunrise nova lane electronic upbeat energetic gaming stream" data-genre="electronic"><button class="catalog-play" data-track="1">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/neon-sunrise.svg')"></div><div class="catalog-name"><strong>Neon Sunrise</strong><small>Nova Lane</small></div><span>Electronic</span><span>108 BPM</span><span>0:12</span><button data-favorite="1">♡</button><button data-queue="1">＋</button><button data-open-track="1">•••</button></article>
+        <article class="catalog-row" data-name="quiet horizon safewave ai lab ambient calm dreamy cinematic sleep" data-genre="ambient"><button class="catalog-play" data-track="2">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/quiet-horizon.svg')"></div><div class="catalog-name"><strong>Quiet Horizon</strong><small>SafeWave AI Lab</small></div><span>Ambient</span><span>74 BPM</span><span>0:12</span><button data-favorite="2">♡</button><button data-queue="2">＋</button><button data-open-track="2">•••</button></article>
+      </div>
+    </div>
+  </section>
+</section>
 </main>
 
-<footer>
-  <a class="brand route-link" href="#home"><span class="brand-mark">≈</span>SafeWave</a>
-  <p>Music that moves your content.</p><span>© 2026 SafeWave</span>
-</footer>
+<footer class="site-footer"><a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a><p>Built by creators, for creators.</p><div><a href="licensing.html">Licensing</a><a href="#">Contact</a><a href="#">Instagram</a></div><span>© 2026 SafeWave</span></footer>
 
 <aside class="player" id="player">
-  <button class="player-collapse" id="playerCollapse" aria-label="Minimize player">⌄</button>
-  <div class="player-track"><div class="player-thumb cover-ocean"></div><div><strong id="playerTitle">Coastal Drift</strong><small id="playerArtist">SafeWave</small></div></div>
-  <div class="player-controls">
-    <button id="shuffleBtn" aria-label="Shuffle">⤨</button>
-    <button id="prevBtn" aria-label="Previous">‹</button>
-    <button id="playBtn" class="player-main" aria-label="Play">▶</button>
-    <button id="nextBtn" aria-label="Next">›</button>
-    <button id="repeatBtn" aria-label="Repeat">↻</button>
-  </div>
-  <div class="player-progress"><span id="currentTime">0:00</span><input id="progress" type="range" min="0" max="100" value="0"><span id="duration">0:00</span></div>
-  <div class="player-volume">🔊 <input id="volume" type="range" min="0" max="1" step=".01" value=".75"></div>
-  <button class="open-queue" id="openQueue" aria-label="Open queue">☷<span id="queueCount">0</span></button>
+  <button class="collapse-player" id="playerCollapse">⌄</button>
+  <div class="playing-track"><div class="player-cover" id="playerCover"></div><div><strong id="playerTitle">Coastal Drift</strong><small id="playerArtist">SafeWave</small></div><button data-favorite-current id="favoriteCurrent">♡</button></div>
+  <div class="transport"><div class="transport-buttons"><button id="shuffleBtn">⤨</button><button id="prevBtn">‹</button><button id="playBtn" class="main-play">▶</button><button id="nextBtn">›</button><button id="repeatBtn">↻</button></div><div class="timeline"><span id="currentTime">0:00</span><input id="progress" type="range" min="0" max="100" value="0"><span id="duration">0:00</span></div></div>
+  <div class="player-tools"><button id="volumeBtn">◖</button><input id="volume" type="range" min="0" max="1" step=".01" value=".75"><button id="openQueue">☷<b id="queueCount">0</b></button><button id="expandPlayer">↗</button></div>
   <audio id="audio"></audio>
 </aside>
 
-<section class="queue-drawer" id="queueDrawer">
-  <div class="queue-header"><div><p class="eyebrow">UP NEXT</p><h2>Your queue</h2></div><button id="closeQueue">×</button></div>
-  <div id="queueList" class="queue-list"><p class="empty-queue">Your queue is empty.</p></div>
-  <button id="clearQueue" class="clear-queue">Clear queue</button>
-</section>
-<div class="toast" id="toast"></div>
+<section class="queue-drawer" id="queueDrawer"><header><div><span class="kicker">UP NEXT</span><h2>Your queue</h2></div><button id="closeQueue">×</button></header><div class="queue-list" id="queueList"></div><button class="clear-queue" id="clearQueue">Clear queue</button></section>
 
+<section class="track-modal" id="trackModal"><button class="modal-close" id="modalClose">×</button><div class="modal-art" id="modalArt"></div><div class="modal-content"><span class="kicker">TRACK DETAILS</span><h2 id="modalTitle"></h2><p id="modalArtist"></p><div class="modal-tags" id="modalTags"></div><p class="modal-description" id="modalDescription"></p><div class="modal-actions"><button class="pill-primary" id="modalPlay">▶ Play track</button><button class="pill-glass" id="modalQueue">＋ Add to queue</button><a class="pill-glass" id="modalDownload" download>↓ Download WAV</a></div><div class="license-box"><span>✓</span><p><strong>Creator license included</strong><br>Prototype licensing details. Final terms require legal review.</p></div></div></section>
+
+<section class="fullscreen-player" id="fullscreenPlayer"><button class="fullscreen-close" id="fullscreenClose">⌄</button><div class="fullscreen-bg" id="fullscreenBg"></div><div class="fullscreen-content"><div class="fullscreen-art" id="fullscreenArt"></div><span class="kicker">NOW PLAYING</span><h2 id="fullscreenTitle">Coastal Drift</h2><p id="fullscreenArtist">SafeWave</p><div class="full-timeline"><input id="fullProgress" type="range" min="0" max="100" value="0"><div><span id="fullCurrent">0:00</span><span id="fullDuration">0:00</span></div></div><div class="full-controls"><button id="fullPrev">‹</button><button id="fullPlay">▶</button><button id="fullNext">›</button></div></div></section>
+
+<div class="command-search" id="commandSearch"><div class="command-box"><span>⌕</span><input id="commandInput" placeholder="Search tracks, moods, or genres"><button id="commandClose">ESC</button><div id="commandResults"></div></div></div>
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
-</body>
-</html>
+</body></html>

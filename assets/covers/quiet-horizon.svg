@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#081328"/><stop offset=".52" stop-color="#34435e"/><stop offset="1" stop-color="#d28d78"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="30"/></filter></defs>
+<rect width="1000" height="1000" fill="url(#sky)"/><circle cx="720" cy="235" r="100" fill="#edf5ff"/><circle cx="690" cy="210" r="100" fill="#0d1930"/>
+<g fill="#fff" opacity=".7"><circle cx="150" cy="180" r="3"/><circle cx="310" cy="110" r="4"/><circle cx="480" cy="250" r="2"/><circle cx="890" cy="140" r="3"/><circle cx="775" cy="390" r="2"/></g>
+<path d="M0 620 150 470l105 120 180-250 155 210 120-150 290 250v350H0Z" fill="#111a2a"/><path d="M0 720 165 590l115 105 190-185 135 140 115-100 280 190v260H0Z" fill="#263348"/>
+<ellipse cx="500" cy="790" rx="550" ry="95" fill="#b9c8d1" opacity=".22" filter="url(#blur)"/><path d="M0 800c210-50 330-25 500 20s320 50 500 0v180H0Z" fill="#d5b2a3" opacity=".2"/>
+<text x="65" y="90" fill="#dfe8ff" font-family="Arial" font-size="28" letter-spacing="10">SAFEWAVE AI LAB</text><text x="65" y="945" fill="white" font-family="Arial" font-weight="700" font-size="66">QUIET HORIZON</text></svg>

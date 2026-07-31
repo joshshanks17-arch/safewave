@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+<defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#100b2b"/><stop offset=".55" stop-color="#5b1f71"/><stop offset="1" stop-color="#ff6f83"/></linearGradient><radialGradient id="s"><stop stop-color="#fff9b0"/><stop offset=".45" stop-color="#ffb45f"/><stop offset="1" stop-color="#fa4d9b"/></radialGradient></defs>
+<rect width="1000" height="1000" fill="url(#b)"/><circle cx="500" cy="400" r="205" fill="url(#s)"/><path d="M0 600h1000v400H0z" fill="#090b1c"/>
+<g stroke="#ed55dc" stroke-width="4" opacity=".8"><path d="M0 650h1000"/><path d="M0 710h1000"/><path d="M0 780h1000"/><path d="M0 870h1000"/><path d="M500 600 90 1000"/><path d="M500 600 250 1000"/><path d="M500 600 410 1000"/><path d="M500 600 590 1000"/><path d="M500 600 750 1000"/><path d="M500 600 910 1000"/></g>
+<path d="M0 595 130 490l75 45 110-120 90 85 90-170 92 145 115-95 70 100 110-65 138 180Z" fill="#13112b"/>
+<g fill="#4af2f2"><rect x="145" y="505" width="25" height="12"/><rect x="350" y="453" width="28" height="12"/><rect x="708" y="430" width="30" height="12"/></g>
+<text x="65" y="90" fill="#ffbdf1" font-family="Arial" font-size="28" letter-spacing="10">NOVA LANE</text><text x="65" y="945" fill="white" font-family="Arial" font-weight="700" font-size="66">NEON SUNRISE</text></svg>
