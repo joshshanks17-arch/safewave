@@ -1,22 +1,27 @@
-# SafeWave Wave 6 — Immersive
+# SafeWave Wave 7 — Premium Platform
 
-A complete visual and interaction redesign.
+Wave 7 expands SafeWave from a polished prototype into a richer creator platform experience.
 
-## Highlights
-- Original SVG cover artwork for all three demo tracks
-- Cinematic full-screen hero and editorial sections
-- Premium responsive track catalog
-- Persistent audio player with queue, favorites, shuffle, repeat, volume, and progress
-- Full-screen Now Playing view
-- Track detail modal with licensing callout
-- Command-search overlay (`Cmd/Ctrl + K`)
-- Mood search and genre filtering
-- Mobile navigation and collapsible player
-- Existing WAV demo files retained
+## New
+- Dynamic site atmosphere that changes with the active track
+- Creator Collections with play-all and add-to-queue behavior
+- Premium download panel with WAV, MP3, and STEMS roadmap
+- Copy-attribution button
+- Smart search prompt chips
+- Active-track highlighting and animated waveform rows
+- Expanded platform statistics and premium polish
 
-## Install
-Replace the matching repository files and include the complete `assets` folder:
+## Existing
+- Persistent player
+- Full-screen Now Playing
+- Search, filters, queue, favorites, shuffle, repeat
+- Original cover artwork
+- Track details and licensing callout
+- Responsive mobile interface
+
+## Deploy
+Replace the matching repository files and preserve:
 - `assets/audio/`
 - `assets/covers/`
 
-Commit and push. Recommended commit message: `Wave 6 Immersive`.
+Recommended commit message: `Wave 7 Premium Platform`

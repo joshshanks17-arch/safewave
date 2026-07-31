@@ -57,3 +57,45 @@ function openCommand(){$("#commandSearch").classList.add("open");$("#commandInpu
 $("#searchTrigger").onclick=openCommand;$("#commandClose").onclick=closeCommand;$("#commandInput").oninput=e=>renderCommand(e.target.value);$("#commandSearch").onclick=e=>{if(e.target===$("#commandSearch"))closeCommand()};
 document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openCommand()}if(e.key==="Escape"){closeCommand();$("#trackModal").classList.remove("open");$("#fullscreenPlayer").classList.remove("open")}if(e.code==="Space"&&!["INPUT","TEXTAREA"].includes(document.activeElement.tagName)){e.preventDefault();togglePlay()}});
 $$("[data-download]").forEach(b=>b.onclick=()=>{const a=document.createElement("a");a.href=b.dataset.download;a.download=b.dataset.download.split("/").pop();a.click();toast("Download started")});
+
+
+// Wave 7 — Premium Platform
+const collections={
+ travel:[0,2,0,1],
+ creator:[1,0,1,2],
+ night:[2,1,2,0]
+};
+function renderActiveTrack(){
+ document.body.dataset.themeTrack=String(current);
+ document.querySelectorAll("[data-track-card],.catalog-row").forEach(el=>el.classList.remove("active-track"));
+ document.querySelector(`[data-track-card="${current}"]`)?.classList.add("active-track");
+ document.querySelectorAll(".catalog-row")[current]?.classList.add("active-track");
+}
+audio.addEventListener("play",renderActiveTrack);
+audio.addEventListener("loadedmetadata",renderActiveTrack);
+document.querySelectorAll("[data-collection]").forEach(btn=>btn.addEventListener("click",()=>{
+ const list=collections[btn.dataset.collection]||[];
+ queue.push(...list);saveQueue();toast("Collection added to queue");
+}));
+document.querySelectorAll("[data-collection-play]").forEach(btn=>btn.addEventListener("click",()=>{
+ const list=collections[btn.dataset.collection]||[];
+ if(!list.length)return;
+ queue=[...list.slice(1),...queue];saveQueue();loadTrack(list[0],true);toast("Collection started");
+}));
+document.querySelectorAll("[data-smart-query]").forEach(btn=>btn.addEventListener("click",()=>{
+ const q=btn.dataset.smartQuery;
+ const search=document.querySelector("#trackSearch");
+ if(search){search.value=q;search.dispatchEvent(new Event("input"));search.focus();}
+}));
+document.querySelector("#copyAttribution")?.addEventListener("click",async()=>{
+ const t=tracks[modalIndex];
+ const text=`Music: ${t.title} by ${t.artist} — Licensed via SafeWave`;
+ try{await navigator.clipboard.writeText(text);toast("Attribution copied");}
+ catch{toast("Copy unavailable on this browser");}
+});
+const originalLoadTrack=loadTrack;
+loadTrack=function(i,autoplay=true){
+ originalLoadTrack(i,autoplay);
+ renderActiveTrack();
+};
+renderActiveTrack();

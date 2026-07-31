@@ -7,8 +7,8 @@
 <title>SafeWave — Sound for Stories</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="noise"></div>
+<body data-theme-track="0">
+<div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
 <header class="topbar">
   <a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a>
   <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a href="licensing.html">Licensing</a></nav>
@@ -27,7 +27,7 @@
         <h1>The soundtrack<br><em>your story deserves.</em></h1>
         <p>Discover premium music for videos, livestreams, podcasts, films, games, and everything you are building next.</p>
         <div class="hero-cta"><a class="pill-primary large route-link" href="#discover">Explore the catalog</a><button class="pill-glass large" data-track="0"><b>▶</b> Play featured</button></div>
-        <div class="social-proof"><div class="avatars"><i>J</i><i>M</i><i>A</i><i>+</i></div><p><strong>Built for creators</strong><br>Simple discovery and licensing</p></div>
+        <div class="social-proof"><div class="avatars"><i>J</i><i>M</i><i>A</i><i>+</i></div><p><strong>Built for creators</strong><br>Simple discovery and licensing</p></div><div class="platform-stats"><div><strong>3</strong><span>Original demos</span></div><div><strong>WAV</strong><span>High quality</span></div><div><strong>24/7</strong><span>Instant access</span></div></div>
       </div>
       <article class="spotlight-card">
         <div class="spotlight-art" style="background-image:url('assets/covers/coastal-drift.svg')">
@@ -68,13 +68,56 @@
     <div class="mood-cloud"><button data-search="epic">Epic <span>↗</span></button><button data-search="calm">Calm <span>↗</span></button><button data-search="electronic">Energetic <span>↗</span></button><button data-search="ambient">Dreamy <span>↗</span></button><button data-search="lo-fi">Focused <span>↗</span></button><button data-search="cinematic">Emotional <span>↗</span></button></div>
   </section>
 
+
+  <section class="content-section collections-section">
+    <div class="section-head">
+      <div><span class="kicker">CREATOR COLLECTIONS</span><h2>Complete sound worlds for complete projects.</h2></div>
+      <a class="route-link text-link" href="#discover">Browse every track ↗</a>
+    </div>
+    <div class="collection-grid">
+      <article class="collection-card travel-pack">
+        <div class="collection-top">
+          <span>15 TRACKS</span><button data-collection="travel">＋</button>
+        </div>
+        <div class="collection-copy">
+          <span class="collection-icon">✈</span>
+          <h3>Travel Vlog Pack</h3>
+          <p>Warm motion, open skies, and cinematic discovery.</p>
+          <button class="collection-action" data-collection-play="travel">Play collection →</button>
+        </div>
+      </article>
+      <article class="collection-card creator-pack">
+        <div class="collection-top">
+          <span>12 TRACKS</span><button data-collection="creator">＋</button>
+        </div>
+        <div class="collection-copy">
+          <span class="collection-icon">✦</span>
+          <h3>Creator Momentum</h3>
+          <p>Confident energy for launches, edits, and brand stories.</p>
+          <button class="collection-action" data-collection-play="creator">Play collection →</button>
+        </div>
+      </article>
+      <article class="collection-card night-pack">
+        <div class="collection-top">
+          <span>10 TRACKS</span><button data-collection="night">＋</button>
+        </div>
+        <div class="collection-copy">
+          <span class="collection-icon">☾</span>
+          <h3>After Hours</h3>
+          <p>Dreamy ambience and neon pulse for late-night work.</p>
+          <button class="collection-action" data-collection-play="night">Play collection →</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="content-section promise-section"><div class="promise-copy"><span class="kicker">THE SAFEWAVE PROMISE</span><h2>Create boldly.<br>License clearly.<br>Publish confidently.</h2></div><div class="promise-list"><article><span>01</span><div><h3>Fast discovery</h3><p>Search by mood, use, genre, energy, or BPM.</p></div></article><article><span>02</span><div><h3>Creator-first licensing</h3><p>Understand where and how every track can be used.</p></div></article><article><span>03</span><div><h3>Music with identity</h3><p>Original releases, independent artists, and carefully reviewed AI-assisted work.</p></div></article></div></section>
 
   <section class="final-cta"><div class="cta-glow"></div><span class="kicker">YOUR NEXT SOUND IS HERE</span><h2>Stop searching.<br>Start creating.</h2><p>Join early and help shape the future of SafeWave.</p><a class="pill-primary large" href="signup.html">Join SafeWave free</a></section>
 </section>
 
 <section class="view" data-view="discover">
-  <section class="discover-hero"><span class="kicker">THE CATALOG</span><h1>Find your next sound.</h1><p>Search by track, artist, mood, genre, or project type.</p><div class="giant-search"><span>⌕</span><input id="trackSearch" placeholder="What are you creating?"><kbd>⌘ K</kbd></div></section>
+  <section class="discover-hero"><span class="kicker">THE CATALOG</span><h1>Find your next sound.</h1><p>Search by track, artist, mood, genre, or project type.</p><div class="giant-search"><span>⌕</span><input id="trackSearch" placeholder="Try “relaxing music for a travel vlog”"><kbd>⌘ K</kbd></div><div class="smart-search-hints"><button data-smart-query="travel vlog">Travel vlog</button><button data-smart-query="gaming energy">Gaming energy</button><button data-smart-query="quiet documentary">Quiet documentary</button></div></section>
   <section class="discover-shell">
     <aside class="filter-panel"><h3>Filter</h3><button class="filter active" data-filter="all">All music</button><button class="filter" data-filter="lo-fi">Lo-Fi</button><button class="filter" data-filter="electronic">Electronic</button><button class="filter" data-filter="ambient">Ambient</button><hr><label>Energy<input id="energyRange" type="range" min="1" max="5" value="3"></label><div class="license-note"><span>✓</span><p><strong>Creator-safe catalog</strong><br>Every track includes clear usage information.</p></div></aside>
     <div class="catalog"><div class="catalog-head"><div><h2>All tracks</h2><span id="resultCount">3 tracks</span></div><select><option>Recommended</option><option>Newest</option><option>BPM</option></select></div>
@@ -100,7 +143,7 @@
 
 <section class="queue-drawer" id="queueDrawer"><header><div><span class="kicker">UP NEXT</span><h2>Your queue</h2></div><button id="closeQueue">×</button></header><div class="queue-list" id="queueList"></div><button class="clear-queue" id="clearQueue">Clear queue</button></section>
 
-<section class="track-modal" id="trackModal"><button class="modal-close" id="modalClose">×</button><div class="modal-art" id="modalArt"></div><div class="modal-content"><span class="kicker">TRACK DETAILS</span><h2 id="modalTitle"></h2><p id="modalArtist"></p><div class="modal-tags" id="modalTags"></div><p class="modal-description" id="modalDescription"></p><div class="modal-actions"><button class="pill-primary" id="modalPlay">▶ Play track</button><button class="pill-glass" id="modalQueue">＋ Add to queue</button><a class="pill-glass" id="modalDownload" download>↓ Download WAV</a></div><div class="license-box"><span>✓</span><p><strong>Creator license included</strong><br>Prototype licensing details. Final terms require legal review.</p></div></div></section>
+<section class="track-modal" id="trackModal"><button class="modal-close" id="modalClose">×</button><div class="modal-art" id="modalArt"></div><div class="modal-content"><span class="kicker">TRACK DETAILS</span><h2 id="modalTitle"></h2><p id="modalArtist"></p><div class="modal-tags" id="modalTags"></div><p class="modal-description" id="modalDescription"></p><div class="download-panel"><div class="download-head"><div><span class="kicker">DOWNLOAD OPTIONS</span><h3>Choose your file</h3></div><button id="copyAttribution">Copy attribution</button></div><div class="format-grid"><a class="format-card" id="modalDownload" download><strong>WAV</strong><span>Full quality</span><small>Best for editing</small></a><button class="format-card disabled" type="button"><strong>MP3</strong><span>Coming soon</span><small>Smaller file size</small></button><button class="format-card disabled" type="button"><strong>STEMS</strong><span>Future</span><small>Mix individual parts</small></button></div></div><div class="modal-actions"><button class="pill-primary" id="modalPlay">▶ Play track</button><button class="pill-glass" id="modalQueue">＋ Add to queue</button></div><div class="license-box"><span>✓</span><p><strong>Creator license included</strong><br>Prototype licensing details. Final terms require legal review.</p></div></div></section>
 
 <section class="fullscreen-player" id="fullscreenPlayer"><button class="fullscreen-close" id="fullscreenClose">⌄</button><div class="fullscreen-bg" id="fullscreenBg"></div><div class="fullscreen-content"><div class="fullscreen-art" id="fullscreenArt"></div><span class="kicker">NOW PLAYING</span><h2 id="fullscreenTitle">Coastal Drift</h2><p id="fullscreenArtist">SafeWave</p><div class="full-timeline"><input id="fullProgress" type="range" min="0" max="100" value="0"><div><span id="fullCurrent">0:00</span><span id="fullDuration">0:00</span></div></div><div class="full-controls"><button id="fullPrev">‹</button><button id="fullPlay">▶</button><button id="fullNext">›</button></div></div></section>
 
