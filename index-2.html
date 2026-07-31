@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SafeWave — royalty-free music for creators.">
+<title>SafeWave — Music for Creators</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+<a class="brand" href="index.html"><span class="brand-mark">≈</span>SafeWave</a>
+<button class="menu-button" aria-label="Open navigation">☰</button>
+<nav class="nav-links"><a href="browse.html">Browse</a><a href="licensing.html">Licensing</a><a href="#genres">Genres</a><a href="login.html">Log in</a><a class="button button-small" href="signup.html">Start free</a></nav>
+</header>
+<main>
+<section class="hero">
+<div class="hero-copy">
+<p class="eyebrow">ROYALTY-FREE MUSIC FOR CREATORS</p>
+<h1>Find the sound your story deserves.</h1>
+<p class="hero-text">Original music, independent artists, and AI-assisted tracks—curated for videos, streams, podcasts, games, and more.</p>
+<form class="hero-search" action="browse.html"><span>⌕</span><input name="q" aria-label="Search tracks" placeholder="Search mood, genre, BPM, or project type"><button>Search</button></form>
+<div class="hero-actions"><a class="button" href="browse.html">Explore music</a><button class="button button-ghost" data-play-featured>▶ Play featured</button></div>
+<div class="trust-row"><span>✓ Simple licensing</span><span>✓ Creator-friendly</span><span>✓ Download-ready</span></div>
+</div>
+<div class="hero-card">
+<div class="cover cover-ocean"><span>SAFEWAVE ORIGINAL</span></div>
+<div class="hero-track-meta"><div><strong>Coastal Drift</strong><small>SafeWave • Lo-Fi</small></div><button class="round-play" data-track="0">▶</button></div>
+</div>
+</section>
+<section class="section">
+<div class="section-heading"><div><p class="eyebrow">CURATED FOR YOU</p><h2>Trending this week</h2></div><a href="browse.html">View all →</a></div>
+<div class="track-grid">
+<article class="track-card"><div class="cover cover-ocean"><button class="card-play" data-track="0">▶</button></div><h3>Coastal Drift</h3><p>SafeWave • Lo-Fi</p><span>86 BPM</span></article>
+<article class="track-card"><div class="cover cover-neon"><button class="card-play" data-track="1">▶</button></div><h3>Neon Sunrise</h3><p>Nova Lane • Electronic</p><span>108 BPM</span></article>
+<article class="track-card"><div class="cover cover-horizon"><button class="card-play" data-track="2">▶</button></div><h3>Quiet Horizon</h3><p>SafeWave AI Lab • Ambient</p><span>74 BPM</span></article>
+</div>
+</section>
+<section class="section" id="genres">
+<div class="section-heading"><div><p class="eyebrow">EXPLORE</p><h2>Browse by genre</h2></div></div>
+<div class="genre-grid">
+<a href="browse.html?genre=lofi" class="genre-card genre-lofi"><span>☕</span><strong>Lo-Fi</strong><small>Warm beats for focus</small></a>
+<a href="browse.html?genre=cinematic" class="genre-card genre-cinematic"><span>🎬</span><strong>Cinematic</strong><small>Emotion that builds</small></a>
+<a href="browse.html?genre=electronic" class="genre-card genre-electronic"><span>⚡</span><strong>Electronic</strong><small>Energy and momentum</small></a>
+<a href="browse.html?genre=ambient" class="genre-card genre-ambient"><span>☁</span><strong>Ambient</strong><small>Space to breathe</small></a>
+</div>
+</section>
+<section class="creator-banner"><div><p class="eyebrow">BUILT FOR CREATORS</p><h2>Spend less time searching. Create more.</h2><p>Clear licenses, fast discovery, and music that fits your project.</p></div><a class="button" href="signup.html">Join SafeWave</a></section>
+</main>
+<footer><a class="brand" href="index.html"><span class="brand-mark">≈</span>SafeWave</a><p>Music that moves your content.</p><span>© 2026 SafeWave</span></footer>
+<aside class="player">
+<div class="player-track"><div class="player-thumb cover-ocean"></div><div><strong id="playerTitle">Coastal Drift</strong><small id="playerArtist">SafeWave</small></div></div>
+<div class="player-controls"><button id="prevBtn">‹</button><button id="playBtn" class="player-main">▶</button><button id="nextBtn">›</button></div>
+<div class="player-progress"><span id="currentTime">0:00</span><input id="progress" type="range" min="0" max="100" value="0"><span id="duration">0:00</span></div>
+<div class="player-volume">🔊 <input id="volume" type="range" min="0" max="1" step=".01" value=".75"></div>
+<audio id="audio"></audio>
+</aside>
+<script src="script.js"></script>
+</body></html>
