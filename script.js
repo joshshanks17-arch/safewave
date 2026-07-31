@@ -145,3 +145,178 @@ $("#clearHistory")?.addEventListener("click",()=>{history=[];localStorage.setIte
 $("#editProfile")?.addEventListener("click",()=>{const name=prompt("Display name",localStorage.getItem("swProfileName")||"Creator");if(name){localStorage.setItem("swProfileName",name);$("#profileName").textContent=name;toast("Profile updated")}});
 if($("#profileName"))$("#profileName").textContent=localStorage.getItem("swProfileName")||"Creator";
 renderLibrary();bindDynamicTrackButtons();
+
+
+// Wave 10 — Streaming Platform
+let playCounts=JSON.parse(localStorage.getItem("swPlayCounts")||"{}");
+let downloadCounts=JSON.parse(localStorage.getItem("swDownloadCounts")||"{}");
+let likeCounts=JSON.parse(localStorage.getItem("swLikeCounts")||"{}");
+let crossfadeSeconds=Number(localStorage.getItem("swCrossfade")||2);
+let autoplayRecommendations=localStorage.getItem("swAutoplayRecommendations")!=="false";
+let decodedWaveforms={};
+let waveformRequest=0;
+
+function statValue(store,i,base){return Number(store[i]||base||0)}
+function totalPlays(){return Object.values(playCounts).reduce((a,b)=>a+Number(b),0)}
+function updatePlatformStats(){
+ const total=totalPlays();
+ $("#artistPlays") && ($("#artistPlays").textContent=total.toLocaleString());
+ $("#totalPlayStat") && ($("#totalPlayStat").textContent=total.toLocaleString());
+}
+function incrementPlay(i){
+ playCounts[i]=statValue(playCounts,i)+1;
+ localStorage.setItem("swPlayCounts",JSON.stringify(playCounts));
+ updatePlatformStats();
+}
+function incrementDownload(i){
+ downloadCounts[i]=statValue(downloadCounts,i)+1;
+ localStorage.setItem("swDownloadCounts",JSON.stringify(downloadCounts));
+}
+function updateModalStats(i){
+ $("#modalPlays").textContent=statValue(playCounts,i);
+ $("#modalLikes").textContent=statValue(likeCounts,i,favorites.includes(i)?1:0);
+ $("#modalDownloads").textContent=statValue(downloadCounts,i);
+}
+const originalOpenModalWave10=openModal;
+openModal=function(i){originalOpenModalWave10(i);updateModalStats(i)}
+const originalToggleFavoriteWave10=toggleFavorite;
+toggleFavorite=function(i){
+ const before=favorites.includes(i);
+ originalToggleFavoriteWave10(i);
+ likeCounts[i]=Math.max(0,statValue(likeCounts,i)+(before?-1:1));
+ localStorage.setItem("swLikeCounts",JSON.stringify(likeCounts));
+ if($("#trackModal").classList.contains("open")&&modalIndex===i)updateModalStats(i);
+}
+audio.addEventListener("play",()=>{
+ if(!audio.dataset.countedFor||audio.dataset.countedFor!==String(current)){
+   incrementPlay(current);audio.dataset.countedFor=String(current);
+ }
+});
+audio.addEventListener("ended",()=>{audio.dataset.countedFor=""});
+
+async function fetchWaveform(i){
+ if(decodedWaveforms[i])return decodedWaveforms[i];
+ try{
+  const response=await fetch(tracks[i].src);
+  const buffer=await response.arrayBuffer();
+  const ctx=new (window.AudioContext||window.webkitAudioContext)();
+  const decoded=await ctx.decodeAudioData(buffer.slice(0));
+  const ch=decoded.getChannelData(0);
+  const points=180;
+  const block=Math.max(1,Math.floor(ch.length/points));
+  const vals=[];
+  for(let p=0;p<points;p++){
+    let peak=0;
+    const start=p*block,end=Math.min(ch.length,start+block);
+    for(let j=start;j<end;j++)peak=Math.max(peak,Math.abs(ch[j]));
+    vals.push(peak);
+  }
+  decodedWaveforms[i]=vals;
+  ctx.close();
+  return vals;
+ }catch(e){
+  return Array.from({length:180},(_,n)=>.15+.55*Math.abs(Math.sin(n*.31+i)));
+ }
+}
+async function drawWaveform(i){
+ const request=++waveformRequest;
+ const canvas=$("#waveformCanvas");if(!canvas)return;
+ const vals=await fetchWaveform(i);if(request!==waveformRequest)return;
+ const dpr=window.devicePixelRatio||1;
+ const rect=canvas.getBoundingClientRect();
+ canvas.width=Math.max(1,Math.floor(rect.width*dpr));canvas.height=Math.max(1,Math.floor(rect.height*dpr));
+ const c=canvas.getContext("2d");c.clearRect(0,0,canvas.width,canvas.height);
+ const mid=canvas.height/2,w=canvas.width/vals.length;
+ vals.forEach((v,n)=>{
+  const h=Math.max(2,v*canvas.height*.86);
+  c.fillStyle=n/vals.length<((audio.currentTime||0)/(audio.duration||1))?"#66f1c7":"rgba(166,190,202,.42)";
+  c.fillRect(n*w,mid-h/2,Math.max(1,w*.58),h);
+ });
+}
+$("#waveformWrap")?.addEventListener("click",e=>{
+ if(!audio.duration)return;
+ const r=e.currentTarget.getBoundingClientRect();
+ audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+});
+audio.addEventListener("timeupdate",()=>{
+ const ratio=(audio.currentTime||0)/(audio.duration||1);
+ $("#waveformPlayhead").style.left=`${ratio*100}%`;
+ drawWaveform(current);
+});
+const originalLoadTrackWave10=loadTrack;
+loadTrack=async function(i,autoplay=true){
+ const targetVol=Number(volume.value||.75);
+ if(!audio.paused&&crossfadeSeconds>0){
+   const steps=12,stepMs=(crossfadeSeconds*500)/steps;
+   for(let s=steps;s>=1;s--){audio.volume=targetVol*(s/steps);await new Promise(r=>setTimeout(r,stepMs))}
+ }
+ originalLoadTrackWave10(i,false);
+ audio.dataset.countedFor="";
+ await drawWaveform(current);
+ audio.volume=crossfadeSeconds>0?0:targetVol;
+ if(autoplay){
+   await audio.play().catch(()=>{});
+   if(crossfadeSeconds>0){
+    const steps=12,stepMs=(crossfadeSeconds*500)/steps;
+    for(let s=1;s<=steps;s++){audio.volume=targetVol*(s/steps);await new Promise(r=>setTimeout(r,stepMs))}
+   }
+ }
+};
+window.addEventListener("resize",()=>drawWaveform(current));
+drawWaveform(current);
+
+const albums={coastal:[0,3,2],neon:[1,5,4]};
+$$("[data-album]").forEach(b=>b.onclick=()=>{const list=albums[b.dataset.album];queue=[...list.slice(1),...queue];saveQueue();loadTrack(list[0]);toast("Album started")});
+$("[data-artist-play]")?.addEventListener("click",()=>{const list=[0,3,4,2];queue=[...list.slice(1),...queue];saveQueue();loadTrack(list[0]);});
+
+function similarityScore(a,b){
+ let score=0;
+ if(a.genre===b.genre)score+=3;
+ if(a.mood===b.mood)score+=2;
+ score+=a.tags.filter(x=>b.tags.includes(x)).length;
+ score-=Math.abs(a.bpm-b.bpm)/40;
+ return score;
+}
+function renderRecommendations(){
+ const grid=$("#recommendationGrid");if(!grid)return;
+ const picks=tracks.map((t,i)=>({t,i,s:i===current?-999:similarityScore(tracks[current],t)})).sort((a,b)=>b.s-a.s).slice(0,3);
+ grid.innerHTML=picks.map(({t,i})=>`<article class="recommendation-card"><div class="recommendation-art" style="background-image:url('${t.cover}')"><button data-rec-play="${i}">▶</button></div><strong>${t.title}</strong><small>${t.artist} • ${t.genre}</small></article>`).join("");
+ grid.querySelectorAll("[data-rec-play]").forEach(b=>b.onclick=()=>loadTrack(Number(b.dataset.recPlay)));
+}
+audio.addEventListener("loadedmetadata",renderRecommendations);
+renderRecommendations();
+
+$("#crossfadeSelect") && ($("#crossfadeSelect").value=String(crossfadeSeconds));
+$("#crossfadeSelect")?.addEventListener("change",e=>{crossfadeSeconds=Number(e.target.value);localStorage.setItem("swCrossfade",crossfadeSeconds);toast(crossfadeSeconds?`Crossfade ${crossfadeSeconds}s`:"Crossfade off")});
+$("#autoplayToggle") && ($("#autoplayToggle").checked=autoplayRecommendations);
+$("#autoplayToggle")?.addEventListener("change",e=>{autoplayRecommendations=e.target.checked;localStorage.setItem("swAutoplayRecommendations",autoplayRecommendations)});
+const originalChooseNextWave10=nextIndex;
+nextIndex=function(){
+ if(queue.length||repeat==="one"||shuffle)return originalChooseNextWave10();
+ if(autoplayRecommendations){
+  const pick=tracks.map((t,i)=>({i,s:i===current?-999:similarityScore(tracks[current],t)})).sort((a,b)=>b.s-a.s)[0];
+  return pick.i;
+ }
+ return originalChooseNextWave10();
+};
+
+$$("[data-download]").forEach(b=>{
+ const old=b.onclick;
+ b.onclick=()=>{const src=b.dataset.download;const idx=tracks.findIndex(t=>t.src===src);if(idx>=0)incrementDownload(idx);old&&old()}
+});
+$("#modalDownload")?.addEventListener("click",()=>incrementDownload(modalIndex));
+
+if("mediaSession" in navigator){
+ function updateMediaSession(){
+  const t=tracks[current];
+  navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:t.artist,album:"SafeWave Originals",artwork:[{src:t.cover,sizes:"1000x1000",type:"image/svg+xml"}]});
+ }
+ audio.addEventListener("loadedmetadata",updateMediaSession);
+ navigator.mediaSession.setActionHandler("play",()=>audio.play());
+ navigator.mediaSession.setActionHandler("pause",()=>audio.pause());
+ navigator.mediaSession.setActionHandler("previoustrack",prev);
+ navigator.mediaSession.setActionHandler("nexttrack",next);
+ navigator.mediaSession.setActionHandler("seekto",d=>{if(d.seekTime!=null)audio.currentTime=d.seekTime});
+ updateMediaSession();
+}
+updatePlatformStats();

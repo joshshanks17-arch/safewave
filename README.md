@@ -1,31 +1,30 @@
-# SafeWave Wave 9 — Creator Library
+# SafeWave Wave 10 — Streaming
 
-Wave 9 adds a personal creator experience and expands the catalog to six original studio demos.
+Wave 10 turns the player into a more complete streaming experience.
 
-## New tracks
-- Golden Hour Drive — Acoustic / Travel
-- Apex Rising — Epic Cinematic
-- Digital Rain — Atmospheric Electronic
+## New streaming features
+- Generated waveform display for every track
+- Clickable waveform seeking
+- Animated playback playhead
+- Optional 2, 4, or 6 second fade transitions
+- Media Session API support for phone lock-screen controls
+- Autoplay recommendations based on genre, mood, BPM, and tags
+- Persistent local play, like, and download statistics
+- Updated track detail statistics
+- Active waveform coloring
 
-## Creator Library
-- New Library navigation and dashboard
-- Favorites displayed as a personal collection
-- Recently played history
-- Create, play, and delete custom playlists
-- Local profile display name
-- Personal stats for favorites, playlists, history, and catalog
-- All library data persists locally on the device
+## New platform sections
+- Two album experiences: Coastal Motion and Neon Velocity
+- Featured SafeWave Originals artist profile
+- Dynamic “You may also like” recommendations
+- Playback settings inside the Creator Library
 
-## Catalog improvements
-- Six total studio demo tracks
-- Acoustic and Cinematic filters
-- New artwork and metadata
-- Updated search and modal support
-
-## Important
-User accounts are still local prototypes. Cloud-synced authentication and data storage require a backend service in a later wave.
+## Notes
+- The fade transition is a polished volume fade between tracks, not a true overlapping two-source DJ crossfade.
+- Statistics remain local to the current device until a cloud backend is introduced.
+- Media Session support depends on the browser and operating system.
 
 ## Deploy
-Replace matching files and upload the complete `assets` folder.
+Replace the matching files and upload the complete `assets` folder.
 
-Recommended commit message: `Wave 9 Creator Library`
+Recommended commit message: `Wave 10 Streaming`
