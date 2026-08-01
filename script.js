@@ -427,3 +427,37 @@ window.removeEventListener("hashchange",previousRouteStudio);
 window.addEventListener("hashchange",route);
 route();
 renderStudio();
+
+
+// Project Aurora — Phase 1
+(function initAuroraPhaseOne(){
+  const albumMap={coastal:[0,3,2],neon:[1,5,4]};
+  document.querySelectorAll(".aurora-v2-album [data-album]").forEach(button=>{
+    button.addEventListener("click",()=>{
+      const list=albumMap[button.dataset.album]||[];
+      if(!list.length)return;
+      queue=[...list.slice(1),...queue];
+      saveQueue();
+      loadTrack(list[0],true);
+      toast("Album started");
+    });
+  });
+
+  const revealItems=document.querySelectorAll(".aurora-v2-genre,.aurora-v2-album,.aurora-v2-track");
+  if("IntersectionObserver" in window){
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("aurora-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+    revealItems.forEach(item=>{
+      item.classList.add("aurora-reveal");
+      observer.observe(item);
+    });
+  }else{
+    revealItems.forEach(item=>item.classList.add("aurora-visible"));
+  }
+})();

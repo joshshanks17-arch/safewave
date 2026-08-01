@@ -1,40 +1,52 @@
-# SafeWave 3.0 — Milestone 1
+# SafeWave 3.1 — Project Aurora, Phase 1
 
-This version keeps the familiar static Working Copy workflow while beginning the SafeWave 3.0 product rebuild.
+This is the first major visual release in the Project Aurora overhaul.
 
-## New Creator Studio
+## New homepage experience
+- New cinematic full-screen hero
+- New Featured Cinematic release
+- Clear private-build messaging
+- Simplified, intentional homepage flow
+- Improved mobile and desktop presentation
 
-- New Studio navigation and app view
-- Catalog overview dashboard
-- Local play and download metrics
-- Music-management table with previews
-- New-release draft form
-- Device-saved release drafts
-- Analytics prototype
-- Platform-settings prototype
-- Mobile-responsive Studio navigation
+## Genre identity system
+- Rock
+- Lo-Fi
+- Cinematic
+- Synthwave
+- Acoustic
 
-## Existing features retained
+Each genre now has its own color system, language, tone, and visual identity.
 
-- Six playable stereo demos
-- Persistent player
-- Waveform seeking
-- Crossfade settings
-- Albums and collections
-- Favorites, queue, playlists, and history
-- Discover search and filters
-- Full-screen player and track details
-- Download history
-- Mobile bottom navigation
+## Album-first browsing
+- Coastal Motion
+- Neon Velocity
+- Play-album controls
+- Vinyl-inspired album presentation
 
-## Important
+## Staff Picks
+- All six current tracks in one cleaner premium list
+- Favorites and playback retained
 
-The Studio currently saves drafts and settings only on the device. It does not upload files or publish changes to the live catalog yet. Real publishing requires cloud storage, authentication, and a database.
+## Creator positioning
+- New creator-first trust section
+- Private-development messaging
+- Stronger SafeWave product identity
 
-## Deployment
+## Stability
+- Existing navigation, mobile menu, player, Discover, Library, Studio, licensing, queue, favorites, playlists, and analytics remain intact.
+- JavaScript syntax checked before packaging.
 
-Use this package in the `v3-rebuild` branch. Replace the matching files and the complete `assets` folder, commit, and push.
+## Deploy
+Use this package on the `v3-rebuild` branch.
+
+Replace:
+- `index.html`
+- `style.css`
+- `script.js`
+
+The asset folders are included for convenience, but the audio catalog is unchanged.
 
 Recommended commit message:
 
-`SafeWave 3.0 Milestone 1`
+`Project Aurora Phase 1`
