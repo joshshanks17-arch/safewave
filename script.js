@@ -461,3 +461,30 @@ renderStudio();
     revealItems.forEach(item=>item.classList.add("aurora-visible"));
   }
 })();
+// ======================================================
+// Aurora 4.0.4 Bootstrap
+// ======================================================
+
+document.addEventListener("DOMContentLoaded", async () => {
+    if (!window.SafeWaveCatalog) {
+        console.warn("SafeWave Catalog Manager not found.");
+        return;
+    }
+
+    try {
+        await window.SafeWaveCatalog.load();
+
+        console.log(
+            "Aurora Catalog Loaded",
+            {
+                artists: window.SafeWaveCatalog.artists.length,
+                albums: window.SafeWaveCatalog.albums.length,
+                tracks: window.SafeWaveCatalog.tracks.length,
+                genres: window.SafeWaveCatalog.genres.length,
+                collections: window.SafeWaveCatalog.collections.length
+            }
+        );
+    } catch (err) {
+        console.error("Catalog failed to initialize.", err);
+    }
+});
