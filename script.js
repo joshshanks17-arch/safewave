@@ -42,7 +42,7 @@ function saveQueue(){localStorage.setItem("swQueue",JSON.stringify(queue));rende
 function addQueue(i){queue.push(i);saveQueue();toast(`${tracks[i].title} added to queue`)}
 function renderQueue(){const l=$("#queueList");$("#queueCount").textContent=queue.length;if(!queue.length){l.innerHTML='<p class="empty">Your queue is empty.</p>';return}l.innerHTML=queue.map((i,p)=>`<article class="queue-item"><div class="queue-item-art" style="background-image:url('${tracks[i].cover}')"></div><div><strong>${tracks[i].title}</strong><small>${tracks[i].artist}</small></div><button data-remove="${p}">×</button></article>`).join("");$$("[data-remove]").forEach(b=>b.onclick=()=>{queue.splice(Number(b.dataset.remove),1);saveQueue()})}
 $$("[data-queue]").forEach(b=>b.onclick=()=>addQueue(Number(b.dataset.queue)));$("#openQueue").onclick=()=>$("#queueDrawer").classList.add("open");$("#closeQueue").onclick=()=>$("#queueDrawer").classList.remove("open");$("#clearQueue").onclick=()=>{queue=[];saveQueue();toast("Queue cleared")};renderQueue();
-function route(){const raw=(location.hash||"#home").slice(1),[view,q=""]=raw.split("?");const v=["discover","library","studio"].includes(view)?view:"home";$$(".view").forEach(e=>e.classList.toggle("active",e.dataset.view===v));$$(".desktop-nav .route-link").forEach(e=>e.classList.toggle("active",e.getAttribute("href")===`#${v}`));$("#mobileMenu").classList.remove("open");if(v==="library")renderLibrary();if(v==="discover"){const g=new URLSearchParams(q).get("genre");if(g)applyFilter(g)}window.scrollTo({top:0,behavior:"smooth"})}
+function route(){const raw=(location.hash||"#home").slice(1),[view,q=""]=raw.split("?");const v=["discover","albums","album","library","studio"].includes(view)?view:"home";$$(".view").forEach(e=>e.classList.toggle("active",e.dataset.view===v));$$(".desktop-nav .route-link").forEach(e=>e.classList.toggle("active",e.getAttribute("href")===`#${v}`));$("#mobileMenu").classList.remove("open");if(v==="library")renderLibrary();if(v==="discover"){const g=new URLSearchParams(q).get("genre");if(g)applyFilter(g)}window.scrollTo({top:0,behavior:"smooth"})}
 window.addEventListener("hashchange",route);route();
 $("#menuBtn").onclick=()=>$("#mobileMenu").classList.toggle("open");
 $$("[data-route]").forEach(e=>e.onclick=()=>{location.hash=`#${e.dataset.route}?genre=${e.dataset.filterRoute||"all"}`});
@@ -461,30 +461,80 @@ renderStudio();
     revealItems.forEach(item=>item.classList.add("aurora-visible"));
   }
 })();
+
+
 // ======================================================
-// Aurora 4.0.4 Bootstrap
+// Aurora 4.1 — Catalog Bootstrap and Album System
 // ======================================================
+let auroraCatalogReady = false;
 
-document.addEventListener("DOMContentLoaded", async () => {
-    if (!window.SafeWaveCatalog) {
-        console.warn("SafeWave Catalog Manager not found.");
-        return;
-    }
+function auroraTrackIndex(trackId){
+  const map={"coastal-drift":0,"neon-sunrise":1,"quiet-horizon":2,"golden-hour-drive":3,"apex-rising":4,"digital-rain":5};
+  return map[trackId] ?? -1;
+}
+function auroraArtistName(artistId){
+  return window.SafeWaveCatalog?.getArtist(artistId)?.name || artistId || "SafeWave";
+}
+function auroraAlbumRuntime(album){
+  const count=(album?.tracks||[]).length;
+  return `${count} track${count===1?"":"s"}`;
+}
+function auroraAlbumCard(album){
+  return `<article class="album-browser-card" data-open-album="${album.id}"><div class="album-browser-art"><img src="${album.cover}" alt="${album.title} artwork"><button aria-label="Open ${album.title}">→</button></div><div class="album-browser-meta"><span>${auroraArtistName(album.artist).toUpperCase()}</span><h2>${album.title}</h2><p>${album.description}</p><div class="album-browser-facts"><span>${auroraAlbumRuntime(album)}</span>${(album.genres||[]).slice(0,3).map(x=>`<span>${x}</span>`).join("")}</div></div></article>`;
+}
+function auroraBindAlbumLinks(root=document){
+  root.querySelectorAll("[data-open-album]").forEach(card=>card.onclick=()=>{location.hash=`#album?id=${encodeURIComponent(card.dataset.openAlbum)}`;});
+}
+function auroraRenderAlbumBrowser(){
+  const grid=document.querySelector("#albumBrowserGrid");
+  if(!grid)return;
+  const albums=window.SafeWaveCatalog?.albums||[];
+  grid.innerHTML=albums.length?albums.map(auroraAlbumCard).join(""):'<div class="library-empty"><h3>No albums yet</h3><p>Add albums to data/albums.json.</p></div>';
+  auroraBindAlbumLinks(grid);
+}
+function auroraPlayAlbum(album,doShuffle=false){
+  let indices=(album.tracks||[]).map(auroraTrackIndex).filter(i=>i>=0);
+  if(doShuffle)indices=indices.sort(()=>Math.random()-.5);
+  if(!indices.length){toast("No playable tracks in this album");return;}
+  queue=[...indices.slice(1),...queue];saveQueue();loadTrack(indices[0]);toast(doShuffle?"Album shuffled":"Album started");
+}
+function auroraRenderAlbumDetail(albumId){
+  const album=window.SafeWaveCatalog?.getAlbum(albumId);
+  if(!album){location.hash="#albums";return;}
+  const catalogTracks=(album.tracks||[]).map(id=>window.SafeWaveCatalog.getTrack(id)).filter(Boolean);
+  document.querySelector("#albumDetailCover").src=album.cover;
+  document.querySelector("#albumDetailTitle").textContent=album.title;
+  document.querySelector("#albumDetailArtist").textContent=`${auroraArtistName(album.artist)} • ${auroraAlbumRuntime(album)} • ${album.year||""}`;
+  document.querySelector("#albumDetailDescription").textContent=album.description||"";
+  document.querySelector("#albumDetailTags").innerHTML=[...(album.genres||[]),...(album.moods||[])].map(x=>`<span>${x}</span>`).join("");
+  document.querySelector("#albumPlayAll").onclick=()=>auroraPlayAlbum(album,false);
+  document.querySelector("#albumShuffle").onclick=()=>auroraPlayAlbum(album,true);
+  document.querySelector("[data-album-back]").onclick=()=>{location.hash="#albums";};
+  const list=document.querySelector("#albumTrackList");
+  list.innerHTML=catalogTracks.map((track,position)=>{
+    const i=auroraTrackIndex(track.id);
+    return `<article class="album-track-row"><span>${String(position+1).padStart(2,"0")}</span><img src="${track.cover}" alt=""><div><strong>${track.title}</strong><small>${auroraArtistName(track.artist)} • ${track.genre}</small></div><span>${track.bpm} BPM</span><span>${track.duration||"—"}</span><button data-track="${i}" aria-label="Play ${track.title}">▶</button></article>`;
+  }).join("");
+  bindDynamicTrackButtons(list);
+  const related=document.querySelector("#albumRelatedGrid");
+  related.innerHTML=(window.SafeWaveCatalog.albums||[]).filter(x=>x.id!==album.id).slice(0,2).map(x=>`<article class="album-related-card" data-open-album="${x.id}"><img src="${x.cover}" alt=""><div><strong>${x.title}</strong><small>${auroraArtistName(x.artist)} • ${auroraAlbumRuntime(x)}</small></div></article>`).join("");
+  auroraBindAlbumLinks(related);
+}
+function auroraHandleAlbumRoute(){
+  const raw=(location.hash||"#home").slice(1);
+  const [view,query=""]=raw.split("?");
+  if(view==="albums")auroraRenderAlbumBrowser();
+  if(view==="album")auroraRenderAlbumDetail(new URLSearchParams(query).get("id"));
+}
+window.addEventListener("hashchange",auroraHandleAlbumRoute);
 
-    try {
-        await window.SafeWaveCatalog.load();
-
-        console.log(
-            "Aurora Catalog Loaded",
-            {
-                artists: window.SafeWaveCatalog.artists.length,
-                albums: window.SafeWaveCatalog.albums.length,
-                tracks: window.SafeWaveCatalog.tracks.length,
-                genres: window.SafeWaveCatalog.genres.length,
-                collections: window.SafeWaveCatalog.collections.length
-            }
-        );
-    } catch (err) {
-        console.error("Catalog failed to initialize.", err);
-    }
+document.addEventListener("DOMContentLoaded",async()=>{
+  if(!window.SafeWaveCatalog){console.warn("SafeWave Catalog Manager not found.");return;}
+  try{
+    await window.SafeWaveCatalog.load();
+    auroraCatalogReady=true;
+    auroraRenderAlbumBrowser();
+    auroraHandleAlbumRoute();
+    console.log("Aurora Catalog Loaded",{artists:window.SafeWaveCatalog.artists.length,albums:window.SafeWaveCatalog.albums.length,tracks:window.SafeWaveCatalog.tracks.length,genres:window.SafeWaveCatalog.genres.length,collections:window.SafeWaveCatalog.collections.length});
+  }catch(error){console.error("Catalog failed to initialize.",error);}
 });

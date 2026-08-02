@@ -11,11 +11,11 @@
 <div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
 <header class="topbar">
   <a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a>
-  <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a></nav>
+  <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#albums">Albums</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a></nav>
   <div class="top-actions"><button class="search-trigger" id="searchTrigger" aria-label="Search">⌕</button><a href="login.html">Log in</a><a class="pill-primary" href="signup.html">Start free</a><button class="menu-btn" id="menuBtn">☰</button></div>
 </header>
 
-<nav class="mobile-menu" id="mobileMenu"><a class="route-link" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a><a href="login.html">Log in</a><a href="signup.html">Start free</a></nav>
+<nav class="mobile-menu" id="mobileMenu"><a class="route-link" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#albums">Albums</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a><a href="login.html">Log in</a><a href="signup.html">Start free</a></nav>
 
 <main>
 <section class="view active aurora-home" data-view="home">
@@ -210,6 +210,41 @@
   </section>
 </section>
 
+
+<section class="view" data-view="albums">
+  <section class="album-browser-hero">
+    <span class="kicker">ALBUMS</span>
+    <h1>Complete moods. Cohesive releases.</h1>
+    <p>Explore SafeWave releases as complete creative worlds, then play an album from beginning to end or shuffle it into a new sequence.</p>
+  </section>
+  <section class="album-browser-grid" id="albumBrowserGrid"></section>
+</section>
+
+<section class="view" data-view="album">
+  <section class="album-detail" id="albumDetail">
+    <button class="album-back route-link" data-album-back>← All albums</button>
+    <div class="album-detail-hero">
+      <img id="albumDetailCover" alt="Album artwork">
+      <div class="album-detail-copy">
+        <span class="kicker">ALBUM</span>
+        <h1 id="albumDetailTitle">Album</h1>
+        <p class="album-detail-artist" id="albumDetailArtist"></p>
+        <p id="albumDetailDescription"></p>
+        <div class="album-detail-tags" id="albumDetailTags"></div>
+        <div class="album-detail-actions">
+          <button class="pill-primary" id="albumPlayAll">▶ Play album</button>
+          <button class="pill-glass" id="albumShuffle">⌘ Shuffle</button>
+        </div>
+      </div>
+    </div>
+    <div class="album-track-list" id="albumTrackList"></div>
+    <section class="album-related">
+      <div class="section-head"><div><span class="kicker">KEEP EXPLORING</span><h2>Related releases</h2></div></div>
+      <div class="album-related-grid" id="albumRelatedGrid"></div>
+    </section>
+  </section>
+</section>
+
 <section class="view" data-view="discover">
   <section class="discover-hero"><span class="kicker">THE CATALOG</span><h1>Find your next sound.</h1><p>Search by track, artist, mood, genre, or project type.</p><div class="giant-search"><span>⌕</span><input id="trackSearch" placeholder="Try “relaxing music for a travel vlog”"><kbd>⌘ K</kbd></div><div class="smart-search-hints"><button data-smart-query="travel vlog">Travel vlog</button><button data-smart-query="gaming energy">Gaming energy</button><button data-smart-query="quiet documentary">Quiet documentary</button></div></section>
   <section class="discover-shell">
@@ -354,9 +389,7 @@
 <section class="fullscreen-player" id="fullscreenPlayer"><button class="fullscreen-close" id="fullscreenClose">⌄</button><div class="fullscreen-bg" id="fullscreenBg"></div><div class="fullscreen-content"><div class="fullscreen-art" id="fullscreenArt"></div><span class="kicker">NOW PLAYING</span><h2 id="fullscreenTitle">Coastal Drift</h2><p id="fullscreenArtist">SafeWave</p><div class="full-timeline"><input id="fullProgress" type="range" min="0" max="100" value="0"><div><span id="fullCurrent">0:00</span><span id="fullDuration">0:00</span></div></div><div class="full-controls"><button id="fullPrev">‹</button><button id="fullPlay">▶</button><button id="fullNext">›</button></div></div></section>
 
 <div class="command-search" id="commandSearch"><div class="command-box"><span>⌕</span><input id="commandInput" placeholder="Search tracks, moods, or genres"><button id="commandClose">ESC</button><div id="commandResults"></div></div></div>
-<section class="playlist-modal" id="playlistModal"><div class="playlist-dialog"><button id="playlistClose">×</button><span class="kicker">NEW PLAYLIST</span><h2>Create a collection</h2><label>Playlist name<input id="playlistName" placeholder="My video soundtrack"></label><label>Add tracks<div class="playlist-track-picker" id="playlistTrackPicker"></div></label><button class="pill-primary" id="savePlaylist">Create playlist</button></div></section><nav class="mobile-bottom-nav"><a class="route-link" href="#home"><span>⌂</span><small>Home</small></a><a class="route-link" href="#discover"><span>⌕</span><small>Discover</small></a><a class="route-link" href="#library"><span>♡</span><small>Library</small></a><a class="route-link" href="#studio"><span>⌁</span><small>Studio</small></a></nav>
+<section class="playlist-modal" id="playlistModal"><div class="playlist-dialog"><button id="playlistClose">×</button><span class="kicker">NEW PLAYLIST</span><h2>Create a collection</h2><label>Playlist name<input id="playlistName" placeholder="My video soundtrack"></label><label>Add tracks<div class="playlist-track-picker" id="playlistTrackPicker"></div></label><button class="pill-primary" id="savePlaylist">Create playlist</button></div></section><nav class="mobile-bottom-nav"><a class="route-link" href="#home"><span>⌂</span><small>Home</small></a><a class="route-link" href="#discover"><span>⌕</span><small>Discover</small></a><a class="route-link" href="#albums"><span>◫</span><small>Albums</small></a><a class="route-link" href="#library"><span>♡</span><small>Library</small></a><a class="route-link" href="#studio"><span>⌁</span><small>Studio</small></a></nav>
 <div class="toast" id="toast"></div>
-<script src="js/catalog.js"></script>
-<script src="script.js"></script>
-</body>
-</html>
+<script src="js/catalog.js"></script><script src="script.js"></script>
+</body></html>

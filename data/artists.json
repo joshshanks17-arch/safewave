@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "safewave-originals",
+    "name": "SafeWave Originals",
+    "genres": [
+      "Lo-Fi",
+      "Acoustic",
+      "Ambient",
+      "Cinematic"
+    ],
+    "bio": "Original instrumental music created for videos, streams, films, podcasts, games, and brand stories.",
+    "image": "assets/covers/coastal-drift.svg"
+  },
+  {
+    "id": "nova-lane",
+    "name": "Nova Lane",
+    "genres": [
+      "Electronic",
+      "Synthwave"
+    ],
+    "bio": "Electronic music built around neon atmosphere, forward motion, and modern digital production.",
+    "image": "assets/covers/neon-sunrise.svg"
+  }
+]

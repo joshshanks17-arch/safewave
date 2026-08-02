@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "id": "lo-fi",
+    "name": "Lo-Fi",
+    "description": "Warm, relaxed music for focus and study."
+  },
+  {
+    "id": "electronic",
+    "name": "Electronic",
+    "description": "Modern digital energy and motion."
+  },
+  {
+    "id": "ambient",
+    "name": "Ambient",
+    "description": "Spacious atmosphere and reflection."
+  },
+  {
+    "id": "acoustic",
+    "name": "Acoustic",
+    "description": "Natural instruments and organic warmth."
+  },
+  {
+    "id": "cinematic",
+    "name": "Cinematic",
+    "description": "Epic builds, emotion, and dramatic impact."
+  }
+]

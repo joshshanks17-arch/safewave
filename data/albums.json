@@ -1,0 +1,47 @@
+[
+  {
+    "id": "coastal-motion",
+    "title": "Coastal Motion",
+    "artist": "safewave-originals",
+    "cover": "assets/covers/coastal-drift.svg",
+    "description": "Warm lo-fi, acoustic movement, and spacious ambience for travel, study, lifestyle, and reflective storytelling.",
+    "genres": [
+      "Lo-Fi",
+      "Acoustic",
+      "Ambient"
+    ],
+    "moods": [
+      "Calm",
+      "Warm",
+      "Dreamy"
+    ],
+    "year": 2026,
+    "tracks": [
+      "coastal-drift",
+      "golden-hour-drive",
+      "quiet-horizon"
+    ]
+  },
+  {
+    "id": "neon-velocity",
+    "title": "Neon Velocity",
+    "artist": "nova-lane",
+    "cover": "assets/covers/neon-sunrise.svg",
+    "description": "Electronic pulse and cinematic momentum for gaming, technology, product launches, trailers, and dramatic edits.",
+    "genres": [
+      "Electronic",
+      "Cinematic"
+    ],
+    "moods": [
+      "Energy",
+      "Atmospheric",
+      "Epic"
+    ],
+    "year": 2026,
+    "tracks": [
+      "neon-sunrise",
+      "digital-rain",
+      "apex-rising"
+    ]
+  }
+]

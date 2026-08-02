@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "id": "focus-flow",
+    "title": "Focus Flow",
+    "tracks": [
+      "coastal-drift",
+      "quiet-horizon"
+    ]
+  },
+  {
+    "id": "creator-momentum",
+    "title": "Creator Momentum",
+    "tracks": [
+      "neon-sunrise",
+      "digital-rain",
+      "apex-rising"
+    ]
+  }
+]
