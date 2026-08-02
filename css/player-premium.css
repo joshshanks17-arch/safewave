@@ -1,0 +1,253 @@
+/* SafeWave Aurora 4.2 — Premium Player Add-on */
+
+.player {
+  --premium-player-bg: rgba(5, 14, 22, .965);
+  min-height: 92px;
+  background:
+    linear-gradient(90deg, rgba(42, 201, 232, .035), transparent 28%),
+    var(--premium-player-bg);
+  border-top: 1px solid rgba(170, 220, 235, .16);
+  box-shadow: 0 -18px 55px rgba(0, 0, 0, .34);
+  backdrop-filter: blur(26px) saturate(135%);
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.player.is-playing {
+  box-shadow:
+    0 -18px 55px rgba(0, 0, 0, .36),
+    0 -1px 0 rgba(102, 241, 199, .09);
+}
+
+.player.is-loading .main-play {
+  color: transparent;
+}
+
+.player.is-loading .main-play::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  inset: 0;
+  margin: auto;
+  border: 2px solid rgba(6, 17, 27, .28);
+  border-top-color: #06111b;
+  border-radius: 50%;
+  animation: premiumPlayerSpin .7s linear infinite;
+}
+
+@keyframes premiumPlayerSpin {
+  to { transform: rotate(360deg); }
+}
+
+.playing-track {
+  min-width: 0;
+}
+
+.player-cover {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 9px 24px rgba(0, 0, 0, .28);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.player-cover:hover,
+.player-cover:focus-visible {
+  transform: scale(1.045);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .38);
+  outline: none;
+}
+
+.player-cover::after {
+  content: "↗";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 12, 18, .54);
+  color: white;
+  font-size: 1.15rem;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.player-cover:hover::after,
+.player-cover:focus-visible::after {
+  opacity: 1;
+}
+
+.playing-track strong {
+  font-size: .98rem;
+  letter-spacing: -.015em;
+}
+
+.playing-track small {
+  margin-top: 3px;
+}
+
+.premium-track-meta {
+  display: block;
+  margin-top: 5px;
+  color: var(--mint);
+  font-size: .55rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.transport-buttons {
+  gap: 14px;
+}
+
+.transport-buttons button:not(.main-play),
+.player-tools button {
+  transition: color .18s ease, background .18s ease, transform .18s ease;
+}
+
+.transport-buttons button:not(.main-play):hover,
+.player-tools button:hover {
+  color: white;
+  transform: translateY(-1px);
+}
+
+.main-play {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 9px 25px rgba(0, 0, 0, .28);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.main-play:hover {
+  transform: scale(1.065);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .36);
+}
+
+.waveform-wrap {
+  height: 38px;
+  background: rgba(255, 255, 255, .025);
+  border-radius: 11px;
+}
+
+.waveform-playhead {
+  width: 2px;
+  background: white;
+  box-shadow: 0 0 14px rgba(255, 255, 255, .78);
+}
+
+.time-toggle {
+  cursor: pointer;
+  min-width: 38px;
+  user-select: none;
+  transition: color .18s ease;
+}
+
+.time-toggle:hover {
+  color: white;
+}
+
+#volumeBtn.muted {
+  color: #ff7ba8;
+}
+
+#volume {
+  accent-color: var(--mint);
+}
+
+.player-help {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line) !important;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .03) !important;
+  font-weight: 900;
+}
+
+.player-shortcut-panel {
+  position: absolute;
+  right: max(18px, 3vw);
+  bottom: calc(100% + 12px);
+  width: min(300px, calc(100vw - 30px));
+  padding: 17px;
+  display: grid;
+  gap: 11px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: rgba(8, 22, 32, .985);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .42);
+  color: var(--muted);
+  z-index: 200;
+}
+
+.player-shortcut-panel strong {
+  color: white;
+  margin-bottom: 2px;
+}
+
+.player-shortcut-panel span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .78rem;
+}
+
+.player-shortcut-panel kbd {
+  min-width: 28px;
+  padding: 4px 7px;
+  border: 1px solid rgba(255, 255, 255, .13);
+  border-bottom-width: 2px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .055);
+  color: white;
+  font-family: inherit;
+  font-size: .68rem;
+  text-align: center;
+}
+
+.fullscreen-player .fullscreen-art {
+  box-shadow: 0 35px 100px rgba(0, 0, 0, .48);
+}
+
+@media (max-width: 760px) {
+  body {
+    padding-bottom: 142px;
+  }
+
+  .player {
+    min-height: 76px;
+    padding: 8px 12px;
+  }
+
+  .playing-track {
+    gap: 9px;
+  }
+
+  .player-cover {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+  }
+
+  .premium-track-meta,
+  .player-help {
+    display: none;
+  }
+
+  .main-play {
+    width: 45px;
+    height: 45px;
+  }
+
+  .mobile-bottom-nav {
+    bottom: 76px;
+  }
+}
+
+@media (max-width: 480px) {
+  .playing-track strong {
+    max-width: 130px;
+  }
+
+  .playing-track small {
+    max-width: 130px;
+  }
+}
