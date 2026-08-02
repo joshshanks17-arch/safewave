@@ -468,9 +468,32 @@ renderStudio();
 // ======================================================
 let auroraCatalogReady = false;
 
-function auroraTrackIndex(trackId){
-  const map={"coastal-drift":0,"neon-sunrise":1,"quiet-horizon":2,"golden-hour-drive":3,"apex-rising":4,"digital-rain":5};
-  return map[trackId] ?? -1;
+function auroraTrackIndex(trackId) {
+  // First check whether the track already exists in the original player list.
+  const existingIndex = tracks.findIndex(track => track.id === trackId);
+
+  if (existingIndex >= 0) {
+    return existingIndex;
+  }
+
+  // Otherwise, pull the real track from the JSON catalog.
+  const catalogTrack = window.SafeWaveCatalog?.getTrack(trackId);
+
+  if (!catalogTrack || !catalogTrack.src) {
+    return -1;
+  }
+
+  // Add it to the player’s track list in the format loadTrack expects.
+  tracks.push({
+    ...catalogTrack,
+    artistId: catalogTrack.artist,
+    artist:
+      window.SafeWaveCatalog?.getArtist(catalogTrack.artist)?.name ||
+      catalogTrack.artist ||
+      "Joshua Shanks"
+  });
+
+  return tracks.length - 1;
 }
 function auroraArtistName(artistId){
   return window.SafeWaveCatalog?.getArtist(artistId)?.name || artistId || "SafeWave";
