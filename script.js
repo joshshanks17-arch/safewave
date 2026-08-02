@@ -492,11 +492,50 @@ function auroraTrackIndex(trackId) {
       catalogTrack.artist ||
       "Joshua Shanks"
   });
+function auroraPlayAlbum(album, doShuffle = false) {
+  const catalogTracks = (album.tracks || [])
+    .map(id => window.SafeWaveCatalog?.getTrack(id))
+    .filter(track => track && track.src);
 
-  return tracks.length - 1;
-}
-function auroraArtistName(artistId){
-  return window.SafeWaveCatalog?.getArtist(artistId)?.name || artistId || "SafeWave";
+  if (!catalogTracks.length) {
+    toast("No playable tracks in this album");
+    return;
+  }
+
+  let indices = catalogTracks.map(catalogTrack => {
+    const artistName =
+      window.SafeWaveCatalog?.getArtist(catalogTrack.artist)?.name ||
+      catalogTrack.artist ||
+      "Joshua Shanks";
+
+    let index = tracks.findIndex(track =>
+      track.id === catalogTrack.id ||
+      track.src === catalogTrack.src
+    );
+
+    if (index === -1) {
+      tracks.push({
+        ...catalogTrack,
+        id: catalogTrack.id,
+        artist: artistName,
+        tags: catalogTrack.tags || [],
+        description: catalogTrack.description || ""
+      });
+
+      index = tracks.length - 1;
+    }
+
+    return index;
+  });
+
+  if (doShuffle) {
+    indices = indices.sort(() => Math.random() - 0.5);
+  }
+
+  queue = [...indices.slice(1), ...queue];
+  saveQueue();
+  loadTrack(indices[0]);
+  toast(doShuffle ? "Album shuffled" : "Album started");
 }
 function auroraAlbumRuntime(album){
   const count=(album?.tracks||[]).length;
