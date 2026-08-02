@@ -20,5 +20,16 @@
     ],
     "bio": "Electronic music built around neon atmosphere, forward motion, and modern digital production.",
     "image": "assets/covers/neon-sunrise.svg"
+  },
+  {
+    "id": "joshua-shanks",
+    "name": "Joshua Shanks",
+    "genres": [
+      "Ambient",
+      "Piano",
+      "Relaxation"
+    ],
+    "bio": "Reflective instrumental music shaped around peaceful piano, gentle atmosphere, and cinematic emotion for creators, study sessions, relaxation, and storytelling.",
+    "image": "assets/covers/waterfalls.png"
   }
 ]

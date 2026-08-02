@@ -112,5 +112,157 @@
       "Technology",
       "Gaming"
     ]
+  },
+  {
+    "id": "streets",
+    "title": "Streets",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/streets.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Reflective",
+    "key": "Unknown",
+    "duration": "2:31",
+    "tags": [
+      "Piano",
+      "Ambient",
+      "City",
+      "Storytelling"
+    ]
+  },
+  {
+    "id": "for-a-moment",
+    "title": "For a Moment",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/for-a-moment.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Tender",
+    "key": "Unknown",
+    "duration": "2:11",
+    "tags": [
+      "Piano",
+      "Emotional",
+      "Travel",
+      "Reflection"
+    ]
+  },
+  {
+    "id": "take-a-chance",
+    "title": "Take a Chance",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/take-a-chance.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Hopeful",
+    "key": "Unknown",
+    "duration": "2:32",
+    "tags": [
+      "Piano",
+      "Inspiring",
+      "Lifestyle",
+      "Growth"
+    ]
+  },
+  {
+    "id": "baby-steps",
+    "title": "Baby Steps",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/baby-steps.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Warm",
+    "key": "Unknown",
+    "duration": "2:05",
+    "tags": [
+      "Piano",
+      "Gentle",
+      "Study",
+      "Optimistic"
+    ]
+  },
+  {
+    "id": "starry-skies",
+    "title": "Starry Skies",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/starry-skies.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Dreamy",
+    "key": "Unknown",
+    "duration": "2:17",
+    "tags": [
+      "Piano",
+      "Night",
+      "Ambient",
+      "Cinematic"
+    ]
+  },
+  {
+    "id": "promises",
+    "title": "Promises",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/promises.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Emotional",
+    "key": "Unknown",
+    "duration": "3:12",
+    "tags": [
+      "Piano",
+      "Romantic",
+      "Reflective",
+      "Film"
+    ]
+  },
+  {
+    "id": "lost",
+    "title": "Lost",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/lost.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Melancholic",
+    "key": "Unknown",
+    "duration": "2:23",
+    "tags": [
+      "Piano",
+      "Emotional",
+      "Documentary",
+      "Storytelling"
+    ]
+  },
+  {
+    "id": "waterfalls",
+    "title": "Waterfalls",
+    "artist": "joshua-shanks",
+    "album": "waterfalls",
+    "src": "assets/audio/waterfalls/waterfalls.wav",
+    "cover": "assets/covers/waterfalls.png",
+    "genre": "Ambient",
+    "bpm": null,
+    "mood": "Peaceful",
+    "key": "Unknown",
+    "duration": "2:26",
+    "tags": [
+      "Piano",
+      "Meditation",
+      "Relaxation",
+      "Nature"
+    ]
   }
 ]

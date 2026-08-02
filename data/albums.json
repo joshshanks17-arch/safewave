@@ -43,5 +43,34 @@
       "digital-rain",
       "apex-rising"
     ]
+  },
+  {
+    "id": "waterfalls",
+    "title": "Waterfalls",
+    "artist": "joshua-shanks",
+    "cover": "assets/covers/waterfalls.png",
+    "description": "Peaceful piano and ambient soundscapes for creators, study sessions, relaxation, meditation, and reflective storytelling.",
+    "genres": [
+      "Ambient",
+      "Piano",
+      "Relaxation"
+    ],
+    "moods": [
+      "Peaceful",
+      "Reflective",
+      "Calm",
+      "Cinematic"
+    ],
+    "year": 2026,
+    "tracks": [
+      "streets",
+      "for-a-moment",
+      "take-a-chance",
+      "baby-steps",
+      "starry-skies",
+      "promises",
+      "lost",
+      "waterfalls"
+    ]
   }
 ]
