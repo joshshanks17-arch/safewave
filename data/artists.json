@@ -2,34 +2,19 @@
   {
     "id": "safewave-originals",
     "name": "SafeWave Originals",
-    "genres": [
-      "Lo-Fi",
-      "Acoustic",
-      "Ambient",
-      "Cinematic"
-    ],
-    "bio": "Original instrumental music created for videos, streams, films, podcasts, games, and brand stories.",
-    "image": "assets/covers/coastal-drift.svg"
+    "bio": "Original royalty-free music for creators.",
+    "image": "assets/artists/safewave.jpg"
   },
   {
     "id": "nova-lane",
     "name": "Nova Lane",
-    "genres": [
-      "Electronic",
-      "Synthwave"
-    ],
-    "bio": "Electronic music built around neon atmosphere, forward motion, and modern digital production.",
-    "image": "assets/covers/neon-sunrise.svg"
+    "bio": "Electronic and synthwave artist.",
+    "image": "assets/artists/nova.jpg"
   },
   {
     "id": "joshua-shanks",
     "name": "Joshua Shanks",
-    "genres": [
-      "Ambient",
-      "Piano",
-      "Relaxation"
-    ],
-    "bio": "Reflective instrumental music shaped around peaceful piano, gentle atmosphere, and cinematic emotion for creators, study sessions, relaxation, and storytelling.",
-    "image": "assets/covers/waterfalls.png"
+    "bio": "Creator of the Waterfalls piano collection.",
+    "image": "assets/artists/joshua.jpg"
   }
 ]
