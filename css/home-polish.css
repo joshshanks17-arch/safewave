@@ -1,0 +1,16 @@
+/* Aurora 4.4 Home Polish */
+.hero{padding-top:clamp(4rem,8vw,7rem)!important;padding-bottom:clamp(4rem,8vw,7rem)!important;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.6rem,9vw,4.8rem)!important;line-height:.92;letter-spacing:-.04em}
+.hero p{max-width:38rem;margin-inline:auto;line-height:1.7;opacity:.9}
+.hero::before{content:"";position:absolute;inset:-30%;background:
+radial-gradient(circle at 20% 20%,rgba(74,240,210,.18),transparent 35%),
+radial-gradient(circle at 80% 30%,rgba(52,180,255,.14),transparent 30%);
+animation:floatGlow 14s ease-in-out infinite alternate;pointer-events:none}
+@keyframes floatGlow{to{transform:translateY(-25px) scale(1.08)}}
+.hero .cta,.hero button,.hero .btn{min-height:60px;border-radius:999px}
+section{scroll-margin-top:90px}
+@media(max-width:768px){
+.hero{padding-top:5rem!important}
+.hero h1{font-size:clamp(2.4rem,11vw,3.6rem)!important}
+.hero .actions,.hero .hero-actions{display:grid!important;gap:14px}
+}
