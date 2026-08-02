@@ -469,84 +469,49 @@ renderStudio();
 let auroraCatalogReady = false;
 
 function auroraTrackIndex(trackId) {
-  // First check whether the track already exists in the original player list.
-  const existingIndex = tracks.findIndex(track => track.id === trackId);
-
-  if (existingIndex >= 0) {
-    return existingIndex;
-  }
-
-  // Otherwise, pull the real track from the JSON catalog.
   const catalogTrack = window.SafeWaveCatalog?.getTrack(trackId);
+  if (!catalogTrack || !catalogTrack.src) return -1;
 
-  if (!catalogTrack || !catalogTrack.src) {
-    return -1;
-  }
+  let index = tracks.findIndex(track =>
+    track.id === catalogTrack.id || track.src === catalogTrack.src
+  );
 
-  // Add it to the player’s track list in the format loadTrack expects.
-  tracks.push({
+  const normalizedTrack = {
     ...catalogTrack,
+    id: catalogTrack.id,
     artistId: catalogTrack.artist,
-    artist:
-      window.SafeWaveCatalog?.getArtist(catalogTrack.artist)?.name ||
-      catalogTrack.artist ||
-      "Joshua Shanks"
-  });
-function auroraPlayAlbum(album, doShuffle = false) {
-  const catalogTracks = (album.tracks || [])
-    .map(id => window.SafeWaveCatalog?.getTrack(id))
-    .filter(track => track && track.src);
+    artist: auroraArtistName(catalogTrack.artist),
+    bpm: Number(catalogTrack.bpm) || 0,
+    tags: Array.isArray(catalogTrack.tags) ? catalogTrack.tags : [],
+    description: catalogTrack.description || ""
+  };
 
-  if (!catalogTracks.length) {
-    toast("No playable tracks in this album");
-    return;
-  }
-
-  let indices = catalogTracks.map(catalogTrack => {
-    const artistName =
-      window.SafeWaveCatalog?.getArtist(catalogTrack.artist)?.name ||
-      catalogTrack.artist ||
-      "Joshua Shanks";
-
-    let index = tracks.findIndex(track =>
-      track.id === catalogTrack.id ||
-      track.src === catalogTrack.src
-    );
-
-    if (index === -1) {
-      tracks.push({
-        ...catalogTrack,
-        id: catalogTrack.id,
-        artist: artistName,
-        tags: catalogTrack.tags || [],
-        description: catalogTrack.description || ""
-      });
-
-      index = tracks.length - 1;
-    }
-
+  if (index >= 0) {
+    tracks[index] = { ...tracks[index], ...normalizedTrack };
     return index;
-  });
-
-  if (doShuffle) {
-    indices = indices.sort(() => Math.random() - 0.5);
   }
 
-  queue = [...indices.slice(1), ...queue];
-  saveQueue();
-  loadTrack(indices[0]);
-  toast(doShuffle ? "Album shuffled" : "Album started");
+  tracks.push(normalizedTrack);
+  return tracks.length - 1;
 }
+
+function auroraArtistName(artistId){
+  return window.SafeWaveCatalog?.getArtist(artistId)?.name || artistId || "SafeWave";
+}
+
 function auroraAlbumRuntime(album){
   const count=(album?.tracks||[]).length;
   return `${count} track${count===1?"":"s"}`;
 }
+
 function auroraAlbumCard(album){
   return `<article class="album-browser-card" data-open-album="${album.id}"><div class="album-browser-art"><img src="${album.cover}" alt="${album.title} artwork"><button aria-label="Open ${album.title}">→</button></div><div class="album-browser-meta"><span>${auroraArtistName(album.artist).toUpperCase()}</span><h2>${album.title}</h2><p>${album.description}</p><div class="album-browser-facts"><span>${auroraAlbumRuntime(album)}</span>${(album.genres||[]).slice(0,3).map(x=>`<span>${x}</span>`).join("")}</div></div></article>`;
 }
+
 function auroraBindAlbumLinks(root=document){
   root.querySelectorAll("[data-open-album]").forEach(card=>card.onclick=()=>{location.hash=`#album?id=${encodeURIComponent(card.dataset.openAlbum)}`;});
 }
+
 function auroraRenderAlbumBrowser(){
   const grid=document.querySelector("#albumBrowserGrid");
   if(!grid)return;
@@ -554,12 +519,21 @@ function auroraRenderAlbumBrowser(){
   grid.innerHTML=albums.length?albums.map(auroraAlbumCard).join(""):'<div class="library-empty"><h3>No albums yet</h3><p>Add albums to data/albums.json.</p></div>';
   auroraBindAlbumLinks(grid);
 }
+
 function auroraPlayAlbum(album,doShuffle=false){
-  let indices=(album.tracks||[]).map(auroraTrackIndex).filter(i=>i>=0);
+  let indices=(album?.tracks||[])
+    .map(trackId=>auroraTrackIndex(trackId))
+    .filter(index=>index>=0);
+
   if(doShuffle)indices=indices.sort(()=>Math.random()-.5);
   if(!indices.length){toast("No playable tracks in this album");return;}
-  queue=[...indices.slice(1),...queue];saveQueue();loadTrack(indices[0]);toast(doShuffle?"Album shuffled":"Album started");
+
+  queue=[...indices.slice(1),...queue];
+  saveQueue();
+  loadTrack(indices[0],true);
+  toast(doShuffle?"Album shuffled":"Album started");
 }
+
 function auroraRenderAlbumDetail(albumId){
   const album=window.SafeWaveCatalog?.getAlbum(albumId);
   if(!album){location.hash="#albums";return;}
