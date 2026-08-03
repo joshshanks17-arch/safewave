@@ -488,40 +488,50 @@ function auroraTrackIndex(trackId) {
     track.id === catalogTrack.id ||
     track.src === catalogTrack.src
   );
+function auroraPlayAlbum(album, doShuffle = false) {
+  let albumTracks =
+    window.SafeWaveCatalog?.getTracksForAlbum?.(album.id) || [];
 
-  if (index >= 0) {
-    return index;
+  if (doShuffle) {
+    albumTracks = [...albumTracks].sort(() => Math.random() - 0.5);
   }
 
-  const artistName =
-    window.SafeWaveCatalog?.getArtist(catalogTrack.artistId || catalogTrack.artist)?.name ||
-    catalogTrack.artist ||
-    "Joshua Shanks";
-
-  tracks.push({
-    ...catalogTrack,
-    id: catalogTrack.id,
-    artistId: catalogTrack.artistId || catalogTrack.artist,
-    artist: artistName,
-    tags: Array.isArray(catalogTrack.tags) ? catalogTrack.tags : [],
-    description: catalogTrack.description || ""
-  });
-
-  return tracks.length - 1;
-}
-
-function auroraArtistName(artistId){
-  return window.SafeWaveCatalog?.getArtist(artistId)?.name ||
-    tracks.find(track=>track.artistId===artistId)?.artist ||
-    artistId ||
-    "SafeWave";
-}
-
-function auroraPlayAlbum(album, doShuffle = false) {
-  if (!album?.id) {
-    toast("Album could not be loaded");
+  if (!albumTracks.length) {
+    toast("No playable tracks in this album");
     return;
   }
+
+  const indices = albumTracks
+    .map(catalogTrack => {
+      let index = tracks.findIndex(track =>
+        track.id === catalogTrack.id ||
+        track.src === catalogTrack.src
+      );
+
+      if (index === -1) {
+        tracks.push({
+          ...catalogTrack,
+          artist:
+            catalogTrack.artist ||
+            window.SafeWaveCatalog?.getArtist(
+              catalogTrack.artistId
+            )?.name ||
+            "Joshua Shanks",
+          tags: catalogTrack.tags || [],
+          description: catalogTrack.description || ""
+        });
+
+        index = tracks.length - 1;
+      }
+
+      return index;
+    });
+
+  queue = [...indices.slice(1), ...queue];
+  saveQueue();
+  loadTrack(indices[0], true);
+  toast(doShuffle ? "Album shuffled" : "Album started");
+}
 
   const catalogTracks =
     window.SafeWaveCatalog?.getTracksForAlbum?.(album.id) ||
