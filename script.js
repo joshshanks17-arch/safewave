@@ -477,8 +477,37 @@ renderStudio();
 // ======================================================
 let auroraCatalogReady = false;
 
-function auroraTrackIndex(trackId){
-  return tracks.findIndex(track=>track.id===trackId);
+function auroraTrackIndex(trackId) {
+  const catalogTrack = window.SafeWaveCatalog?.getTrack(trackId);
+
+  if (!catalogTrack?.src) {
+    return -1;
+  }
+
+  let index = tracks.findIndex(track =>
+    track.id === catalogTrack.id ||
+    track.src === catalogTrack.src
+  );
+
+  if (index >= 0) {
+    return index;
+  }
+
+  const artistName =
+    window.SafeWaveCatalog?.getArtist(catalogTrack.artistId || catalogTrack.artist)?.name ||
+    catalogTrack.artist ||
+    "Joshua Shanks";
+
+  tracks.push({
+    ...catalogTrack,
+    id: catalogTrack.id,
+    artistId: catalogTrack.artistId || catalogTrack.artist,
+    artist: artistName,
+    tags: Array.isArray(catalogTrack.tags) ? catalogTrack.tags : [],
+    description: catalogTrack.description || ""
+  });
+
+  return tracks.length - 1;
 }
 
 function auroraArtistName(artistId){
