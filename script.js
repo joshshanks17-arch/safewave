@@ -488,22 +488,40 @@ function auroraArtistName(artistId){
     "SafeWave";
 }
 
-function auroraPlayAlbum(album,doShuffle=false){
-  let indices=(album?.tracks||[])
-    .map(trackId=>auroraTrackIndex(trackId))
-    .filter(index=>index>=0);
+function auroraPlayAlbum(album, doShuffle = false) {
+  if (!album?.id) {
+    toast("Album could not be loaded");
+    return;
+  }
 
-  if(doShuffle)indices=indices.sort(()=>Math.random()-.5);
+  const catalogTracks =
+    window.SafeWaveCatalog?.getTracksForAlbum?.(album.id) ||
+    (window.SafeWaveCatalog?.tracks || []).filter(
+      track => track.album === album.id
+    );
 
-  if(!indices.length){
+  let indices = catalogTracks
+    .map(track => auroraTrackIndex(track.id))
+    .filter(index => index >= 0);
+
+  if (doShuffle) {
+    indices = indices.sort(() => Math.random() - 0.5);
+  }
+
+  if (!indices.length) {
+    console.error("SafeWave: no playable album tracks", {
+      albumId: album.id,
+      catalogTracks
+    });
+
     toast("No playable tracks in this album");
     return;
   }
 
-  queue=[...indices.slice(1),...queue];
+  queue = [...indices.slice(1), ...queue];
   saveQueue();
-  loadTrack(indices[0],true);
-  toast(doShuffle?"Album shuffled":"Album started");
+  loadTrack(indices[0], true);
+  toast(doShuffle ? "Album shuffled" : "Album started");
 }
 
 function auroraAlbumRuntime(album){
