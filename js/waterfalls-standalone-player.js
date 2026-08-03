@@ -160,14 +160,22 @@
     setTimeout(bindAlbumButtons, 250);
   });
 
-  const observer = new MutationObserver(() => {
-    if (isWaterfallsPage()) requestAnimationFrame(bindAlbumButtons);
-  });
+const observer = new MutationObserver(() => {
+  if (isWaterfallsPage())
+    requestAnimationFrame(bindAlbumButtons);
+});
 
-  observer.observe(document.body, { childList: true, subtree: true });
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
 
-  document.addEventListener("DOMContentLoaded", bindAlbumButtons);
-  bindAlbumButtons();
+  document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(bindAlbumButtons, 100);
+  setTimeout(bindAlbumButtons, 500);
+});
 
-  console.log("SafeWave Waterfalls Standalone Player loaded");
+bindAlbumButtons();
+
+console.log("SafeWave Waterfalls Standalone Player loaded");
 })();
