@@ -1,12 +1,12 @@
 
 const tracks=[
- {id:"coastal-drift",title:"Coastal Drift",artist:"SafeWave",artistId:"safewave-originals",album:"coastal-motion",src:"assets/audio/coastal-drift-studio.wav",cover:"assets/covers/coastal-drift.svg",genre:"Lo-Fi",bpm:86,mood:"Calm",tags:["Lo-Fi","Calm","Focus","Travel"],description:"Warm textures, soft movement, and an easy coastal pulse designed for study sessions, travel edits, lifestyle videos, and reflective storytelling."},
- {id:"neon-sunrise",title:"Neon Sunrise",artist:"Nova Lane",artistId:"nova-lane",album:"neon-velocity",src:"assets/audio/neon-sunrise-studio.wav",cover:"assets/covers/neon-sunrise.svg",genre:"Electronic",bpm:108,mood:"Energy",tags:["Electronic","Upbeat","Gaming","Stream"],description:"Bright synth energy and forward motion for gaming content, livestreams, technology videos, city edits, and upbeat creator intros."},
- {id:"quiet-horizon",title:"Quiet Horizon",artist:"SafeWave AI Lab",artistId:"safewave-originals",album:"coastal-motion",src:"assets/audio/quiet-horizon-studio.wav",cover:"assets/covers/quiet-horizon.svg",genre:"Ambient",bpm:74,mood:"Dreamy",tags:["Ambient","Dreamy","Cinematic","Sleep"],description:"A spacious, cinematic ambient piece for documentaries, nighttime visuals, meditation, emotional transitions, and moments that need room to breathe."},
- {id:"golden-hour-drive",title:"Golden Hour Drive",artist:"SafeWave Originals",artistId:"safewave-originals",album:"coastal-motion",src:"assets/audio/golden-hour-drive.wav",cover:"assets/covers/golden-hour-drive.svg",genre:"Acoustic",bpm:96,mood:"Uplifting",tags:["Acoustic","Travel","Warm","Road Trip"],description:"A bright road-trip instrumental with warm harmony, steady motion, and an optimistic melody for travel films, lifestyle content, and brand stories."},
- {id:"apex-rising",title:"Apex Rising",artist:"SafeWave Originals",artistId:"safewave-originals",album:"neon-velocity",src:"assets/audio/apex-rising.wav",cover:"assets/covers/apex-rising.svg",genre:"Cinematic",bpm:124,mood:"Epic",tags:["Cinematic","Epic","Trailer","Intense"],description:"A driving cinematic cue with rising harmony, bold percussion, and heroic melodic movement for trailers, reveals, sports, and dramatic edits."},
- {id:"digital-rain",title:"Digital Rain",artist:"Nova Lane",artistId:"nova-lane",album:"neon-velocity",src:"assets/audio/digital-rain.wav",cover:"assets/covers/digital-rain.svg",genre:"Electronic",bpm:102,mood:"Atmospheric",tags:["Electronic","Technology","Night","Cyberpunk"],description:"Atmospheric electronic motion with a clean digital pulse for technology videos, nighttime city footage, game streams, and futuristic storytelling."},
-
+ {title:"Coastal Drift",artist:"SafeWave",src:"assets/audio/coastal-drift-studio.wav",cover:"assets/covers/coastal-drift.svg",genre:"Lo-Fi",bpm:86,mood:"Calm",tags:["Lo-Fi","Calm","Focus","Travel"],description:"Warm textures, soft movement, and an easy coastal pulse designed for study sessions, travel edits, lifestyle videos, and reflective storytelling."},
+ {title:"Neon Sunrise",artist:"Nova Lane",src:"assets/audio/neon-sunrise-studio.wav",cover:"assets/covers/neon-sunrise.svg",genre:"Electronic",bpm:108,mood:"Energy",tags:["Electronic","Upbeat","Gaming","Stream"],description:"Bright synth energy and forward motion for gaming content, livestreams, technology videos, city edits, and upbeat creator intros."},
+ {title:"Quiet Horizon",artist:"SafeWave AI Lab",src:"assets/audio/quiet-horizon-studio.wav",cover:"assets/covers/quiet-horizon.svg",genre:"Ambient",bpm:74,mood:"Dreamy",tags:["Ambient","Dreamy","Cinematic","Sleep"],description:"A spacious, cinematic ambient piece for documentaries, nighttime visuals, meditation, emotional transitions, and moments that need room to breathe."},
+ {title:"Golden Hour Drive",artist:"SafeWave Originals",src:"assets/audio/golden-hour-drive.wav",cover:"assets/covers/golden-hour-drive.svg",genre:"Acoustic",bpm:96,mood:"Uplifting",tags:["Acoustic","Travel","Warm","Road Trip"],description:"A bright road-trip instrumental with warm harmony, steady motion, and an optimistic melody for travel films, lifestyle content, and brand stories."},
+ {title:"Apex Rising",artist:"SafeWave Originals",src:"assets/audio/apex-rising.wav",cover:"assets/covers/apex-rising.svg",genre:"Cinematic",bpm:124,mood:"Epic",tags:["Cinematic","Epic","Trailer","Intense"],description:"A driving cinematic cue with rising harmony, bold percussion, and heroic melodic movement for trailers, reveals, sports, and dramatic edits."},
+ {title:"Digital Rain",artist:"Nova Lane",src:"assets/audio/digital-rain.wav",cover:"assets/covers/digital-rain.svg",genre:"Electronic",bpm:102,mood:"Atmospheric",tags:["Electronic","Technology","Night","Cyberpunk"],description:"Atmospheric electronic motion with a clean digital pulse for technology videos, nighttime city footage, game streams, and futuristic storytelling."}
+,
  {id:"streets",title:"Streets",artist:"Joshua Shanks",artistId:"joshua-shanks",album:"waterfalls",src:"assets/audio/waterfalls/streets.wav",cover:"assets/covers/waterfalls.png",genre:"Ambient",bpm:0,mood:"Reflective",tags:["Piano","Ambient","City","Storytelling"],description:"A reflective instrumental from Waterfalls."},
  {id:"for-a-moment",title:"For a Moment",artist:"Joshua Shanks",artistId:"joshua-shanks",album:"waterfalls",src:"assets/audio/waterfalls/for-a-moment.wav",cover:"assets/covers/waterfalls.png",genre:"Ambient",bpm:0,mood:"Tender",tags:["Piano","Emotional","Travel","Reflection"],description:"A tender instrumental from Waterfalls."},
  {id:"take-a-chance",title:"Take a Chance",artist:"Joshua Shanks",artistId:"joshua-shanks",album:"waterfalls",src:"assets/audio/waterfalls/take-a-chance.wav",cover:"assets/covers/waterfalls.png",genre:"Ambient",bpm:0,mood:"Hopeful",tags:["Piano","Inspiring","Lifestyle","Growth"],description:"A hopeful instrumental from Waterfalls."},
@@ -478,81 +478,65 @@ renderStudio();
 let auroraCatalogReady = false;
 
 function auroraTrackIndex(trackId) {
-  const catalogTrack = window.SafeWaveCatalog?.getTrack(trackId);
+  const directIndex = tracks.findIndex(track => track.id === trackId);
+  if (directIndex >= 0) return directIndex;
 
-  if (!catalogTrack?.src) {
-    return -1;
-  }
+  const catalogTrack = window.SafeWaveCatalog?.getTrack?.(trackId);
+  if (!catalogTrack?.src) return -1;
 
-  let index = tracks.findIndex(track =>
-    track.id === catalogTrack.id ||
-    track.src === catalogTrack.src
+  tracks.push({
+    ...catalogTrack,
+    id: catalogTrack.id,
+    artistId: catalogTrack.artistId || catalogTrack.artist,
+    artist:
+      window.SafeWaveCatalog?.getArtist?.(
+        catalogTrack.artistId || catalogTrack.artist
+      )?.name ||
+      catalogTrack.artist ||
+      "Joshua Shanks",
+    tags: Array.isArray(catalogTrack.tags) ? catalogTrack.tags : [],
+    description: catalogTrack.description || ""
+  });
+
+  return tracks.length - 1;
+}
+
+function auroraArtistName(artistId) {
+  return (
+    window.SafeWaveCatalog?.getArtist?.(artistId)?.name ||
+    tracks.find(track => track.artistId === artistId)?.artist ||
+    artistId ||
+    "SafeWave"
   );
-function auroraPlayAlbum(album, doShuffle = false) {
-  let albumTracks =
+}
+
+function auroraAlbumTracks(album) {
+  if (!album?.id) return [];
+
+  const catalogTracks =
     window.SafeWaveCatalog?.getTracksForAlbum?.(album.id) || [];
+
+  if (catalogTracks.length) return catalogTracks;
+
+  return tracks.filter(track => track.album === album.id);
+}
+
+function auroraPlayAlbum(album, doShuffle = false) {
+  let albumTracks = auroraAlbumTracks(album);
 
   if (doShuffle) {
     albumTracks = [...albumTracks].sort(() => Math.random() - 0.5);
   }
 
-  if (!albumTracks.length) {
-    toast("No playable tracks in this album");
-    return;
-  }
-
   const indices = albumTracks
-    .map(catalogTrack => {
-      let index = tracks.findIndex(track =>
-        track.id === catalogTrack.id ||
-        track.src === catalogTrack.src
-      );
-
-      if (index === -1) {
-        tracks.push({
-          ...catalogTrack,
-          artist:
-            catalogTrack.artist ||
-            window.SafeWaveCatalog?.getArtist(
-              catalogTrack.artistId
-            )?.name ||
-            "Joshua Shanks",
-          tags: catalogTrack.tags || [],
-          description: catalogTrack.description || ""
-        });
-
-        index = tracks.length - 1;
-      }
-
-      return index;
-    });
-
-  queue = [...indices.slice(1), ...queue];
-  saveQueue();
-  loadTrack(indices[0], true);
-  toast(doShuffle ? "Album shuffled" : "Album started");
-}
-
-  const catalogTracks =
-    window.SafeWaveCatalog?.getTracksForAlbum?.(album.id) ||
-    (window.SafeWaveCatalog?.tracks || []).filter(
-      track => track.album === album.id
-    );
-
-  let indices = catalogTracks
     .map(track => auroraTrackIndex(track.id))
     .filter(index => index >= 0);
 
-  if (doShuffle) {
-    indices = indices.sort(() => Math.random() - 0.5);
-  }
-
   if (!indices.length) {
     console.error("SafeWave: no playable album tracks", {
-      albumId: album.id,
-      catalogTracks
+      albumId: album?.id,
+      albumTracks
     });
-
     toast("No playable tracks in this album");
     return;
   }
@@ -564,7 +548,7 @@ function auroraPlayAlbum(album, doShuffle = false) {
 }
 
 function auroraAlbumRuntime(album){
-  const count=(album?.tracks||[]).length;
+  const count=auroraAlbumTracks(album).length;
   return `${count} track${count===1?"":"s"}`;
 }
 function auroraAlbumCard(album){
@@ -580,10 +564,16 @@ function auroraRenderAlbumBrowser(){
   grid.innerHTML=albums.length?albums.map(auroraAlbumCard).join(""):'<div class="library-empty"><h3>No albums yet</h3><p>Add albums to data/albums.json.</p></div>';
   auroraBindAlbumLinks(grid);
 }
+function auroraPlayAlbum(album,doShuffle=false){
+  let indices=(album.tracks||[]).map(auroraTrackIndex).filter(i=>i>=0);
+  if(doShuffle)indices=indices.sort(()=>Math.random()-.5);
+  if(!indices.length){toast("No playable tracks in this album");return;}
+  queue=[...indices.slice(1),...queue];saveQueue();loadTrack(indices[0]);toast(doShuffle?"Album shuffled":"Album started");
+}
 function auroraRenderAlbumDetail(albumId){
   const album=window.SafeWaveCatalog?.getAlbum(albumId);
   if(!album){location.hash="#albums";return;}
-  const catalogTracks=(album.tracks||[]).map(id=>window.SafeWaveCatalog.getTrack(id)).filter(Boolean);
+  const catalogTracks=auroraAlbumTracks(album);
   document.querySelector("#albumDetailCover").src=album.cover;
   document.querySelector("#albumDetailTitle").textContent=album.title;
   document.querySelector("#albumDetailArtist").textContent=`${auroraArtistName(album.artist)} • ${auroraAlbumRuntime(album)} • ${album.year||""}`;
