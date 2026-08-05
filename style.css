@@ -324,3 +324,28 @@ body[data-theme-track="2"] .track-atmosphere{background:radial-gradient(circle a
 .album-track-list{margin-top:65px;border-top:1px solid var(--line)}.album-track-row{display:grid;grid-template-columns:45px 58px 1fr 110px 85px 52px;gap:14px;align-items:center;padding:13px 8px;border-bottom:1px solid var(--line);border-radius:14px}.album-track-row:hover{background:rgba(255,255,255,.03)}.album-track-row>span{color:var(--muted);font-size:.78rem}.album-track-row img{width:58px;height:58px;object-fit:contain;border-radius:11px}.album-track-row strong,.album-track-row small{display:block}.album-track-row small{color:var(--muted);margin-top:4px}.album-track-row button{border:0;border-radius:50%;width:42px;height:42px;background:white;color:#06111b}.album-related{margin-top:80px}.album-related-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.album-related-card{padding:14px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.025);display:grid;grid-template-columns:100px 1fr;gap:15px;align-items:center;cursor:pointer}.album-related-card img{width:100px;height:100px;object-fit:contain;border-radius:14px}.album-related-card strong,.album-related-card small{display:block}.album-related-card small{color:var(--muted);margin-top:7px}
 @media(max-width:820px){.album-browser-grid{grid-template-columns:1fr}.album-detail-hero{grid-template-columns:1fr}.album-detail-hero>img{max-width:620px;margin:auto}.album-detail-copy{text-align:center}.album-detail-copy>p{margin-left:auto;margin-right:auto}.album-detail-tags,.album-detail-actions{justify-content:center}.album-track-row{grid-template-columns:36px 48px 1fr 48px}.album-track-row img{width:48px;height:48px}.album-track-row>span:nth-of-type(2),.album-track-row>span:nth-of-type(3){display:none}.album-related-grid{grid-template-columns:1fr}}
 @media(max-width:560px){.album-browser-hero{padding:120px 18px 42px}.album-browser-hero h1{font-size:3.8rem}.album-browser-grid{padding:16px 18px 115px}.album-detail{padding:100px 18px 120px}.album-detail-copy h1{font-size:3.8rem}.album-detail-actions>*{width:100%}.album-related-card{grid-template-columns:76px 1fr}.album-related-card img{width:76px;height:76px}}
+
+/* =========================================================
+   SafeWave 3.3 — Brand Foundation
+   ========================================================= */
+:root{
+  --bg:#071426;
+  --bg2:#091a30;
+  --surface:#0d2036;
+  --surface2:#132a45;
+  --line:rgba(162,218,239,.15);
+  --mint:#41e7d0;
+  --cyan:#16b7e8;
+  --blue:#315cff;
+  --brand-gradient:linear-gradient(135deg,#41e7d0 0%,#16b7e8 52%,#315cff 100%);
+}
+.brand{gap:11px;letter-spacing:-.045em}.brand-logo{width:40px;height:40px;display:block;flex:0 0 auto;filter:drop-shadow(0 10px 20px rgba(22,183,232,.22))}.auth-brand .brand-logo{width:46px;height:46px}.brand-icon,.brand-mark{display:none!important}
+.topbar{background:linear-gradient(to bottom,rgba(7,20,38,.97),rgba(7,20,38,.76));border-bottom-color:rgba(105,215,238,.08)}
+.pill-primary{background:var(--brand-gradient);box-shadow:0 14px 38px rgba(22,183,232,.22);transition:transform .2s ease,box-shadow .2s ease}.pill-primary:hover{transform:translateY(-2px);box-shadow:0 18px 48px rgba(22,183,232,.3)}
+.desktop-nav a.active:after{background:var(--brand-gradient)}
+.aurora-v2-hero{background:radial-gradient(circle at 78% 22%,rgba(49,92,255,.17),transparent 31%),radial-gradient(circle at 10% 82%,rgba(65,231,208,.12),transparent 35%),linear-gradient(145deg,#071426,#0a1b31 56%,#071526)}
+.aurora-v2-copy h1 em{background:linear-gradient(95deg,#fff 4%,#73edf0 48%,#41e7d0 75%,#6f83ff);-webkit-background-clip:text;color:transparent}
+.aurora-v2-feature,.player{border-color:rgba(109,220,241,.16)}
+.aurora-v2-feature-play,.aurora-v2-album-visual>button,.aurora-v2-track>button:last-child{background:var(--brand-gradient);color:#041421}
+.site-footer .brand-logo{width:36px;height:36px}
+@media(max-width:720px){.brand-logo{width:36px;height:36px}.topbar .brand span{font-size:1.15rem}}
