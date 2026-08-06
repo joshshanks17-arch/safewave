@@ -274,7 +274,7 @@ loadTrack=async function(i,autoplay=true){
 window.addEventListener("resize",()=>drawWaveform(current));
 drawWaveform(current);
 
-const albums={coastal:[0,3,2],neon:[1,5,4]};
+const albums={coastal:[0,3,2],neon:[1,5,4],waterfalls:[6,7,8,9,10,11,12,13]};
 $$("[data-album]").forEach(b=>b.onclick=()=>{const list=albums[b.dataset.album];queue=[...list.slice(1),...queue];saveQueue();loadTrack(list[0]);toast("Album started")});
 $("[data-artist-play]")?.addEventListener("click",()=>{const list=[0,3,4,2];queue=[...list.slice(1),...queue];saveQueue();loadTrack(list[0]);});
 
@@ -440,7 +440,7 @@ renderStudio();
 
 // Project Aurora — Phase 1
 (function initAuroraPhaseOne(){
-  const albumMap={coastal:[0,3,2],neon:[1,5,4]};
+  const albumMap={coastal:[0,3,2],neon:[1,5,4],waterfalls:[6,7,8,9,10,11,12,13]};
   document.querySelectorAll(".aurora-v2-album [data-album]").forEach(button=>{
     button.addEventListener("click",()=>{
       const list=albumMap[button.dataset.album]||[];

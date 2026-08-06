@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#071426">
-<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/brand/logo-mark.svg">
+<meta name="theme-color" content="#06111b">
 <meta name="description" content="SafeWave — premium royalty-free music for creators.">
-<title>SafeWave 3.3 — Sound for Stories</title>
+<title>SafeWave — Royalty-Free Music for Creators</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="css/player-premium.css">
+<link rel="stylesheet" href="css/v3.3-site.css">
 </head>
 <body data-theme-track="0">
 <div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
 <header class="topbar">
-  <a class="brand route-link" href="#home"><img class="brand-logo" src="assets/brand/logo-mark.svg" alt=""><span>SafeWave</span></a>
+  <a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a>
   <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#albums">Albums</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a></nav>
   <div class="top-actions"><button class="search-trigger" id="searchTrigger" aria-label="Search">⌕</button><a href="login.html">Log in</a><a class="pill-primary" href="signup.html">Start free</a><button class="menu-btn" id="menuBtn">☰</button></div>
 </header>
@@ -28,41 +27,47 @@
     <div class="aurora-v2-lines"></div>
 
     <div class="aurora-v2-copy">
-      <div class="aurora-v2-label"><span></span> PREMIUM BUILD • SAFEWAVE 3.3</div>
+      <div class="aurora-v2-label"><span></span> SAFEWAVE 3.3 • CREATOR MUSIC LIBRARY</div>
       <p class="kicker">CURATED ROYALTY-FREE MUSIC</p>
-      <h1>Every genre.<br><em>Its own identity.</em></h1>
-      <p class="aurora-v2-lead">Discover distinctive music for films, streams, podcasts, games, ads, and stories—organized around how creators actually work.</p>
+      <h1>Music that fits.<br><em>Stories that stand out.</em></h1>
+      <p class="aurora-v2-lead">Explore a focused catalog of creator-safe music for videos, streams, podcasts, games, and everything you are building next.</p>
 
       <div class="aurora-v2-actions">
         <a class="pill-primary route-link" href="#discover">Explore the catalog</a>
-        <button class="pill-glass" data-track="4">▶ Play cinematic feature</button>
+        <button class="pill-glass" data-track="6">▶ Play newest release</button>
       </div>
 
       <div class="aurora-v2-proof">
-        <div><strong>6</strong><span>Studio demos</span></div>
-        <div><strong>5</strong><span>Genre identities</span></div>
-        <div><strong>WAV</strong><span>Creator downloads</span></div>
+        <div><strong>14</strong><span>Original tracks</span></div>
+        <div><strong>3</strong><span>Curated albums</span></div>
+        <div><strong>Clear</strong><span>Creator licensing</span></div>
       </div>
     </div>
 
     <article class="aurora-v2-feature">
       <div class="aurora-v2-feature-art">
-        <img src="assets/covers/apex-rising.svg" alt="Apex Rising cinematic cover art">
+        <img src="assets/covers/waterfalls.png" alt="Waterfalls album cover art">
         <div class="aurora-v2-feature-shade"></div>
-        <span class="aurora-v2-feature-badge">FEATURED • CINEMATIC</span>
-        <button class="aurora-v2-feature-play" data-track="4">▶</button>
+        <span class="aurora-v2-feature-badge">NEWEST RELEASE • AMBIENT</span>
+        <button class="aurora-v2-feature-play" data-track="6">▶</button>
       </div>
       <div class="aurora-v2-feature-copy">
         <div>
-          <span>SAFEWAVE ORIGINALS</span>
-          <h2>Apex Rising</h2>
-          <p>Epic • 124 BPM • Trailer</p>
+          <span>JOSHUA SHANKS</span>
+          <h2>Waterfalls</h2>
+          <p>Ambient • Piano • 8 tracks</p>
         </div>
-        <button data-favorite="4" aria-label="Favorite Apex Rising">♡</button>
+        <button data-favorite="6" aria-label="Favorite Streets">♡</button>
       </div>
     </article>
 
     <div class="aurora-v2-scroll">SCROLL TO EXPLORE <i></i></div>
+  </section>
+
+  <section class="v33-trust-strip" aria-label="SafeWave benefits">
+    <article><span>01</span><div><strong>Creator-first catalog</strong><p>Music organized around real use cases, moods, and production needs.</p></div></article>
+    <article><span>02</span><div><strong>Instant playback</strong><p>Preview complete albums without leaving the browsing experience.</p></div></article>
+    <article><span>03</span><div><strong>Built to grow</strong><p>A focused foundation for playlists, licensing, and creator tools.</p></div></article>
   </section>
 
   <section class="aurora-v2-genre-section">
@@ -140,6 +145,20 @@
           <h3>Neon Velocity</h3>
           <p>Electronic atmosphere, cinematic force, and futuristic motion for gaming, technology, and launch content.</p>
           <div><button data-album="neon">Play album</button><a href="#discover?genre=electronic">View tracks →</a></div>
+        </div>
+      </article>
+
+      <article class="aurora-v2-album aurora-v2-album-waterfalls">
+        <div class="aurora-v2-album-visual">
+          <img src="assets/covers/waterfalls.png" alt="Waterfalls album">
+          <div class="aurora-v2-album-disc"></div>
+          <button data-album="waterfalls">▶</button>
+        </div>
+        <div class="aurora-v2-album-copy">
+          <span>JOSHUA SHANKS • 8 TRACKS</span>
+          <h3>Waterfalls</h3>
+          <p>Peaceful piano and ambient soundscapes for reflective films, study, meditation, and quiet storytelling.</p>
+          <div><button data-album="waterfalls">Play album</button><a class="route-link" href="#albums">View album →</a></div>
         </div>
       </article>
     </div>
@@ -375,7 +394,7 @@
 
 </main>
 
-<footer class="site-footer"><a class="brand route-link" href="#home"><img class="brand-logo" src="assets/brand/logo-mark.svg" alt=""><span>SafeWave</span></a><p>Built by creators, for creators.</p><div><a href="licensing.html">Licensing</a><a href="#">Contact</a><a href="#">Instagram</a></div><span>© 2026 SafeWave</span></footer>
+<footer class="site-footer"><a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a><p>Creator-safe music for stories, streams, and everything in between.</p><div><a href="licensing.html">Licensing</a><a href="#">Contact</a><a href="#">Instagram</a></div><span>© 2026 SafeWave</span></footer>
 
 <aside class="player" id="player">
   <button class="collapse-player" id="playerCollapse">⌄</button>
@@ -397,3 +416,4 @@
 <script src="js/catalog.js?v=515"></script>
 <script src="script.js?v=515"></script>
 <script src="js/player-premium.js?v=515"></script>
+<script src="js/v3.3-site.js?v=330"></script>
