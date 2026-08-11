@@ -1,0 +1,10 @@
+{
+  "name": "SafeWave",
+  "short_name": "SafeWave",
+  "description": "Creator-focused instrumental music.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#06111b",
+  "theme_color": "#06111b",
+  "icons": []
+}
