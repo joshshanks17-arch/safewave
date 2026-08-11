@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/v3.3-site.css">
 <link rel="stylesheet" href="css/v4-sprint1.css">
 <link rel="stylesheet" href="css/v4-sprint2.css">
+<link rel="stylesheet" href="css/v4-sprint3.css">
 </head>
 <body data-theme-track="0">
 <div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
@@ -245,25 +246,48 @@
 </section>
 
 <section class="view" data-view="album">
-  <section class="album-detail" id="albumDetail">
-    <button class="album-back route-link" data-album-back>← All albums</button>
-    <div class="album-detail-hero">
-      <img id="albumDetailCover" alt="Album artwork">
-      <div class="album-detail-copy">
-        <span class="kicker">ALBUM</span>
+  <section class="album-detail v4-album-detail" id="albumDetail">
+    <button class="album-back route-link v4-album-back" data-album-back>← Back to albums</button>
+
+    <div class="album-detail-hero v4-album-hero">
+      <div class="v4-album-art-wrap">
+        <img id="albumDetailCover" alt="Album artwork">
+        <div class="v4-album-art-glow" aria-hidden="true"></div>
+      </div>
+
+      <div class="album-detail-copy v4-album-copy">
+        <span class="kicker">SAFEWAVE ALBUM</span>
         <h1 id="albumDetailTitle">Album</h1>
         <p class="album-detail-artist" id="albumDetailArtist"></p>
-        <p id="albumDetailDescription"></p>
+        <p class="v4-album-description" id="albumDetailDescription"></p>
         <div class="album-detail-tags" id="albumDetailTags"></div>
-        <div class="album-detail-actions">
+
+        <div class="v4-album-stats" aria-label="Album details">
+          <div><strong id="v4AlbumTrackCount">—</strong><span>tracks</span></div>
+          <div><strong id="v4AlbumYear">—</strong><span>release</span></div>
+          <div><strong id="v4AlbumPrimaryGenre">—</strong><span>sound</span></div>
+        </div>
+
+        <div class="album-detail-actions v4-album-actions">
           <button class="pill-primary" id="albumPlayAll">▶ Play album</button>
-          <button class="pill-glass" id="albumShuffle">⌘ Shuffle</button>
+          <button class="pill-glass" id="albumShuffle">⤨ Shuffle</button>
         </div>
       </div>
     </div>
-    <div class="album-track-list" id="albumTrackList"></div>
-    <section class="album-related">
-      <div class="section-head"><div><span class="kicker">KEEP EXPLORING</span><h2>Related releases</h2></div></div>
+
+    <section class="v4-tracklist-section">
+      <div class="v4-tracklist-head">
+        <div><span class="kicker">TRACKLIST</span><h2>Listen from the beginning.</h2></div>
+        <span id="v4AlbumTrackLabel">Album tracks</span>
+      </div>
+      <div class="album-track-list v4-album-track-list" id="albumTrackList"></div>
+    </section>
+
+    <section class="album-related v4-album-related">
+      <div class="v4-tracklist-head">
+        <div><span class="kicker">KEEP EXPLORING</span><h2>More from SafeWave.</h2></div>
+        <a class="route-link" href="#albums">View all albums →</a>
+      </div>
       <div class="album-related-grid" id="albumRelatedGrid"></div>
     </section>
   </section>
@@ -838,3 +862,4 @@
 <script src="js/player-premium.js?v=515"></script>
 <script src="js/v3.3-site.js?v=330"></script>
 <script src="js/v4-sprint2.js?v=4002"></script>
+<script src="js/v4-sprint3.js?v=4003"></script>
