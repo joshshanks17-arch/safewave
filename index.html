@@ -3,8 +3,19 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#06111b">
-<meta name="description" content="SafeWave — premium royalty-free music for creators.">
-<title>SafeWave — Royalty-Free Music for Creators</title>
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Discover creator-focused instrumental music on SafeWave. Browse albums, moods, and tracks with instant playback.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SafeWave">
+<meta property="og:title" content="SafeWave — Music for Creators">
+<meta property="og:description" content="Discover creator-focused instrumental music by album, mood, genre, and creative use.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SafeWave — Music for Creators">
+<meta name="twitter:description" content="Discover creator-focused instrumental music by album, mood, genre, and creative use.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>SafeWave — Music for Creators</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="css/player-premium.css">
 <link rel="stylesheet" href="css/v3.3-site.css">
@@ -12,16 +23,17 @@
 <link rel="stylesheet" href="css/v4-sprint2.css">
 <link rel="stylesheet" href="css/v4-sprint3.css">
 <link rel="stylesheet" href="css/v4-sprint45.css">
+<link rel="stylesheet" href="css/v4-launch.css">
 </head>
 <body data-theme-track="0">
 <div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
 <header class="topbar">
   <a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a>
   <nav class="desktop-nav"><a class="route-link active" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#albums">Albums</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a></nav>
-  <div class="top-actions"><button class="search-trigger" id="searchTrigger" aria-label="Search">⌕</button><a href="login.html">Log in</a><a class="pill-primary" href="signup.html">Start free</a><button class="menu-btn" id="menuBtn">☰</button></div>
+  <div class="top-actions"><button class="search-trigger" id="searchTrigger" aria-label="Search">⌕</button><a href="licensing.html">Licensing</a><a class="pill-primary route-link" href="#discover">Browse music</a><button class="menu-btn" id="menuBtn">☰</button></div>
 </header>
 
-<nav class="mobile-menu" id="mobileMenu"><a class="route-link" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#albums">Albums</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a><a href="login.html">Log in</a><a href="signup.html">Start free</a></nav>
+<nav class="mobile-menu" id="mobileMenu"><a class="route-link" href="#home">Home</a><a class="route-link" href="#discover">Discover</a><a class="route-link" href="#albums">Albums</a><a class="route-link" href="#library">Library</a><a class="route-link" href="#studio">Studio</a><a href="licensing.html">Licensing</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
 
 <main>
 <section class="view active aurora-home" data-view="home">
@@ -839,7 +851,7 @@
 
 </main>
 
-<footer class="site-footer"><a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a><p>Creator-safe music for stories, streams, and everything in between.</p><div><a href="licensing.html">Licensing</a><a href="#">Contact</a><a href="#">Instagram</a></div><span>© 2026 SafeWave</span></footer>
+<footer class="site-footer"><a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a><p>Creator-focused music for stories, streams, and everything in between.</p><div><a href="licensing.html">Licensing</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a></div><span>© 2026 SafeWave</span></footer>
 
 <aside class="player v4-player" id="player" aria-label="SafeWave music player">
   <button class="collapse-player" id="playerCollapse" aria-label="Minimize player">⌄</button>
@@ -909,3 +921,4 @@
 <script src="js/v4-sprint2.js?v=4002"></script>
 <script src="js/v4-sprint3.js?v=4003"></script>
 <script src="js/v4-sprint45.js?v=4005"></script>
+<script src="js/v4-launch.js?v=4100"></script>
