@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/v4-sprint1.css">
 <link rel="stylesheet" href="css/v4-sprint2.css">
 <link rel="stylesheet" href="css/v4-sprint3.css">
+<link rel="stylesheet" href="css/v4-sprint45.css">
 </head>
 <body data-theme-track="0">
 <div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
@@ -840,11 +841,34 @@
 
 <footer class="site-footer"><a class="brand route-link" href="#home"><span class="brand-icon"><i></i><i></i><i></i></span><span>SafeWave</span></a><p>Creator-safe music for stories, streams, and everything in between.</p><div><a href="licensing.html">Licensing</a><a href="#">Contact</a><a href="#">Instagram</a></div><span>© 2026 SafeWave</span></footer>
 
-<aside class="player" id="player">
-  <button class="collapse-player" id="playerCollapse">⌄</button>
-  <div class="playing-track"><div class="player-cover" id="playerCover"></div><div><strong id="playerTitle">Coastal Drift</strong><small id="playerArtist">SafeWave</small></div><button data-favorite-current id="favoriteCurrent">♡</button></div>
-  <div class="transport"><div class="transport-buttons"><button id="shuffleBtn">⤨</button><button id="prevBtn">‹</button><button id="playBtn" class="main-play">▶</button><button id="nextBtn">›</button><button id="repeatBtn">↻</button></div><div class="timeline waveform-timeline"><span id="currentTime">0:00</span><div class="waveform-wrap" id="waveformWrap"><canvas id="waveformCanvas" width="900" height="70"></canvas><div class="waveform-playhead" id="waveformPlayhead"></div></div><input id="progress" class="hidden-progress" type="range" min="0" max="100" value="0"><span id="duration">0:00</span></div></div>
-  <div class="player-tools"><button id="volumeBtn">◖</button><input id="volume" type="range" min="0" max="1" step=".01" value=".75"><button id="openQueue">☷<b id="queueCount">0</b></button><button id="expandPlayer">↗</button></div>
+<aside class="player v4-player" id="player" aria-label="SafeWave music player">
+  <button class="collapse-player" id="playerCollapse" aria-label="Minimize player">⌄</button>
+  <div class="playing-track v4-playing-track">
+    <div class="player-cover" id="playerCover"></div>
+    <div class="v4-player-copy"><strong id="playerTitle">Coastal Drift</strong><small id="playerArtist">SafeWave</small></div>
+    <button data-favorite-current id="favoriteCurrent" aria-label="Favorite current track">♡</button>
+  </div>
+  <div class="transport v4-transport">
+    <div class="transport-buttons">
+      <button id="shuffleBtn" aria-label="Shuffle">⤨</button>
+      <button id="prevBtn" aria-label="Previous track">‹</button>
+      <button id="playBtn" class="main-play" aria-label="Play or pause">▶</button>
+      <button id="nextBtn" aria-label="Next track">›</button>
+      <button id="repeatBtn" aria-label="Repeat">↻</button>
+    </div>
+    <div class="timeline waveform-timeline">
+      <span id="currentTime">0:00</span>
+      <div class="waveform-wrap" id="waveformWrap"><canvas id="waveformCanvas" width="900" height="70"></canvas><div class="waveform-playhead" id="waveformPlayhead"></div></div>
+      <input id="progress" class="hidden-progress" type="range" min="0" max="100" value="0" aria-label="Track progress">
+      <span id="duration">0:00</span>
+    </div>
+  </div>
+  <div class="player-tools v4-player-tools">
+    <button id="volumeBtn" aria-label="Mute or unmute">◖</button>
+    <input id="volume" type="range" min="0" max="1" step=".01" value=".75" aria-label="Volume">
+    <button id="openQueue" aria-label="Open queue">☷<b id="queueCount">0</b></button>
+    <button id="expandPlayer" aria-label="Open now playing">↗</button>
+  </div>
   <audio id="audio"></audio>
 </aside>
 
@@ -852,7 +876,28 @@
 
 <section class="track-modal" id="trackModal"><button class="modal-close" id="modalClose">×</button><div class="modal-art" id="modalArt"></div><div class="modal-content"><span class="kicker">TRACK DETAILS</span><h2 id="modalTitle"></h2><p id="modalArtist"></p><div class="modal-tags" id="modalTags"></div><div class="stream-stats"><span>▶ <b id="modalPlays">0</b> plays</span><span>♥ <b id="modalLikes">0</b> likes</span><span>↓ <b id="modalDownloads">0</b> downloads</span></div><p class="modal-description" id="modalDescription"></p><div class="download-panel"><div class="download-head"><div><span class="kicker">DOWNLOAD OPTIONS</span><h3>Choose your file</h3></div><button id="copyAttribution">Copy attribution</button></div><div class="format-grid"><a class="format-card" id="modalDownload" download><strong>WAV</strong><span>Full quality</span><small>Best for editing</small></a><button class="format-card disabled" type="button"><strong>MP3</strong><span>Coming soon</span><small>Smaller file size</small></button><button class="format-card disabled" type="button"><strong>STEMS</strong><span>Future</span><small>Mix individual parts</small></button></div></div><div class="modal-actions"><button class="pill-primary" id="modalPlay">▶ Play track</button><button class="pill-glass" id="modalQueue">＋ Add to queue</button></div><div class="license-box"><span>✓</span><p><strong>Creator license included</strong><br>Prototype licensing details. Final terms require legal review.</p></div></div></section>
 
-<section class="fullscreen-player" id="fullscreenPlayer"><button class="fullscreen-close" id="fullscreenClose">⌄</button><div class="fullscreen-bg" id="fullscreenBg"></div><div class="fullscreen-content"><div class="fullscreen-art" id="fullscreenArt"></div><span class="kicker">NOW PLAYING</span><h2 id="fullscreenTitle">Coastal Drift</h2><p id="fullscreenArtist">SafeWave</p><div class="full-timeline"><input id="fullProgress" type="range" min="0" max="100" value="0"><div><span id="fullCurrent">0:00</span><span id="fullDuration">0:00</span></div></div><div class="full-controls"><button id="fullPrev">‹</button><button id="fullPlay">▶</button><button id="fullNext">›</button></div></div></section>
+<section class="fullscreen-player v4-now-playing" id="fullscreenPlayer">
+  <button class="fullscreen-close" id="fullscreenClose" aria-label="Close now playing">⌄</button>
+  <div class="fullscreen-bg" id="fullscreenBg"></div>
+  <div class="fullscreen-content v4-now-playing-content">
+    <div class="fullscreen-art" id="fullscreenArt"></div>
+    <div class="v4-now-playing-copy">
+      <span class="kicker">NOW PLAYING</span>
+      <h2 id="fullscreenTitle">Coastal Drift</h2>
+      <p id="fullscreenArtist">SafeWave</p>
+      <div class="full-timeline">
+        <input id="fullProgress" type="range" min="0" max="100" value="0" aria-label="Track progress">
+        <div><span id="fullCurrent">0:00</span><span id="fullDuration">0:00</span></div>
+      </div>
+      <div class="full-controls">
+        <button id="fullPrev" aria-label="Previous track">‹</button>
+        <button id="fullPlay" aria-label="Play or pause">▶</button>
+        <button id="fullNext" aria-label="Next track">›</button>
+      </div>
+      <p class="v4-now-playing-hint">Tap the arrow to return to SafeWave.</p>
+    </div>
+  </div>
+</section>
 
 <div class="command-search" id="commandSearch"><div class="command-box"><span>⌕</span><input id="commandInput" placeholder="Search tracks, moods, or genres"><button id="commandClose">ESC</button><div id="commandResults"></div></div></div>
 <section class="playlist-modal" id="playlistModal"><div class="playlist-dialog"><button id="playlistClose">×</button><span class="kicker">NEW PLAYLIST</span><h2>Create a collection</h2><label>Playlist name<input id="playlistName" placeholder="My video soundtrack"></label><label>Add tracks<div class="playlist-track-picker" id="playlistTrackPicker"></div></label><button class="pill-primary" id="savePlaylist">Create playlist</button></div></section><nav class="mobile-bottom-nav"><a class="route-link" href="#home"><span>⌂</span><small>Home</small></a><a class="route-link" href="#discover"><span>⌕</span><small>Discover</small></a><a class="route-link" href="#albums"><span>◫</span><small>Albums</small></a><a class="route-link" href="#library"><span>♡</span><small>Library</small></a><a class="route-link" href="#studio"><span>⌁</span><small>Studio</small></a></nav>
@@ -863,3 +908,4 @@
 <script src="js/v3.3-site.js?v=330"></script>
 <script src="js/v4-sprint2.js?v=4002"></script>
 <script src="js/v4-sprint3.js?v=4003"></script>
+<script src="js/v4-sprint45.js?v=4005"></script>
