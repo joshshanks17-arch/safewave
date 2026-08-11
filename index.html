@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/player-premium.css">
 <link rel="stylesheet" href="css/v3.3-site.css">
 <link rel="stylesheet" href="css/v4-sprint1.css">
+<link rel="stylesheet" href="css/v4-sprint2.css">
 </head>
 <body data-theme-track="0">
 <div class="noise"></div><div class="track-atmosphere" id="trackAtmosphere"></div>
@@ -268,23 +269,441 @@
   </section>
 </section>
 
-<section class="view" data-view="discover">
-  <section class="discover-hero"><span class="kicker">THE CATALOG</span><h1>Find your next sound.</h1><p>Search by track, artist, mood, genre, or project type.</p><div class="giant-search"><span>⌕</span><input id="trackSearch" placeholder="Try “relaxing music for a travel vlog”"><kbd>⌘ K</kbd></div><div class="smart-search-hints"><button data-smart-query="travel vlog">Travel vlog</button><button data-smart-query="gaming energy">Gaming energy</button><button data-smart-query="quiet documentary">Quiet documentary</button></div></section>
-  <section class="discover-shell">
-    <aside class="filter-panel"><h3>Filter</h3><button class="filter active" data-filter="all">All music</button><button class="filter" data-filter="lo-fi">Lo-Fi</button><button class="filter" data-filter="electronic">Electronic</button><button class="filter" data-filter="ambient">Ambient</button><button class="filter" data-filter="acoustic">Acoustic</button><button class="filter" data-filter="cinematic">Cinematic</button><hr><label>Energy<input id="energyRange" type="range" min="1" max="5" value="3"></label><div class="license-note"><span>✓</span><p><strong>Creator-safe catalog</strong><br>Every track includes clear usage information.</p></div></aside>
-    <div class="catalog"><div class="catalog-head"><div><h2>All tracks</h2><span id="resultCount">6 tracks</span></div><select><option>Recommended</option><option>Newest</option><option>BPM</option></select></div>
-      <div class="catalog-list">
-        <article class="catalog-row" data-name="coastal drift safewave lo-fi calm focus travel" data-genre="lo-fi"><button class="catalog-play" data-track="0">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/coastal-drift.svg')"></div><div class="catalog-name"><strong>Coastal Drift</strong><small>SafeWave</small></div><span>Lo-Fi</span><span>86 BPM</span><span>0:45</span><button data-favorite="0">♡</button><button data-queue="0">＋</button><button data-open-track="0">•••</button></article>
-        <article class="catalog-row" data-name="neon sunrise nova lane electronic upbeat energetic gaming stream" data-genre="electronic"><button class="catalog-play" data-track="1">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/neon-sunrise.svg')"></div><div class="catalog-name"><strong>Neon Sunrise</strong><small>Nova Lane</small></div><span>Electronic</span><span>108 BPM</span><span>0:43</span><button data-favorite="1">♡</button><button data-queue="1">＋</button><button data-open-track="1">•••</button></article>
-        <article class="catalog-row" data-name="quiet horizon safewave ai lab ambient calm dreamy cinematic sleep" data-genre="ambient"><button class="catalog-play" data-track="2">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/quiet-horizon.svg')"></div><div class="catalog-name"><strong>Quiet Horizon</strong><small>SafeWave AI Lab</small></div><span>Ambient</span><span>74 BPM</span><span>0:53</span><button data-favorite="2">♡</button><button data-queue="2">＋</button><button data-open-track="2">•••</button></article>
 
-        <article class="catalog-row" data-name="golden hour drive safewave acoustic travel uplifting warm road trip" data-genre="acoustic"><button class="catalog-play" data-track="3">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/golden-hour-drive.svg')"></div><div class="catalog-name"><strong>Golden Hour Drive</strong><small>SafeWave Originals</small></div><span>Acoustic</span><span>96 BPM</span><span>0:45</span><button data-favorite="3">♡</button><button data-queue="3">＋</button><button data-open-track="3">•••</button></article>
-        <article class="catalog-row" data-name="apex rising safewave epic cinematic trailer intense orchestral" data-genre="cinematic"><button class="catalog-play" data-track="4">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/apex-rising.svg')"></div><div class="catalog-name"><strong>Apex Rising</strong><small>SafeWave Originals</small></div><span>Cinematic</span><span>124 BPM</span><span>0:39</span><button data-favorite="4">♡</button><button data-queue="4">＋</button><button data-open-track="4">•••</button></article>
-        <article class="catalog-row" data-name="digital rain nova lane electronic ambient technology night cyberpunk" data-genre="electronic"><button class="catalog-play" data-track="5">▶</button><div class="catalog-cover" style="background-image:url('assets/covers/digital-rain.svg')"></div><div class="catalog-name"><strong>Digital Rain</strong><small>Nova Lane</small></div><span>Electronic</span><span>102 BPM</span><span>0:42</span><button data-favorite="5">♡</button><button data-queue="5">＋</button><button data-open-track="5">•••</button></article>
+<section class="view" data-view="discover">
+  <section class="v4-discovery-hero">
+    <div class="v4-discovery-hero-copy">
+      <span class="kicker">DISCOVER SAFEWAVE</span>
+      <h1>Find music by <em>feeling.</em></h1>
+      <p>Search the complete SafeWave catalog by track, artist, album, genre, mood, or creative use.</p>
+      <div class="giant-search v4-search">
+        <span>⌕</span>
+        <input id="trackSearch" type="search" autocomplete="off" placeholder="Search tracks, moods, albums, or uses">
+        <kbd>⌘ K</kbd>
       </div>
+      <div class="smart-search-hints">
+        <button data-smart-query="travel">Travel</button>
+        <button data-smart-query="gaming">Gaming</button>
+        <button data-smart-query="piano">Piano</button>
+        <button data-smart-query="cinematic">Cinematic</button>
+        <button data-smart-query="study">Study</button>
+      </div>
+    </div>
+    <div class="v4-discovery-stat">
+      <strong>14</strong><span>tracks</span>
+      <i></i>
+      <strong>3</strong><span>albums</span>
+    </div>
+  </section>
+
+  <section class="v4-discovery-albums">
+    <div class="v4-discovery-section-head"><div><span class="kicker">ALBUMS</span><h2>Choose a world.</h2></div><span>3 releases</span></div>
+    <div class="v4-discovery-album-grid">
+      <article class="v4-discovery-album">
+        <div class="v4-discovery-album-art">
+          <img src="assets/covers/coastal-drift.svg" alt="Coastal Motion album art">
+          <button data-track="0" aria-label="Play Coastal Motion">▶</button>
+        </div>
+        <div><span>3 tracks • Lo-Fi • Acoustic • Ambient</span><h3>Coastal Motion</h3><p>SafeWave Originals</p></div>
+      </article>
+      <article class="v4-discovery-album">
+        <div class="v4-discovery-album-art">
+          <img src="assets/covers/neon-sunrise.svg" alt="Neon Velocity album art">
+          <button data-track="3" aria-label="Play Neon Velocity">▶</button>
+        </div>
+        <div><span>3 tracks • Electronic • Cinematic</span><h3>Neon Velocity</h3><p>Nova Lane</p></div>
+      </article>
+      <article class="v4-discovery-album">
+        <div class="v4-discovery-album-art">
+          <img src="assets/covers/waterfalls.png" alt="Waterfalls album art">
+          <button data-track="6" aria-label="Play Waterfalls">▶</button>
+        </div>
+        <div><span>8 tracks • Ambient • Piano • Relaxation</span><h3>Waterfalls</h3><p>Joshua Shanks</p></div>
+      </article></div>
+  </section>
+
+  <section class="v4-discovery-catalog">
+    <div class="v4-discovery-section-head">
+      <div><span class="kicker">ALL MUSIC</span><h2>Explore the catalog.</h2></div>
+      <span id="resultCount">14 tracks</span>
+    </div>
+
+    <div class="v4-discovery-toolbar">
+      <div class="v4-filter-scroll" aria-label="Genre filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="ambient">Ambient</button>
+        <button class="filter" data-filter="lo-fi">Lo-Fi</button>
+        <button class="filter" data-filter="electronic">Electronic</button>
+        <button class="filter" data-filter="acoustic">Acoustic</button>
+        <button class="filter" data-filter="cinematic">Cinematic</button>
+      </div>
+      <label class="v4-sort">Sort
+        <select id="catalogSort">
+          <option value="recommended">Recommended</option>
+          <option value="title">A–Z</option>
+          <option value="bpm-high">Highest BPM</option>
+          <option value="bpm-low">Lowest BPM</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="v4-mood-row" aria-label="Mood filters">
+      <button class="v4-mood active" data-mood="all">Any mood</button>
+      <button class="v4-mood" data-mood="peaceful">Peaceful</button>
+      <button class="v4-mood" data-mood="dreamy">Dreamy</button>
+      <button class="v4-mood" data-mood="reflective">Reflective</button>
+      <button class="v4-mood" data-mood="energy">Energy</button>
+      <button class="v4-mood" data-mood="uplifting">Uplifting</button>
+      <button class="v4-mood" data-mood="epic">Epic</button>
+    </div>
+
+    <div class="catalog-list v4-discovery-grid" id="v4DiscoveryGrid">
+      
+        <article class="v4-discovery-card catalog-row"
+          data-name="coastal drift safewave originals coastal motion lo-fi calm lo-fi calm focus travel"
+          data-genre="lo-fi"
+          data-mood="calm"
+          data-title="coastal drift"
+          data-bpm="86">
+          <button class="v4-card-art catalog-play" data-track="0" aria-label="Play Coastal Drift">
+            <img src="assets/covers/coastal-drift.svg" alt="Coastal Drift cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Coastal Drift</strong><small>SafeWave Originals • Coastal Motion</small></div>
+              <button data-favorite="0" aria-label="Favorite Coastal Drift">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Lo-Fi</span><span>Calm</span><span>86 BPM</span></div>
+            <div class="v4-card-tags"><span>Lo-Fi</span><span>Calm</span><span>Focus</span></div>
+            <div class="v4-card-actions">
+              <button data-track="0">Play</button>
+              <button data-queue="0">＋ Queue</button>
+              <button data-open-track="0">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="golden hour drive safewave originals coastal motion acoustic uplifting acoustic travel warm road trip"
+          data-genre="acoustic"
+          data-mood="uplifting"
+          data-title="golden hour drive"
+          data-bpm="96">
+          <button class="v4-card-art catalog-play" data-track="1" aria-label="Play Golden Hour Drive">
+            <img src="assets/covers/golden-hour-drive.svg" alt="Golden Hour Drive cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Golden Hour Drive</strong><small>SafeWave Originals • Coastal Motion</small></div>
+              <button data-favorite="1" aria-label="Favorite Golden Hour Drive">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Acoustic</span><span>Uplifting</span><span>96 BPM</span></div>
+            <div class="v4-card-tags"><span>Acoustic</span><span>Travel</span><span>Warm</span></div>
+            <div class="v4-card-actions">
+              <button data-track="1">Play</button>
+              <button data-queue="1">＋ Queue</button>
+              <button data-open-track="1">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="quiet horizon safewave originals coastal motion ambient dreamy ambient dreamy cinematic sleep"
+          data-genre="ambient"
+          data-mood="dreamy"
+          data-title="quiet horizon"
+          data-bpm="74">
+          <button class="v4-card-art catalog-play" data-track="2" aria-label="Play Quiet Horizon">
+            <img src="assets/covers/quiet-horizon.svg" alt="Quiet Horizon cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Quiet Horizon</strong><small>SafeWave Originals • Coastal Motion</small></div>
+              <button data-favorite="2" aria-label="Favorite Quiet Horizon">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Dreamy</span><span>74 BPM</span></div>
+            <div class="v4-card-tags"><span>Ambient</span><span>Dreamy</span><span>Cinematic</span></div>
+            <div class="v4-card-actions">
+              <button data-track="2">Play</button>
+              <button data-queue="2">＋ Queue</button>
+              <button data-open-track="2">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="neon sunrise nova lane neon velocity electronic energy electronic upbeat gaming stream"
+          data-genre="electronic"
+          data-mood="energy"
+          data-title="neon sunrise"
+          data-bpm="108">
+          <button class="v4-card-art catalog-play" data-track="3" aria-label="Play Neon Sunrise">
+            <img src="assets/covers/neon-sunrise.svg" alt="Neon Sunrise cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Neon Sunrise</strong><small>Nova Lane • Neon Velocity</small></div>
+              <button data-favorite="3" aria-label="Favorite Neon Sunrise">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Electronic</span><span>Energy</span><span>108 BPM</span></div>
+            <div class="v4-card-tags"><span>Electronic</span><span>Upbeat</span><span>Gaming</span></div>
+            <div class="v4-card-actions">
+              <button data-track="3">Play</button>
+              <button data-queue="3">＋ Queue</button>
+              <button data-open-track="3">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="digital rain nova lane neon velocity electronic atmospheric electronic technology night cyberpunk"
+          data-genre="electronic"
+          data-mood="atmospheric"
+          data-title="digital rain"
+          data-bpm="102">
+          <button class="v4-card-art catalog-play" data-track="4" aria-label="Play Digital Rain">
+            <img src="assets/covers/digital-rain.svg" alt="Digital Rain cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Digital Rain</strong><small>Nova Lane • Neon Velocity</small></div>
+              <button data-favorite="4" aria-label="Favorite Digital Rain">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Electronic</span><span>Atmospheric</span><span>102 BPM</span></div>
+            <div class="v4-card-tags"><span>Electronic</span><span>Technology</span><span>Night</span></div>
+            <div class="v4-card-actions">
+              <button data-track="4">Play</button>
+              <button data-queue="4">＋ Queue</button>
+              <button data-open-track="4">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="apex rising nova lane neon velocity cinematic epic cinematic epic trailer intense"
+          data-genre="cinematic"
+          data-mood="epic"
+          data-title="apex rising"
+          data-bpm="124">
+          <button class="v4-card-art catalog-play" data-track="5" aria-label="Play Apex Rising">
+            <img src="assets/covers/apex-rising.svg" alt="Apex Rising cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Apex Rising</strong><small>Nova Lane • Neon Velocity</small></div>
+              <button data-favorite="5" aria-label="Favorite Apex Rising">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Cinematic</span><span>Epic</span><span>124 BPM</span></div>
+            <div class="v4-card-tags"><span>Cinematic</span><span>Epic</span><span>Trailer</span></div>
+            <div class="v4-card-actions">
+              <button data-track="5">Play</button>
+              <button data-queue="5">＋ Queue</button>
+              <button data-open-track="5">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="streets joshua shanks waterfalls ambient reflective piano ambient city storytelling"
+          data-genre="ambient"
+          data-mood="reflective"
+          data-title="streets"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="6" aria-label="Play Streets">
+            <img src="assets/covers/waterfalls.png" alt="Streets cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Streets</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="6" aria-label="Favorite Streets">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Reflective</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Ambient</span><span>City</span></div>
+            <div class="v4-card-actions">
+              <button data-track="6">Play</button>
+              <button data-queue="6">＋ Queue</button>
+              <button data-open-track="6">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="for a moment joshua shanks waterfalls ambient tender piano emotional travel reflection"
+          data-genre="ambient"
+          data-mood="tender"
+          data-title="for a moment"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="7" aria-label="Play For a Moment">
+            <img src="assets/covers/waterfalls.png" alt="For a Moment cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>For a Moment</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="7" aria-label="Favorite For a Moment">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Tender</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Emotional</span><span>Travel</span></div>
+            <div class="v4-card-actions">
+              <button data-track="7">Play</button>
+              <button data-queue="7">＋ Queue</button>
+              <button data-open-track="7">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="take a chance joshua shanks waterfalls ambient hopeful piano inspiring lifestyle growth"
+          data-genre="ambient"
+          data-mood="hopeful"
+          data-title="take a chance"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="8" aria-label="Play Take a Chance">
+            <img src="assets/covers/waterfalls.png" alt="Take a Chance cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Take a Chance</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="8" aria-label="Favorite Take a Chance">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Hopeful</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Inspiring</span><span>Lifestyle</span></div>
+            <div class="v4-card-actions">
+              <button data-track="8">Play</button>
+              <button data-queue="8">＋ Queue</button>
+              <button data-open-track="8">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="baby steps joshua shanks waterfalls ambient warm piano gentle study optimistic"
+          data-genre="ambient"
+          data-mood="warm"
+          data-title="baby steps"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="9" aria-label="Play Baby Steps">
+            <img src="assets/covers/waterfalls.png" alt="Baby Steps cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Baby Steps</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="9" aria-label="Favorite Baby Steps">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Warm</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Gentle</span><span>Study</span></div>
+            <div class="v4-card-actions">
+              <button data-track="9">Play</button>
+              <button data-queue="9">＋ Queue</button>
+              <button data-open-track="9">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="starry skies joshua shanks waterfalls ambient dreamy piano night ambient cinematic"
+          data-genre="ambient"
+          data-mood="dreamy"
+          data-title="starry skies"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="10" aria-label="Play Starry Skies">
+            <img src="assets/covers/waterfalls.png" alt="Starry Skies cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Starry Skies</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="10" aria-label="Favorite Starry Skies">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Dreamy</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Night</span><span>Ambient</span></div>
+            <div class="v4-card-actions">
+              <button data-track="10">Play</button>
+              <button data-queue="10">＋ Queue</button>
+              <button data-open-track="10">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="promises joshua shanks waterfalls ambient emotional piano romantic reflective film"
+          data-genre="ambient"
+          data-mood="emotional"
+          data-title="promises"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="11" aria-label="Play Promises">
+            <img src="assets/covers/waterfalls.png" alt="Promises cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Promises</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="11" aria-label="Favorite Promises">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Emotional</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Romantic</span><span>Reflective</span></div>
+            <div class="v4-card-actions">
+              <button data-track="11">Play</button>
+              <button data-queue="11">＋ Queue</button>
+              <button data-open-track="11">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="lost joshua shanks waterfalls ambient melancholic piano emotional documentary storytelling"
+          data-genre="ambient"
+          data-mood="melancholic"
+          data-title="lost"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="12" aria-label="Play Lost">
+            <img src="assets/covers/waterfalls.png" alt="Lost cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Lost</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="12" aria-label="Favorite Lost">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Melancholic</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Emotional</span><span>Documentary</span></div>
+            <div class="v4-card-actions">
+              <button data-track="12">Play</button>
+              <button data-queue="12">＋ Queue</button>
+              <button data-open-track="12">Details</button>
+            </div>
+          </div>
+        </article>
+        <article class="v4-discovery-card catalog-row"
+          data-name="waterfalls joshua shanks waterfalls ambient peaceful piano meditation relaxation nature"
+          data-genre="ambient"
+          data-mood="peaceful"
+          data-title="waterfalls"
+          data-bpm="0">
+          <button class="v4-card-art catalog-play" data-track="13" aria-label="Play Waterfalls">
+            <img src="assets/covers/waterfalls.png" alt="Waterfalls cover">
+            <span class="v4-card-play">▶</span>
+          </button>
+          <div class="v4-card-body">
+            <div class="v4-card-heading">
+              <div><strong>Waterfalls</strong><small>Joshua Shanks • Waterfalls</small></div>
+              <button data-favorite="13" aria-label="Favorite Waterfalls">♡</button>
+            </div>
+            <div class="v4-card-meta"><span>Ambient</span><span>Peaceful</span><span>Free tempo</span></div>
+            <div class="v4-card-tags"><span>Piano</span><span>Meditation</span><span>Relaxation</span></div>
+            <div class="v4-card-actions">
+              <button data-track="13">Play</button>
+              <button data-queue="13">＋ Queue</button>
+              <button data-open-track="13">Details</button>
+            </div>
+          </div>
+        </article>
+    </div>
+    <div class="v4-no-results" id="v4NoResults" hidden>
+      <strong>No tracks match that search.</strong>
+      <p>Try a broader mood, genre, album, or creative use.</p>
+      <button id="v4ResetDiscovery">Reset filters</button>
     </div>
   </section>
 </section>
+
 
 <section class="view" data-view="library">
   <section class="library-hero"><div><span class="kicker">YOUR SAFEWAVE</span><h1>Build your creative library.</h1><p>Favorites, playlists, recently played tracks, and downloads—all saved on this device for now.</p></div><div class="profile-card"><span class="profile-avatar">JS</span><div><strong id="profileName">Creator</strong><small>Early SafeWave member</small></div><button id="editProfile">Edit</button></div></section>
@@ -418,3 +837,4 @@
 <script src="script.js?v=515"></script>
 <script src="js/player-premium.js?v=515"></script>
 <script src="js/v3.3-site.js?v=330"></script>
+<script src="js/v4-sprint2.js?v=4002"></script>
